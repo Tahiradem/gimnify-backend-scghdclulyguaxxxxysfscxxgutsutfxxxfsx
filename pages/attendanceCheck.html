@@ -20,7 +20,7 @@
             }
             
             // First get the user data
-            const response = await fetch("http://localhost:5000/qrcode");
+            const response = await fetch("/qrcode");
             if (!response.ok) throw new Error("Network response was not ok");
             const gyms = await response.json();
             
@@ -32,7 +32,7 @@
             if (userExists) {
                 try {
                     // Update attendance on the server - using the correct endpoint
-                    const updateResponse = await fetch("http://localhost:5000/postattendanceQrcode", {
+                    const updateResponse = await fetch("/postattendanceQrcode", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

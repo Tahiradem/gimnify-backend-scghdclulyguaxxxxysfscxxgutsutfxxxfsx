@@ -54,7 +54,7 @@
 
         async function notificationGotting() {
             try {
-                const response = await fetch("http://localhost:5000/users");
+                const response = await fetch("/users");
                 if (!response.ok) throw new Error("Network response was not ok");
                 const users = await response.json();
                 const gymHouse = users.find(gym => gym.name === username);

@@ -177,7 +177,7 @@ function renderFinancialChart() {
 // Modified fetch function to use your existing endpoint
 async function fetchAndRenderWeeklyRevenue(currentWeek = 0) {
     try {
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch("/users");
         if (!response.ok) throw new Error("Network response was not ok");
         const gymHouses = await response.json();
         

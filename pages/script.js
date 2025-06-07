@@ -77,7 +77,7 @@ document.getElementById("adminName").innerHTML = username;
 
 const fetchData = async () => {
     try {
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch("/users");
         if (!response.ok) throw new Error("Network response was not ok");
         const gymHouses = await response.json();
 
@@ -291,7 +291,7 @@ function setupEditListeners() {
 
         try {
             // Using your working endpoint format
-            const response = await fetch(`http://localhost:5000/update_user/${userId}/${email}`, {
+            const response = await fetch(`/update_user/${userId}/${email}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -328,7 +328,7 @@ function setupEditListeners() {
 
         if (confirm('Are you sure you want to delete this user?')) {
             try {
-                const response = await fetch('http://localhost:5000/delete-user', {
+                const response = await fetch('delete-user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -536,7 +536,7 @@ function renderFinancialChart() {
 // Modified fetch function to use your existing endpoint
 async function fetchAndRenderWeeklyRevenue(currentWeek = 0) {
     try {
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch("/users");
         if (!response.ok) throw new Error("Network response was not ok");
         const gymHouses = await response.json();
         

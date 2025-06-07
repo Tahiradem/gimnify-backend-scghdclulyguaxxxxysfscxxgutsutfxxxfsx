@@ -19,7 +19,7 @@ const fetchData = async () => {
         const tableBody = document.querySelector("#tableBody");
         tableBody.innerHTML = '';
         showLoading(); // Show loader before fetch
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch("/users");
         if (!response.ok) throw new Error("Network response was not ok");
         const gymHouses = await response.json();
         function allSystem(){
@@ -100,7 +100,7 @@ const fetchData = async () => {
     countCheckedUnchecked(); // Update chart when checkbox changes
     
     try {
-        const response = await fetch('http://localhost:5000/api/updateAttendance', {
+        const response = await fetch('/api/updateAttendance', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
