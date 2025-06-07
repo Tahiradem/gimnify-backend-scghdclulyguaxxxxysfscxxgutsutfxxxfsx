@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" href="../../images/Gymnify_header_logo.png" type="image/x-icon">
+    <title>Gymnify QR Scanner</title>
+    <link rel="manifest" href="/scan/manifest.json">
+    <link rel="stylesheet" href="/scan/styles.css?v=1.2">
+    <link rel="apple-touch-icon" href="/scan/icons/icon-192x192.png">
+</head>
+<body>
+    <div class="container">
+        <h1>Scan QR Code</h1>
+        <div class="scanner-container">
+            <video id="qr-video" playsinline></video>
+            <canvas id="qr-canvas" hidden></canvas>
+        </div>
+        <div id="result-container">
+            <p id="scan-result"></p>
+            <p id="user-email"></p>
+            <div id="offline-status" style="display: none;">
+                <p>⚠️ Offline mode - scans will be saved locally</p>
+                <p id="pending-scans-count">0 scans pending sync</p>
+            </div>
+        </div>
+        <button id="start-button">Start Scanner</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="/scan/app.js"></script>
+</body>
+</html>
