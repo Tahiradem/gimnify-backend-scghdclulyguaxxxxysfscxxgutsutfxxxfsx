@@ -124,7 +124,10 @@ async function generateQRCodesForAllUsers() {
 // Initialize cron job
 cronController.scheduleFinanceUpdate();
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/scan', express.static(path.join(__dirname, 'qr-scanner-pwa', 'public')));
+app.use('/scan', express.static(path.join(__dirname, 'qr-scanner-pwa', 'public'), {
+  index: 'index.html', // Explicitly serve index.html
+  extensions: ['html'], // Default to .html files
+}));
 
 // Serve QR scanner PWA files with correct MIME types
 app.use('/scan-assets', express.static(path.join(__dirname, 'qr-scanner-pwa', 'public'), {
@@ -154,7 +157,7 @@ app.use('/revenue', monthlyRevenueRoutes);
 app.use('/qrcodes', qrCodeRoutes);
 app.use('/api', attendanceRoutes);
 
-app.get('/scan', (req, res) => {
+app.get('/scan*', (req, res) => {
     res.sendFile(path.join(__dirname, 'qr-scanner-pwa', 'public', 'index.html'));
 });
 
