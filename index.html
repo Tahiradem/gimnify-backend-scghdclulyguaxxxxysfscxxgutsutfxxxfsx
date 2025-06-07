@@ -235,7 +235,7 @@
     async function fetchAndProcessUsers() {
     try {
         const active_users = document.querySelector(".active_users")
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch("/users");
         if (!response.ok) throw new Error("Network response was not ok");
         const users = await response.json();
         users.forEach(user => console.log(user.name));
