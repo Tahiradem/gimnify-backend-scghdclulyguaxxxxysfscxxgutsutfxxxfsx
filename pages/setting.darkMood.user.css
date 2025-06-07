@@ -189,3 +189,32 @@ button{
 h3{
     color: #fff;
 }
+.attendance_linker{
+    position: absolute;
+    top: 20px;
+    right: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 180px;
+    height: 180px;
+}
+.attendance_linker a{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    position: relative;
+}
+.attendance_linker a img{
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+}
+.attendance_linker p{
+    position: absolute;
+    width: 100%;
+    left: 200px;
+    text-decoration: underline;
+}
