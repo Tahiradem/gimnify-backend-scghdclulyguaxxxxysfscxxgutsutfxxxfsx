@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User to Gym House</title>
+    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="./userRegistration.css"> -->
+    <link rel="stylesheet" href="./userRegistration.darkMood.user.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New User Here</h1>
+    <form id="addUserForm">
+        <div class="form">
+            <div class="block1">
+                <div class="id_pay">
+                    <label for="ID">User ID</label>
+                    <input type="number" id="ID" name="ID" placeholder="User ID" value="000001" required>
+                    <div class="pay_not">
+                        <p id="pay_label">Paid</p>
+                        <input type="checkbox" id="paymentStatus" name="paymentStatus" ><br>
+                    </div>
+                </div>
+                <br>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Full Name" required>
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="userName" placeholder="Username" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required >
+    
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" required >
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="Phone" required ><br>
+    
+                <div class="age_se">
+                    <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="age" required>
+    
+                <label for="sex">Sex</label>
+                <select id="sex" name="sex" >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <br>
+                </div>
+                <br>
+                <div class="hei_we">
+                    <input type="number" id="height" name="height" placeholder="Height (cm)" required >
+                    <input type="number" id="weight" name="weight" placeholder="Weight (kg)" required >
+                </div>
+                <br>
+                <label for="bodyFat">Body Fat Percentage</label>
+                <input type="number" id="bodyFat" name="bodyFat" placeholder="Body Fat %" required><br>
+                
+
+                <label for="metabolicHealth">Metabolic Health</label>
+                <select id="metabolicHealth" name="metabolicHealth">
+                    <option value="normal">Normal</option>
+                    <option value="slow">Slow</option>
+                    <option value="fast">Fast</option>
+                </select><br>
+                <!-- Add this somewhere in your form, perhaps after the supplements section -->
+<div class="membership-section">
+    <h3>Membership Details</h3>
+    
+    <label for="membershipPlan">Membership Plan</label>
+    <select id="membershipPlan" name="membershipPlan" required>
+        <option value="">Select a plan</option>
+        <!-- Options will be populated by JavaScript -->
+    </select>
+    
+    <label for="packageLength">Package Length</label>
+    <select id="packageLength" name="packageLength" required disabled>
+        <option value="">Select package length</option>
+        <!-- Options will be populated by JavaScript based on selected plan -->
+    </select>
+    
+    <div id="priceDisplay" style="margin-top: 10px; font-weight: bold; color: #fff;">
+        Price: <span id="priceValue">0</span> ETB
+    </div>
+</div>
+            </div>
+            <div class="block2">
+                
+
+                <label for="livesInHotClimate">Lives in Hot Climate?</label>
+                <input type="checkbox" id="livesInHotClimate" name="livesInHotClimate"><br>
+
+                <label for="medicalConditions">Medical Conditions (comma separated)</label>
+                <input type="text" id="medicalConditions" name="medicalConditions" placeholder="e.g. diabetes,hypertension"><br>
+
+                <label for="exerciseTimePerDay">Exercise Time Per Day</label>
+                <select id="exerciseTimePerDay" name="exerciseTimePerDay" required>
+                    <option value="10 Min">10 Min</option>
+                    <option value="15 Min">15 Min</option>
+                    <option value="30 Min">30 Min</option>
+                    <option value="45 Min">45 Min</option>
+                    <option value="1 Hr">1 Hr</option>
+                    <option value="1 Hr 15 Min">1 Hr 30 Min</option>
+                    <option value="1 Hr 30 Min">1 Hr 30 Min</option>
+                    <option value="2 Hr">2 Hr</option>
+                </select>
+                <label for="notificationTime" style="display: flex;">Notification Time</label>
+                <input type="time" id="notificationTime" name="notificationTime" placeholder="Notification Time" required><br>
+    
+                <label for="healthStatus">Health Status</label>
+                <select id="healthStatus" name="healthStatus" placeholder="Health Status">
+                    <option value="fully good">Perfectly Good</option>
+                    <option value="good">Good</option>
+                    <option value="semi good">Half Good</option>
+                    <option value="bad">Have an Issue</option>
+                </select>
+                <br>
+                <label for="exerciseType">Exercise Type</label>
+                <select name="exerciseType" id="exerciseType" placeholder="Exercise Type">
+                    <option value="Strength">Strength Training</option>
+                    <option value="Cardiovascular (Aerobic)">Cardiovascular (Aerobic) Training</option>
+                    <option value="Flexibility">Flexibility</option>
+                    <option value="High-Intensity Interval">High-Intensity Interval</option>
+                    <option value="Recovery">Recovery</option>
+                </select>
+                <label for="enteringTime" style="display: flex; width: 200px;margin-top: 15px;">Entering Time</label><br>
+    
+                <div class="abc" style="display: flex; gap:13px; margin-top: -20px;">
+                <input type="time" id="enteringTime" name="enteringTime" placeholder="Entering Time"><br>
+     
+                <label for="bloodType">Blood Type</label>
+                <select name="bloodType" id="bloodType" placeholder="Blood Type">
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+                <br>
+                </div>
+<br>
+<h3>Exercises for Each Day</h3>
+                <label for="mon">Monday</label>
+                <input type="text" id="mon" name="mon" placeholder="Monday" required value="sholder">
+    
+                <label for="tue">Tuesday</label>
+                <input type="text" id="tue" name="tue" placeholder="Tuesday" required value="arm">
+            
+                <label for="wed">Wednesday</label>
+                <input type="text" id="wed" name="wed" placeholder="wendsday" required value="break">
+                <label for="thu">Thursday:</label>
+                <input type="text" id="thu" name="thu" placeholder="Thursday" required value="arm">
+                <label for="fri">Friday</label>
+                <input type="text" id="fri" name="fri" placeholder="Friday" required value="chest">
+                <label for="sat">Saturday</label>
+                <input type="text" id="sat" name="sat" placeholder="Saturday" required value="arm">
+                <label for="sun">Sunday</label>
+                <input type="text" id="sun" name="sun" placeholder="Sunday" required value="leg">
+                <br><br>
+            </div>
+            <div class="block3">
+            
+                
+                <h3>Dietary Preferences</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <label><input type="checkbox" name="vegetarian"> Vegetarian</label>
+                    <label><input type="checkbox" name="vegan"> Vegan</label>
+                    <label><input type="checkbox" name="glutenFree"> Gluten Free</label>
+                    <label><input type="checkbox" name="dairyFree"> Dairy Free</label>
+                    <label><input type="checkbox" name="halal"> Halal</label>
+                    <label><input type="checkbox" name="kosher"> Kosher</label>
+                </div>
+                <br>
+                <label for="allergies">Allergies (comma separated)</label>
+                <input type="text" id="allergies" name="allergies" placeholder="e.g. nuts,shellfish"><br>
+                
+                <label for="dislikes">Disliked Foods (comma separated)</label>
+                <input type="text" id="dislikes" name="dislikes" placeholder="e.g. tofu,olives"><br>
+                
+                <label for="preferredCuisines">Preferred Cuisines (comma separated)</label>
+                <input type="text" id="preferredCuisines" name="preferredCuisines" placeholder="e.g. mediterranean,asian"><br>
+                
+                <label for="budget">Food Budget</label>
+                <select id="budget" name="budget">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                </select><br>
+                
+                <label for="mealFrequency">Meals Per Day</label>
+                <input type="number" id="mealFrequency" name="mealFrequency" min="1" max="6" value="4"><br>
+                
+                <label for="wakeTime">Wake Time</label>
+                <input type="time" id="wakeTime" name="wakeTime" value="07:00"><br>
+                
+                <label for="sleepTime">Sleep Time</label>
+                <input type="time" id="sleepTime" name="sleepTime" value="23:00"><br>
+                
+                <label for="cookingTime">Cooking Time Availability</label>
+                <select id="cookingTime" name="cookingTime">
+                    <option value="low">Limited</option>
+                    <option value="medium" selected>Moderate</option>
+                    <option value="high">Plenty</option>
+                </select><br>
+                
+                <div class="avtivityLevel_fitness">
+                    <select id="activity" name="activityLevel" required>
+                        <option value="sedentary">Sedentary</option>
+                        <option value="lightly_active">Lightly Active</option>
+                        <option value="moderately_active">Moderately Active</option>
+                        <option value="very_active">Very Active</option>
+                        <option value="extra_active">Extra Active</option>
+                    </select>
+                    <br><br><br>
+                    <select id="goal" name="fitnessGoal" required>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="muscle_gain">Muscle Gain</option>
+                        <option value="fat_loss">Fat Loss</option>
+                      </select>
+                </div>
+                
+                <h3>Supplements</h3>
+                <div id="supplementsContainer">
+                    <div class="supplement-entry">
+                        <input type="text" name="supplementName[]" placeholder="Supplement name" value="whey protein">
+                        <select name="supplementType[]">
+                            <option value="protein">Protein</option>
+                            <option value="general">Multivitamin</option>
+                            <option value="amino">Amino Acids</option>
+                            <option value="creatine">Creatine</option>
+                        </select>
+                        <select name="supplementTiming[]">
+                            <option value="morning">Morning</option>
+                            <option value="pre-workout">Pre-workout</option>
+                            <option value="post-workout">Post-workout</option>
+                            <option value="evening">Evening</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" id="addSupplement" class="supl_btn">Add Another Supplement</button>
+            </div>    
+        </div>
+        <button type="submit" style="position: absolute; bottom: 0px; right: calc(50% - 75px);">Add User</button>
+
+    </form>
+    </div>
+    <script src="./userRegistration.js"></script>
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+</body>
+</html>

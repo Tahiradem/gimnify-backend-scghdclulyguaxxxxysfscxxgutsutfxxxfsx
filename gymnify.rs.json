@@ -1,0 +1,514 @@
+[{
+  "_id": {
+    "$oid": "67e54b9d3ba8e63360b8571f"
+  },
+  "name": "Kooky",
+  "users": [
+    {
+      "ID": 0,
+      "userName": "",
+      "email": "",
+      "password": "",
+      "phone": "",
+      "age": 0,
+      "sex": "",
+      "height": 0,
+      "weight": 0,
+      "registeredDate": "",
+      "paymentDate": "",
+      "paymentStatus": false,
+      "exerciseTimePerDay": "",
+      "notificationTime": "",
+      "healthStatus": "",
+      "exerciseType": "",
+      "enteringTime": "",
+      "bloodType": "",
+      "exercises": [
+        ""
+      ],
+      "upComingExercise": "",
+      "totalTimeSpendOnGym": "",
+      "proteinAmountRequired": "0",
+      "TodayNotification": "",
+      "activityLevel": "",
+      "fitnessGoal": "",
+      "_id": {
+        "$oid": "67e54b9d3ba8e63360b85720"
+      }
+    }
+  ],
+  "dailyIncome": [],
+  "dailyOutcome": [],
+  "dailyRevenue": 0,
+  "weeklyIncome": [
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0,
+      "week1": {
+        "Mon": 100,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week2": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week3": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week4": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "_id": {
+        "$oid": "67e54b9d3ba8e63360b85721"
+      }
+    }
+  ],
+  "weeklyExpense": [
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0,
+      "week1": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week2": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week3": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week4": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "_id": {
+        "$oid": "67e54b9d3ba8e63360b85722"
+      }
+    }
+  ],
+  "weeklyRevenue": [
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0,
+      "week1": {
+        "Mon": 1220,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week2": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week3": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "week4": {
+        "Mon": 0,
+        "Tue": 0,
+        "Wed": 0,
+        "Thu": 0,
+        "Fri": 0,
+        "Sat": 0,
+        "Sun": 0
+      },
+      "_id": {
+        "$oid": "67e54b9d3ba8e63360b85723"
+      }
+    }
+  ],
+  "monthlyIncome": [],
+  "monthlyExpense": [],
+  "monthlyRevenue": [],
+  "email": "kokky@gmail.com",
+  "password": "0000",
+  "phoneNumber": "978787960",
+  "registeredDate": "27, 03, 2025",
+  "totalUsers": 0,
+  "currentUsers": 0,
+  "location": "Ethiopia",
+  "adminNotifications": [],
+  "pricePlan": 5316,
+  "paymentsList": [],
+  "accountNumbers": [],
+  "payDone": false,
+  "serviceTermination": false,
+  "memberShip": {
+    "Basic": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    },
+    "Plus": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    },
+    "Pro": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    }
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "67e58ac0bead2b888f3af0fe"
+  },
+  "name": "Thunder Gym",
+  "users": [
+    {
+      "ID": 0,
+      "userName": "",
+      "email": "",
+      "password": "",
+      "phone": "",
+      "age": 0,
+      "sex": "",
+      "height": 0,
+      "weight": 0,
+      "registeredDate": "",
+      "paymentDate": "",
+      "paymentStatus": false,
+      "exerciseTimePerDay": "",
+      "notificationTime": "",
+      "healthStatus": "",
+      "exerciseType": "",
+      "enteringTime": "",
+      "bloodType": "",
+      "exercises": [
+        ""
+      ],
+      "upComingExercise": "",
+      "totalTimeSpendOnGym": "",
+      "proteinAmountRequired": "0",
+      "TodayNotification": "",
+      "activityLevel": "",
+      "fitnessGoal": "",
+      "_id": {
+        "$oid": "67e58ac0bead2b888f3af0ff"
+      }
+    },
+    {
+      "ID": 1,
+      "userName": "Hamza Adem",
+      "email": "hamzadem0703@gmail.com",
+      "password": "12345",
+      "phone": "0703177878",
+      "age": 17,
+      "sex": "male",
+      "height": 187,
+      "weight": 64,
+      "registeredDate": "Mar 31, 2025, 12:56 PM",
+      "paymentDate": "May 1",
+      "paymentStatus": false,
+      "exerciseTimePerDay": "45 Min",
+      "notificationTime": "10:01 AM",
+      "healthStatus": "fully good",
+      "exerciseType": "Cardiovascular (Aerobic)",
+      "enteringTime": "00:00",
+      "bloodType": "O+",
+      "exercises": [
+        "sholder",
+        "arm",
+        "break",
+        "arm",
+        "chest",
+        "arm",
+        "leg"
+      ],
+      "upComingExercise": "",
+      "totalTimeSpendOnGym": "0",
+      "TodayNotification": "",
+      "activityLevel": "1.55",
+      "fitnessGoal": "muscle_gain",
+      "_id": {
+        "$oid": "67ea66dc4dddc2369ccf242a"
+      }
+    },
+    {
+      "ID": 1,
+      "userName": "Tahir Adem",
+      "email": "ademt@gmail.com",
+      "password": "787878",
+      "phone": "978787960",
+      "age": 20,
+      "sex": "male",
+      "height": 181,
+      "weight": 60,
+      "registeredDate": "Mar 31, 2025, 1:01 PM",
+      "paymentDate": "May 1",
+      "paymentStatus": false,
+      "exerciseTimePerDay": "45 Min",
+      "notificationTime": "12:00 AM",
+      "healthStatus": "fully good",
+      "exerciseType": "Strength",
+      "enteringTime": "10:00",
+      "bloodType": "AB+",
+      "exercises": [
+        "sholder",
+        "arm",
+        "break",
+        "arm",
+        "chest",
+        "arm",
+        "leg"
+      ],
+      "upComingExercise": "",
+      "totalTimeSpendOnGym": "0",
+      "TodayNotification": "",
+      "activityLevel": "1.2",
+      "fitnessGoal": "muscle_gain",
+      "_id": {
+        "$oid": "67ea67f94dddc2369ccf2441"
+      }
+    }
+  ],
+  "dailyIncome": [
+    100
+  ],
+  "dailyOutcome": [
+    65
+  ],
+  "dailyRevenue": 1000000100034,
+  "weeklyIncome": [
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    }
+  ],
+  "weeklyExpense": [
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    }
+  ],
+  "weeklyRevenue": [
+    {
+      "Mon": 1000,
+      "Tue": 800,
+      "Wed": 900,
+      "Thu": 300,
+      "Fri": 800,
+      "Sat": 750,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    }
+  ],
+  "monthlyIncome": [],
+  "monthlyExpense": [],
+  "monthlyRevenue": [],
+  "email": "ademt0614@gmail.com",
+  "password": "12",
+  "phoneNumber": "+251978787960",
+  "registeredDate": "27, 03, 2025",
+  "totalUsers": 0,
+  "currentUsers": 0,
+  "location": "Ethiopia",
+  "adminNotifications": [],
+  "pricePlan": 11000,
+  "paymentsList": [],
+  "accountNumbers": [],
+  "payDone": false,
+  "serviceTermination": false,
+  "memberShip": {
+    "Basic": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    },
+    "Plus": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    },
+    "Pro": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    }
+  },
+  "__v": 3
+}]

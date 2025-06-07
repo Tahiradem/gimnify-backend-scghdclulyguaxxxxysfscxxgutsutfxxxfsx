@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="profile.user.css"> -->
+    <link rel="stylesheet" href="./profile.darkMood.user.css" id="styleRoom">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>Gymnify profile page</title>
+</head>
+<body>
+    <div class="main-container">
+        <nav> 
+            <div class="logo_top">Gymnify</div>
+            <div class="nav_items"> 
+                <a href="./Dashboard.html"><span><i class="fa fa-chart-line"></i></span><p>Dashboard</p></a>
+                <a href="./notification.user.html"><span><i class="fa fa-bell"></i><div class="notification_red"></div></span><p>Notifications</p></a>
+                <a href="../index.html"><span><i class="fa fa-home"></i></span><p>Home</p></a>
+                <a href="../index.html#service"><span><i class="fa fa-tag"></i></span><p>Service</p></a>
+                <a href="./payment.user.html"><span><i class="fa-regular fa-credit-card"></i></span><p>Subscription</p></a>
+                <a href="./poster.html"><span><i class="fa fa-feather-pointed"></i></span><p>Digital Posters</p></a>
+                <div class="line_break_nav" style="width: 80%; height: 1px; margin-left: 20px;margin-top: 10px; background: #ffffffbc;"></div>
+                <a href="./setting.user.html" style="margin-top: 10px;"><span><i class="fa fa-gear"></i></span><p>Setting</p></a>
+                <a href="./help.user.html"><span><i class="fa fa-question"></i></span><p>Help</p></a>
+                <a href=""><span><i class="fa fa-user"></i></span><p>Profile</p></a>
+            </div>
+        </nav>
+        <div class="section-main">
+            <div class="part_1">
+                <div class="profile_shower">
+                    <div class="profile_color">T</div>
+                    <div class="Profile_name">Thunder Gym</div>
+                    <p class="profile_started">Started 23, Jun, 2023 (3 Months)</p>
+                </div>
+                <div class="logout_btn">
+                    <i class="fa fa-question"></i>
+                    <a href="../index.html" style="text-decoration: none; color: #6d5fb48e;">log-out</a>
+                </div>
+            </div>
+            <div class="part_2">
+                <p class="current_password">Your current password</p>
+                <input type="password" class="password">
+                <i class="fa fa-eye-slash" onclick="password_hide()" id="toggle-icon"></i>
+                <details>
+                    <summary class="change_password_btn">change</summary>
+                    <div class="changing_password_pop">
+                        <p>Change Your Password</p>
+                        <input type="text" class="changing_password_pop_input">
+                        <button class="changing_password_pop_button">save</button>
+                    </div>
+                </details>
+            </div>
+            <div class="part_3">
+                <p class="txt_head_month">Your Monthly Financial Report</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Income</th>
+                            <th>Expense</th>
+                            <th>Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function password_hide() {
+            const passwordField = document.querySelector('.password');
+            const hideIcon = document.querySelector('#toggle-icon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                hideIcon.classList.remove('fa-eye-slash');
+                hideIcon.classList.add('fa-eye');
+            } else {
+                passwordField.type = 'password';
+                hideIcon.classList.remove('fa-eye');
+                hideIcon.classList.add('fa-eye-slash');
+            }
+        }
+        
+        const password_value = localStorage.getItem('password');
+        document.querySelector('.password').value = password_value;
+
+        document.addEventListener("click", (event) => {
+            const changePasswordPop = document.querySelector(".changing_password_pop");
+            const changePasswordBtn = document.querySelector(".change_password_btn");
+
+            if (
+                changePasswordPop &&
+                !changePasswordPop.contains(event.target) &&
+                !changePasswordBtn.contains(event.target)
+            ) {
+                const detailsElement = changePasswordBtn.closest("details");
+                if (detailsElement) {
+                    detailsElement.removeAttribute("open");
+                }
+            }
+        });
+
+        document.querySelector(".changing_password_pop_button").addEventListener("click", async () => {
+            const username = localStorage.getItem("username");
+            const email = localStorage.getItem("email");
+            const newPasswordInput = document.querySelector(".changing_password_pop_input");
+            const newPassword = newPasswordInput.value;
+
+            if (!newPassword) {
+                alert("Please enter a new password.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:5000/update-password", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ email, newPassword }),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert("Password updated successfully.");
+                    newPasswordInput.value = "";
+                    const detailsElement = document.querySelector(".change_password_btn").closest("details");
+                    if (detailsElement) detailsElement.removeAttribute("open");
+                } else {
+                    alert(result.message || "Failed to update password.");
+                }
+            } catch (error) {
+                console.error("Error updating password:", error);
+                alert("An error occurred while updating the password.");
+            }
+        });
+
+        // Fetch and display financial data
+        async function fetchFinancialData() {
+            try {
+                const response = await fetch("http://localhost:5000/users");
+                if (!response.ok) throw new Error("Network response was not ok");
+                
+                const users = await response.json();
+                const email = localStorage.getItem('email');
+                const gymData = users.find(user => user.email === email);
+                
+                if (!gymData || !gymData.monthlyIncome || !gymData.monthlyExpense) {
+                    console.log('No financial data available for this gym');
+                    return;
+                }
+
+                const tableBody = document.querySelector('.part_3 tbody');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                
+                // Get the last 3 months of data (or all available if less than 3)
+                const monthsToShow = Math.min(3, gymData.monthlyIncome.length);
+                
+                for (let i = 0; i < monthsToShow; i++) {
+                    const monthIndex = gymData.monthlyIncome.length - monthsToShow + i;
+                    const row = document.createElement('tr');
+                    
+                    // Month name cell (using current year for display)
+                    const monthCell = document.createElement('td');
+                    monthCell.textContent = monthNames[monthIndex % 12];
+                    row.appendChild(monthCell);
+                    
+                    // Income cell
+                    const incomeCell = document.createElement('td');
+                    incomeCell.textContent = `+${gymData.monthlyIncome[monthIndex] || 0}`;
+                    row.appendChild(incomeCell);
+                    
+                    // Expense cell
+                    const expenseCell = document.createElement('td');
+                    expenseCell.textContent = `-${gymData.monthlyExpense[monthIndex] || 0}`;
+                    row.appendChild(expenseCell);
+                    
+                    // Revenue cell
+                    const revenueCell = document.createElement('td');
+                    const revenue = (gymData.monthlyIncome[monthIndex] || 0) - (gymData.monthlyExpense[monthIndex] || 0);
+                    revenueCell.textContent = `+ ${revenue}`;
+                    row.appendChild(revenueCell);
+                    
+                    tableBody.appendChild(row);
+                }
+
+            } catch (error) {
+                console.error('Error fetching financial data:', error);
+                // Fallback to static data if API fails
+                const tableBody = document.querySelector('.part_3 tbody');
+                tableBody.innerHTML = `
+                    <tr>
+                        <td>Jun</td>
+                        <td>+20000</td>
+                        <td>-10000</td>
+                        <td>+ 10000</td>
+                    </tr>
+                    <tr>
+                        <td>Jul</td>
+                        <td>+23700</td>
+                        <td>-14400</td>
+                        <td>+ 9300</td>
+                    </tr>
+                    <tr>
+                        <td>Aug</td>
+                        <td>+46000</td>
+                        <td>-600</td>
+                        <td>+ 45400</td>
+                    </tr>
+                `;
+            }
+        }
+
+        // User profile and financial data initialization
+        const username = localStorage.getItem('username');
+        const email = localStorage.getItem('email');
+        
+        if (username) {
+            document.querySelector('.Profile_name').innerHTML = username;
+            const userFirstLetter = username.split("")[0];
+            document.querySelector('.profile_color').innerHTML = userFirstLetter;
+        }
+
+        async function notificationGotting() {
+            try {
+                const response = await fetch("http://localhost:5000/users");
+                if (!response.ok) throw new Error("Network response was not ok");
+                const users = await response.json();
+                const gymHouse = users.find(gym => gym.email === email);
+
+                if (gymHouse && gymHouse.registeredDate) {
+                    const registeredDateStr = gymHouse.registeredDate;
+                    const registeredDate = new Date(registeredDateStr);
+                    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+                    const formattedRegisteredDate = registeredDate.toLocaleDateString('en-US', options).replace(/\//g, ", ");
+                    document.querySelector('.profile_started').innerHTML = `Started ${registeredDateStr}`;
+                }
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        }
+
+        // Initialize dark mode
+        let darkMode = localStorage.getItem('colorMood');
+        const Room = document.querySelector('#styleRoom');
+        if (darkMode === "true") {
+            Room.href = './profile.darkMood.user.css';
+        } else if (darkMode === "false") {
+            Room.href = './profile.user.css';
+        }
+
+        // Load all data when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            notificationGotting();
+            fetchFinancialData();
+        });
+    </script>
+</body>
+</html>

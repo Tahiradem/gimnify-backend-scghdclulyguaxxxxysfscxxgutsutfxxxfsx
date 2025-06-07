@@ -1,0 +1,245 @@
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #6d5fb41a;
+}
+.main-container{
+    width: 98%;
+    height: 98%;
+    background: #e3e2ef00;
+    position: absolute;
+    display: flex;
+    margin-top: -10px;
+}
+/* navigation start*/
+nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 98vh;
+    width: 230px;
+    background: #6d5fb48e;
+    position: absolute;
+    box-shadow: 3px 0px 15px -4px #6d5fb4;
+    border-radius: 10px 0 0 10px;
+}
+.logo_top{
+    font-family: "Noto Serif", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: italic;
+  font-variation-settings:"wdth" 100;
+  font-size: 30px;
+  position: relative;
+  top: -20px;
+  left: 30px;
+  color: #fff;
+}
+nav a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-left: 15px;
+    width: 200px;
+    border-radius: 5px;
+}
+.nav_items{
+    margin-top: 30px;
+}
+nav a:hover{
+    background: #ffffff11;
+}
+nav a:nth-child(8) p{
+    margin-left: 7px;
+}
+nav a span{
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff3b;
+    text-align: center;
+}
+nav .notification_red{
+    background: #ff4b4b;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-top: -10px;
+    position: relative;
+    top: -8px;
+    left: 6px;
+}
+/*Navigation End */
+.section-main{
+    width: 80%;
+    height: 100%;
+    margin-left: 260px;
+    display: flex;
+    flex-direction: column;
+}
+.part_1{
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+}
+.part_1 .profile_shower{
+    margin-top: 30px;
+}
+.part_1 .profile_color{
+    width: 100px;
+    height: 100px;
+    background: #353535;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size:50px;
+    color: #fff;
+}
+.part_1 .Profile_name{
+    font-size: 23px;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    top: -80px;
+    left: 120px;
+}
+.part_1 .profile_started{
+    position: relative;
+    top: -85px;
+    left: 130px;
+}
+.part_1 .logout_btn{
+    width: 90px;
+    height: 35px;
+    border: 1px solid #6d5fb4d8;
+    display: flex;
+    border-radius: 7px;
+    justify-content: center;
+    margin-top: 60px;
+    align-items: center;
+    gap: 10px;
+    color: #6d5fb4c4;
+    cursor: pointer;
+}
+.part_2{
+    display: flex;
+    flex-direction: column;
+}
+.current_password{
+    font-size: 17px;
+}
+.part_2 input{
+    width: 230px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid #55555531;
+    text-indent: 10px;
+}
+.change_password_btn{
+    width: 100px;
+    height: 30px;
+    background: #6d5fb48e;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: #fff;
+    margin-top: 30px;
+    box-shadow: 3px 3px 15px -5px #3333338b;
+    margin-left: 135px;
+    cursor: pointer;
+}
+.changing_password_pop{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background: #fff;
+    width: 400px;
+    height: 300px;
+    flex-direction: column;
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
+}
+.changing_password_pop button{
+    width: 100px;
+    height: 30px;
+    background: #6d5fb48e;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 30px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 19px;
+}
+.part_2 i{
+    margin-top: -25px;
+    position: relative;
+    left: 205px;
+    color: #333;
+}
+.part_3{
+    width: 100%;
+    height: 200px;
+    margin-top: 15px;
+}
+.txt_head_month{
+    width: 100%;
+    text-align: center;
+    color: #333;
+}
+table{
+    width: 95%;
+    margin: 40px auto;
+}
+thead{
+    width: 100%;
+}
+tr{
+    width: 100%;
+}
+tbody{
+    width: 100%;
+}
+tr{
+    width: 100%;
+}
+th{
+    text-align: right;
+    height: 50px;
+    font-weight: 400;
+}
+tr td{
+    width: 150px;
+    text-align: right;
+    height: 35px;
+    border-bottom:1px solid #3333333d ;
+
+}
+tr td:nth-child(1){
+    width: 70px;
+    text-align: left;
+}

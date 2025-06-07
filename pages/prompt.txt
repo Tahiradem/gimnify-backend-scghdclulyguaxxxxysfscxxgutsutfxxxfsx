@@ -1,0 +1,3 @@
+qr code for ever users
+attendace checker website/app just san the qr code and pass 
+loading animation for charts/ data fetchers

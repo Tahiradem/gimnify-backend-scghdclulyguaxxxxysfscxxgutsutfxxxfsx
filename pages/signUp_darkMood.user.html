@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./signUp_darkMood.user.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="main_container">
+        <div class="price_plan_number">5,316.00/ month</div>
+        <div class="image_container">
+            <div class="cover_img"></div>
+            <div class="logo_top">Gymnify</div>
+            <a href="../index.html" class="back"><i class="fa-solid fa-arrow-left"></i><p class="backtxt">to home</p></a>
+            <p class="description">Once You Sign-up We offer You Free Services For 1 Month.</p>
+        </div>
+        <form action="/create-gym-house" method="POST" id="gymForm">
+            <h1>Create an account</h1>
+            <p class="i_have">Already Have An Account <a href="./login.html">Login</a></p>
+            <input type="text" class="gym_house_name" placeholder="Gym House Name" name="gymHouseName" required>
+    <input type="email" class="email" placeholder="Email" name="email" required>
+    <div class="password_div">
+        <input type="password" class="password" placeholder="Password" name="password" required>
+        <i id="toggle-icon" class="fa fa-eye-slash" onclick="password_hide()"></i>
+    </div>
+    <select name="location" id="location" required>
+        <option value="" disabled selected>Location</option>
+        <option value="Ethiopia">Ethiopia</option>
+    </select>
+    <div class="tele_phone">
+        <p class="regional_phone">+251</p>
+        <input type="tel" class="phone" placeholder="Phone" name="phone" required>
+    </div>
+    <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <div class="sub_container">
+        <img src="../images/happ2-removebg-preview.png" alt="">
+        <p class="success_reg">You're Successfully Registered !</p>
+        <a href="" class="get_start"><p>Get Started</p></a>
+    </div>
+    <script> 
+        function password_hide() {
+    const passwordField = document.querySelector('.password');
+    const hideIcon = document.querySelector('#toggle-icon'); // Query for the icon dynamically
+
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        hideIcon.classList.remove('fa-eye-slash');
+        hideIcon.classList.add('fa-eye'); // Switch to eye icon
+    } else {
+        passwordField.type = 'password';
+        hideIcon.classList.remove('fa-eye');
+        hideIcon.classList.add('fa-eye-slash'); // Switch to eye-slash icon
+    }
+}
+
+        const price_plan_number = localStorage.getItem('price_plan')
+        document.querySelector('.price_plan_number').innerHTML = `${price_plan_number}.00 Birr /month`
+
+    </script>
+    <script>
+        document.getElementById('gymForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = {
+        price_plan: price_plan_number,
+        gymHouseName: document.querySelector('.gym_house_name').value,
+        email: document.querySelector('.email').value,
+        password: document.querySelector('.password').value,
+        location: document.getElementById('location').value,
+        phone: document.querySelector('.phone').value,
+    };
+
+    try {
+        const response = await fetch('/create-gym-house', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            window.open('login.html', '_self')
+        } else {
+            alert(`Error: ${result.error}`);
+        }
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('An unexpected error occurred. Please try again.');
+    }
+});
+
+    </script>
+</body>
+</html>

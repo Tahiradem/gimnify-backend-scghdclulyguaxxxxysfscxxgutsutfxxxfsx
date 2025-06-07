@@ -1,0 +1,730 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+::-webkit-scrollbar{
+    width: 0;
+}
+html{
+    scroll-behavior: smooth;
+}
+.main_container{
+    width: 100%;
+    height: 97%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+.home{
+    width: 99%;
+    background-image: url('./images/photo-1583454110551-21f2fa2afe61.avif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+    min-height: 96vh;
+    margin-top: 0px;
+    overflow: hidden;
+    animation: home_anim 1s 1s forwards;
+}
+@keyframes home_anim {
+    0%{
+        transform: skewY();
+    }
+    100%{
+        transform: skewY();
+    }
+}
+.home_cover{
+    width: 100%;
+    margin-top: -15px;
+    height: 100vh;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.625),rgba(0, 0, 0, 0.414));
+}
+header{
+    display: flex;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    /* margin-top: 15px; */
+    position: relative;
+    top: 30px;
+}
+header a{
+    color: #fff;
+    text-decoration: none;
+}
+header nav{
+    display: flex;
+    gap: 50px;
+    margin-left: 30px;
+}
+.logo_home{
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+}
+.logo_home img{
+    width:35px;
+    margin-top: 3px;
+}
+header nav a{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 350;
+    transition: .2s;
+}
+header nav a:hover{
+    color: #b7aaf6;
+}
+.act_btns{
+    display: flex;
+    gap: 20px;
+}
+.act_btns a:hover{
+    scale: 1.06;
+}
+.act_btns a{
+    transition: .2s;
+}
+.video_btn{
+    width: 100px;
+    height: 39px;
+    background: transparent;
+    border: 1px solid #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+}
+.video_btn p{
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login_act{
+    width: 100px;
+    height: 39px;
+    background: transparent;
+    /* border: 1px solid #fff; */
+    background: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+}
+.login_act p{
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 13px;
+    color: #333333;
+}
+.block2{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+.block2 h1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    font-size: 55px;
+    letter-spacing: 2px;
+    animation: text_anim1 0.9s 2ms forwards;
+    scale: 20;
+}
+@keyframes text_anim1 {
+    0%{
+        scale: 20;
+        rotate: 180deg;
+    }
+    
+    100%{
+        scale: 1;
+    }    
+}
+.block2 p{
+    color: #fff;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: -25px;
+    width: 600px;
+    text-align: center;
+}
+.block3{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.block3 a{
+    text-decoration: none;
+    font-size: 17px;
+    width: 130px;
+    height: 42px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 70px;
+    transition: .2s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.block3 a:hover{
+    scale: 1.06;
+}
+.block3 .btn_home_1 p{
+    color: #333333;
+    font-weight: 500;
+}
+.block3 .btn_home_2{
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #bdb5e9;
+}
+.block3 .btn_home_2 p{
+    color: #fff;
+}
+.block4{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.active_users{
+    font-size: 40px;
+    color: #fff;
+    font-weight: 500;
+}
+.scroll_home{
+    color: #fff;
+    font-weight: 300;
+    position: absolute;
+    bottom: 10px;
+    left: 47%;
+    animation: scrollMe 1s 1s infinite;
+}
+@keyframes scrollMe {
+    0% {
+        transform: translateY(0); /* Initial position */
+      }
+      25% {
+        transform: translateY(10px); /* Move down */
+      }
+      50% {
+        transform: translateY(-10px); /* Move up */
+      }
+      75% {
+        transform: translateY(10px); /* Move down again */
+      }
+      100% {
+        transform: translateY(0); /* Return to the initial position */
+      }
+}
+.scroll_home div{
+    transform: rotate(90deg);
+    margin-top: 40px;
+    font-weight: 300;
+    font-size: 19px;
+}
+.next{
+    width: 180px;
+}
+.service{
+    width: 100%;
+    min-height: 100vh;
+    /* background: rebeccapurple; */
+}
+.service h1{
+    color: #555;
+    width: 100%;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.detail_servises{
+    width: 93%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: space-between;
+    height: 570px;
+    align-items: center;
+    margin-top: 40px;
+}
+.detail_servises .serve{
+    width: 300px;
+    height: 220px;
+    /* background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /* background: rebeccapurple; */
+    /* border-radius: 7px; */
+    overflow: hidden;
+    transition: .2s;
+}
+.serv_cover i{
+    color: #fff;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    background: #6d5fb49c;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-shadow: 3px 3px 15px -4px #6d5fb493;
+}
+
+.detail_servises .serve .serv_cover{
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(to right,#000000bc,#0000004a ); */
+}
+.detail_servises .serve p{
+    margin-left: 19px;
+    color: #00000091;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.detail_servises .serve .txt1{
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0 auto;
+    width: 93%;
+    /* background: rebeccapurple; */
+    position: relative;
+    top: 25px;
+}
+
+.detail_servises .serve .txt2{
+    width: 93%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+/* .serve:hover{
+    display: flex;
+    scale: 1.1;
+} */
+.howtouse{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    min-height: auto;
+}
+.howtouse .txt_1{
+    color: #333333da;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 45px;
+    margin-top: -20px;
+}
+.howtouse div{
+    width: 85%;
+    display: flex;
+    gap: 80px;
+}
+.howtouse video{
+    max-width: 600px;
+    margin-top: 30px;
+    /* margin-left: -500px; */
+}
+.howtoText{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color: #333333;
+    margin-top: 60px;
+    width: 500px;
+}
+.personal_assistant_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #6d5fb49c;
+    width: 220px;
+    text-decoration: none;
+    box-shadow: 3px 3px 15px -4px #6d5fb493;
+    height: 60px;
+    border-radius: 30px;
+    margin-top: 60px;
+    margin-left: 1000px;
+    transition: 0.5s;
+}
+.personal_assistant_btn:hover{
+    scale: 1.09;
+}
+.personal_assistant_btn p{
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+
+}
+/* Testimonials Section */
+.testimonials {
+    padding: 5rem 5%;
+    background: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.testimonial-author {
+    font-weight: 700;
+    color: #6d5fb4;
+}
+
+.author-role {
+    color: #777;
+    font-size: 0.9rem;
+}
+/* Trust Badges */
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #555;
+}
+.price_plan{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.price_plan .txt_1{
+    margin-top: -30px;
+}
+.price_plan span{
+    display: flex;
+    /* justify-content: space-between; */
+    width: 90%;
+    justify-content: center;
+    gap: 40px;
+}
+.main_price_area{
+    background: #ececec;
+    border-radius: 20px;
+    height: 440px;
+}
+.price_plan div{
+    height: 410px;
+    width: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.price_plan div:nth-child(2){
+    background: #fff;
+}
+.price_plan div:nth-child(2) .subscription_btn{
+    /* margin-top: 90px; */
+    background: #6d5fb49c;
+    border: none;
+    color: #fff;
+}
+.price_amount{
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+    font-size: 33px;
+    font-weight: 700;
+    color: #333333e7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.price_amount span{
+    font-size: 17px;
+    margin-top: 10px;
+    margin-left: -100px;
+}
+.price_plan div h2{
+    color: #333333;
+    margin-top: -25px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: 400;
+}
+.price_plan div ul{
+    color: #333333;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 20px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    height: 150px;
+}
+.price_plan div ul li{
+    color: #333333;
+    list-style: square;
+}
+.price_plan li::marker {
+    color: #6d5fb49c;
+  }
+.price_plan div .subscription_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: #ffffffb3;
+    border: 1px solid #55555546;
+    width:87%;
+    height: 40px;
+    border-radius: 30px;
+    margin: 0 auto;
+    margin-top: 40px;
+    transition: .3s;
+}
+.price_plan div .subscription_btn:hover{
+    scale: 1.04;
+}
+.price_plan div .subscription_btn p{
+    font-size: 18px;
+    color: #2f2f2f;
+}
+.price_plan div:nth-child(2) .subscription_btn p{
+    color: #fff;
+}
+.contact{
+    width: 99%;
+    min-height: 40vh;
+    background: #333333;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contact .raw{
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+}
+.logo_buttom{
+    font-size: 35px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 30px;
+}
+.social_media{
+    display: flex;
+    gap: 25px;
+    margin-top: 40px;
+}
+.social_media a i{
+    color: #fff;
+    font-size: 20px;
+    transition: .2s;
+}
+.column nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.column nav a{
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+}
+.column nav p{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.column .quick{
+    display: flex;
+    flex-direction: column;
+}
+.quick p{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+}
+.contact a:hover{
+    color: #b7aaf6;
+}
+.social_media a i:hover{
+    scale: 1.5;
+}
+.quick a{
+    color: #fff;
+    text-decoration: none;
+    margin-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.two{
+    width: 100%;
+    background: #fff;
+    height: 1px;
+    margin-top: 20px;
+}
+
+.copy_right{
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px){
+    body{
+        overflow-x: hidden;
+    }
+    .home{
+        min-height: auto;
+    }
+    .home_cover{
+        height: 100%;
+    }
+    header nav{
+        display: none;
+    }
+    .act_btns{
+        display: none;
+    }
+    .block2 h1{
+        width: 90%;
+        text-align: center;
+    }
+    .block2 p{
+        text-align: center;
+        width: 95%;
+    }
+    .block3{
+        gap: 20px;
+    }
+    .scroll_home{
+        left: 40%;
+        bottom: -130px;
+    }
+    .service{
+        min-height: auto;
+        height: auto;
+    }
+    .detail_servises{
+        min-height: auto;
+        height: auto;
+    }
+    .testimonial-grid{
+        display: flex;
+        flex-direction: column;
+    }
+    .price_plan{
+        height: auto;
+    }
+    .price_plan section{
+        width: 95%;
+        text-align: center;
+    }
+    .main_price_area{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        gap: 40px;
+        background: transparent;
+    }
+    .howtouse{
+        height: auto;
+    }
+    .contact{
+        height: auto;
+        margin-top: 20px;
+    }
+    .contact .raw{
+        flex-direction: column;
+    }
+    .copy_right{
+        color: #333;
+    }
+    .howtouse .txt_1{
+        font-size: 45px;
+        margin-top: -20px;
+        width: 100%;
+        margin-left: 15px;
+    }
+    .howtouse div{
+        width: 100%;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .howtouse video{
+        max-width: 96%;
+        margin: 30px auto;
+        /* margin-left: -500px; */
+    }
+    .howtoText{
+        margin-top: 0px;
+        width:95%;
+        margin-left: 10px;
+    }
+    .personal_assistant_btn{
+        margin: 60px auto;
+    }
+}

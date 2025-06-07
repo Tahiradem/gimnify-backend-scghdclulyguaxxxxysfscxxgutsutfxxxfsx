@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="email" class="input_of_email">
+    <div class="btn">click</div>
+</body>
+<script>
+    async function attendancesGetting(){
+        try {
+            const email = document.querySelector('.input_of_email').value;
+            
+            if (!email) {
+                console.log("Please enter an email");
+                return;
+            }
+            
+            // First get the user data
+            const response = await fetch("http://localhost:5000/qrcode");
+            if (!response.ok) throw new Error("Network response was not ok");
+            const gyms = await response.json();
+            
+            // Check if user exists
+            const userExists = gyms.some(gym => 
+                gym.users && gym.users.some(user => user.email === email)
+            );
+            
+            if (userExists) {
+                try {
+                    // Update attendance on the server - using the correct endpoint
+                    const updateResponse = await fetch("http://localhost:5000/postattendanceQrcode", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email: email })
+                    });
+                    
+                    if (!updateResponse.ok) throw new Error("Failed to update attendance");
+                    
+                    const result = await updateResponse.json();
+                    console.log("Attendance updated successfully:", result);
+                    alert("Attendance marked successfully!");
+                    
+                } catch(error) {
+                    console.error("Error updating attendance:", error);
+                    alert("Error updating attendance: " + error.message);
+                }
+            } else {
+                console.log("User not found");
+                alert("User not found!");
+            }
+            
+        } catch (error) {
+            console.error("Error fetching users:", error);
+            alert("Error: " + error.message);
+        }
+    }
+    
+    document.querySelector('.btn').addEventListener('click', attendancesGetting);
+</script>
+</html>

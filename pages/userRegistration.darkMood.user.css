@@ -1,0 +1,287 @@
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #a4a4a4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background: #303030;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+h1, h3 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 0 0 70px 0;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.block1, .block2, .block3 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    min-width: 300px;
+}
+
+input, select {
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #ffffff4f;
+    outline: none;
+    background: #ffffff24;
+    padding: 0 10px;
+    font-size: 15px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: #ccc;
+}
+
+label {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: -10px;
+}
+
+/* Specific element adjustments */
+#ID {
+    width: 80px;
+}
+
+#age {
+    width: 70px;
+}
+
+#sex {
+    width: 100px;
+}
+
+.hei_we, .age_se {
+    display: flex;
+    gap: 15px;
+}
+
+.hei_we input, .age_se input {
+    width: 100%;
+}
+
+.pay_not {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+#paymentStatus {
+    width: auto;
+    margin: 0;
+}
+
+#pay_label {
+    color: #fff;
+    margin: 0;
+}
+
+/* Block 3 specific styles */
+.block3 {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.supplement-entry {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.supplement-entry input, 
+.supplement-entry select {
+    flex: 1;
+    min-width: 100px;
+}
+
+#addSupplement {
+    width: auto;
+    padding: 0 15px;
+    margin-top: 10px;
+}
+
+/* Dietary preferences checkboxes */
+.dietary-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.dietary-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    margin: 0;
+}
+
+.dietary-checkboxes input {
+    width: auto;
+}
+
+/* Button styles */
+button {
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    background: #8979d5;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+    align-self: flex-end;
+}
+
+button:hover {
+    background: #9a8be0;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+    .form {
+        flex-direction: column;
+    }
+    
+    .block1, .block2, .block3 {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Time inputs */
+input[type="time"] {
+    padding: 0 8px;
+}
+
+/* Select dropdown styling */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+option {
+    background: #3d3d3d;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #8979d5;
+}
+
+/* Section headers */
+.section-header {
+    color: #fff;
+    font-size: 16px;
+    margin: 15px 0 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ffffff4f;
+}
+.supl_btn{
+    background: #fff;
+    color: #333;
+}
+/* Loading Animation Styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(40, 40, 40, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.loading-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #9a8be3;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.loading-spinner {
+    /* existing styles */
+    transition: border-color 0.3s ease;
+    will-change: transform;
+}
+
+/* Optional: Add a pulsing effect to make it more noticeable */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.05) rotate(180deg);
+    }
+}
+
+.loading-spinner {
+    animation: spin 1s ease-in-out infinite, pulse 2s ease-in-out infinite;
+}

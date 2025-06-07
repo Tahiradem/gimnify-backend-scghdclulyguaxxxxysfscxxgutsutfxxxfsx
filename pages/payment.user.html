@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="./payment.user.css"> -->
+    <link rel="stylesheet" href="./payment.darkMood.user.css" id="styleRoom">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>Gymnify Payment plans and subscription</title>
+</head>
+<body> 
+    <div class="main-container">
+        <nav>
+            <div class="logo_top">Gymnify</div>
+            <div class="nav_items">
+                <a href="./Dashboard.html"><span><i class="fa fa-chart-line"></i></span><p>Dashboard</p></a>
+                <a href="./notification.user.html"><span><i class="fa fa-bell"></i><div class="notification_red"></div></span><p>Notifications</p></a>
+                <a href="../index.html"><span><i class="fa fa-home"></i></span><p>Home</p></a>
+                <a href="../index.html#service"><span><i class="fa fa-tag"></i></span><p>Service</p></a>
+                <a href=""><span><i class="fa-regular fa-credit-card"></i></span><p>Subscription</p></a>
+                <a href="./poster.html"><span><i class="fa fa-feather-pointed"></i></span><p>Digital Posters</p></a>
+                <div class="line_break_nav" style="width: 80%; height: 1px; margin-left: 20px;margin-top: 10px; background: #ffffffbc;"></div>
+                <a href="./setting.user.html" style="margin-top: 10px;"><span><i class="fa fa-gear"></i></span><p>Setting</p></a>
+                <a href="./help.user.html"><span><i class="fa fa-question"></i></span><p>Help</p></a>
+                <a href="./profile.user.html"><span><i class="fa fa-user"></i></span><p>Profile</p></a>
+            </div>
+        </nav>
+        <div class="main-section">
+            <div class="part_a">
+                <p class="txt-1"><span class="time_left_pay">Loading...</span> <span class="price_plan_txt">5,316.00/Month Plan</span></p>
+                <p class="txt-2 nextPayment_day">Loading next payment date...</p>
+            </div>
+            <div class="part_b">
+                <div class="txt-3">
+                    <p>Your Most Recent Bill</p>
+                    <p class="last_pay">Loading last payment date...</p>
+                </div>
+                <div class="txt-4"><i class="fa fa-inbox"></i> <span class="subscription-duration">Loading duration...</span> of <br> Subscription-</div>
+            </div>
+            <div class="part_c">
+                <div class="txt-5">For Paying The Bill Scan The Following QR-Code</div>
+                <div class="real_qrcode">
+                    <img src="../images/qrcode_playful-basbousa-4f91af.netlify.app.png" alt="" srcset="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const username = localStorage.getItem('username');
+
+        async function notificationGotting() {
+            try {
+                const response = await fetch("http://localhost:5000/users");
+                if (!response.ok) throw new Error("Network response was not ok");
+                const users = await response.json();
+                const gymHouse = users.find(gym => gym.name === username);
+                
+                if (!gymHouse) throw new Error("User not found");
+                
+                const registeredDateStr = gymHouse.registeredDate;
+                const price_plan = gymHouse.pricePlan || 0;
+                const subscriptionPlan = gymHouse.subscriptionPlan || "Monthly";
+                
+                // Parse registered date (assuming format is "DD, MM, YYYY")
+                const [day, month, year] = registeredDateStr.split(", ").map(Number);
+                const registeredDate = new Date(year, month - 1, day);
+                
+                // Set last payment date (same as registration date for first payment)
+                const lastPaymentDate = new Date(registeredDate);
+                const options = { day: 'numeric', month: 'short', year: 'numeric' };
+                document.querySelector('.last_pay').textContent = `Paid ${lastPaymentDate.toLocaleDateString('en-US', options)}`;
+                
+                // Calculate next payment date based on subscription plan
+                let nextPaymentDate = new Date(registeredDate);
+                if (subscriptionPlan.toLowerCase() === "annual") {
+                    nextPaymentDate.setFullYear(nextPaymentDate.getFullYear() + 1);
+                } else if (subscriptionPlan.toLowerCase() === "quarterly") {
+                    nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 3);
+                } else if (subscriptionPlan.toLowerCase() === "semiannual") {
+                    nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 6);
+                } else { // Monthly
+                    nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
+                }
+                
+                // Display next payment date
+                document.querySelector('.nextPayment_day').textContent = `Next payment date ${nextPaymentDate.toLocaleDateString('en-US', options)}`;
+                
+                // Calculate days left until next payment
+                const currentDate = new Date();
+                currentDate.setHours(0, 0, 0, 0);
+                
+                const timeDiff = nextPaymentDate - currentDate;
+                const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                
+                // Display days left
+                document.querySelector('.time_left_pay').textContent = daysLeft > 0 
+                    ? `You've Left ${daysLeft} Days-` 
+                    : `Payment is ${Math.abs(daysLeft)} Days Overdue-`;
+                
+                // Calculate subscription duration in months (rounded up)
+                const monthsDiff = (currentDate.getFullYear() - registeredDate.getFullYear()) * 12 + 
+                                 (currentDate.getMonth() - registeredDate.getMonth());
+                const daysInCurrentMonth = new Date(
+                    currentDate.getFullYear(), 
+                    currentDate.getMonth() + 1, 
+                    0
+                ).getDate();
+                const daysRemainingRatio = currentDate.getDate() / daysInCurrentMonth;
+                
+                // Round up to nearest month if more than 0 days into the current month
+                const totalMonths = daysRemainingRatio > 0 ? monthsDiff + 1 : monthsDiff;
+                
+                // Display subscription duration
+                const durationText = totalMonths <= 1 ? "1 Month" : `${totalMonths} Months`;
+                document.querySelector('.subscription-duration').textContent = durationText;
+                
+                // Format and display price plan
+                const formattedNumber = new Intl.NumberFormat('en-US', {
+                    style: 'decimal',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(price_plan);
+                
+                document.querySelector('.price_plan_txt').innerHTML = `${formattedNumber}/Month Plan`;
+
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                // Set fallback values if there's an error
+                document.querySelector('.time_left_pay').textContent = "Error loading data";
+                document.querySelector('.nextPayment_day').textContent = "Error loading next payment date";
+                document.querySelector('.last_pay').textContent = "Error loading last payment";
+                document.querySelector('.subscription-duration').textContent = "Error loading duration";
+            }
+        }
+        
+        notificationGotting();
+    </script>
+    <script src="./script.js"></script>
+    <script>
+        let darkMode = localStorage.getItem('colorMood')
+        const Room = document.querySelector('#styleRoom')
+        if(darkMode === "true"){
+            Room.href = './payment.darkMood.user.css'
+        }
+        else if (darkMode === "false"){
+            Room.href = './payment.user.css'
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,779 @@
+{
+    "day1": [
+      {
+        "name": "Injera",
+        "category": "staple",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.3,
+        "prepTime": 48,
+        "standardPortion": 100,
+        "minPortion": 50,
+        "maxPortion": 200,
+        "macros": {
+          "protein": 3.2,
+          "carbs": 20.1,
+          "fats": 0.4,
+          "calories": 96
+        },
+        "micronutrients": {
+          "iron": 2.1,
+          "calcium": 40,
+          "thiamine": 0.2
+        },
+        "glycemicIndex": 65,
+        "proteinType": "incomplete"
+      },
+      {
+        "name": "Shiro",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 0.5,
+        "prepTime": 30,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 12,
+          "carbs": 22,
+          "fats": 3,
+          "calories": 160
+        },
+        "micronutrients": {
+          "iron": 4.2,
+          "magnesium": 86,
+          "zinc": 2.3
+        },
+        "glycemicIndex": 42,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Doro Wat",
+        "category": "stew",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": ["eggs"],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 1.2,
+        "prepTime": 90,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 18,
+          "carbs": 8,
+          "fats": 12,
+          "calories": 220
+        },
+        "micronutrients": {
+          "iron": 3.5,
+          "vitaminA": 450,
+          "zinc": 2.8
+        },
+        "glycemicIndex": 35,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Misir Wat",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 0.7,
+        "prepTime": 45,
+        "standardPortion": 150,
+        "minPortion": 80,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 10,
+          "carbs": 25,
+          "fats": 4,
+          "calories": 180
+        },
+        "micronutrients": {
+          "iron": 3.8,
+          "folate": 120,
+          "potassium": 350
+        },
+        "glycemicIndex": 30,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Kitfo",
+        "category": "meat",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": true,
+        "allergens": ["dairy"],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 2.0,
+        "prepTime": 25,
+        "standardPortion": 120,
+        "minPortion": 60,
+        "maxPortion": 200,
+        "macros": {
+          "protein": 22,
+          "carbs": 2,
+          "fats": 18,
+          "calories": 260
+        },
+        "micronutrients": {
+          "iron": 4.5,
+          "vitaminB12": 2.4,
+          "zinc": 5.2
+        },
+        "glycemicIndex": 0,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Gomen",
+        "category": "vegetable",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.6,
+        "prepTime": 30,
+        "standardPortion": 100,
+        "minPortion": 50,
+        "maxPortion": 200,
+        "macros": {
+          "protein": 3,
+          "carbs": 6,
+          "fats": 4,
+          "calories": 70
+        },
+        "micronutrients": {
+          "vitaminK": 350,
+          "vitaminA": 250,
+          "calcium": 150
+        },
+        "glycemicIndex": 15,
+        "proteinType": "incomplete"
+      }
+    ],
+    "day2": [
+      {
+        "name": "Kitfo",
+        "category": "meat",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 2.5,
+        "prepTime": 15,
+        "standardPortion": 120,
+        "minPortion": 80,
+        "maxPortion": 200,
+        "macros": {
+          "protein": 28,
+          "carbs": 1,
+          "fats": 22,
+          "calories": 310
+        },
+        "micronutrients": {
+          "vitaminB12": 2.4,
+          "iron": 3.5,
+          "zinc": 6.2
+        },
+        "glycemicIndex": 0,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Tibs",
+        "category": "meat",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 2.2,
+        "prepTime": 25,
+        "standardPortion": 150,
+        "minPortion": 100,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 26,
+          "carbs": 3,
+          "fats": 18,
+          "calories": 270
+        },
+        "micronutrients": {
+          "niacin": 8.7,
+          "vitaminB6": 0.6,
+          "selenium": 28.4
+        },
+        "glycemicIndex": 0,
+        "proteinType": "complete"
+      }
+    ],
+    "day3": [
+      {
+        "name": "Misir Wot",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 0.6,
+        "prepTime": 45,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 13,
+          "carbs": 30,
+          "fats": 5,
+          "calories": 210
+        },
+        "micronutrients": {
+          "folate": 180,
+          "iron": 3.6,
+          "magnesium": 72
+        },
+        "glycemicIndex": 38,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Gomen",
+        "category": "vegetable",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.4,
+        "prepTime": 20,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 3,
+          "carbs": 5,
+          "fats": 7,
+          "calories": 90
+        },
+        "micronutrients": {
+          "vitaminA": 120,
+          "vitaminC": 45,
+          "calcium": 150,
+          "vitaminK": 180
+        },
+        "glycemicIndex": 15,
+        "proteinType": "incomplete"
+      }
+    ],
+    "day4": [
+      {
+        "name": "Ayib",
+        "category": "dairy",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": true,
+        "allergens": ["milk"],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.8,
+        "prepTime": 5,
+        "standardPortion": 50,
+        "minPortion": 25,
+        "maxPortion": 100,
+        "macros": {
+          "protein": 15,
+          "carbs": 3,
+          "fats": 8,
+          "calories": 140
+        },
+        "micronutrients": {
+          "calcium": 300,
+          "phosphorus": 200,
+          "vitaminB12": 0.9
+        },
+        "glycemicIndex": 30,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Firfir",
+        "category": "staple",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.7,
+        "prepTime": 15,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 5,
+          "carbs": 35,
+          "fats": 10,
+          "calories": 230
+        },
+        "micronutrients": {
+          "iron": 2.8,
+          "thiamine": 0.3,
+          "niacin": 2.1
+        },
+        "glycemicIndex": 60,
+        "proteinType": "incomplete"
+      }
+    ],
+    "day5": [
+      {
+        "name": "Dulet",
+        "category": "meat",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 1.8,
+        "prepTime": 30,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 22,
+          "carbs": 2,
+          "fats": 15,
+          "calories": 220
+        },
+        "micronutrients": {
+          "vitaminB12": 3.1,
+          "iron": 5.2,
+          "zinc": 4.8
+        },
+        "glycemicIndex": 0,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Bozena Shiro",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": true,
+        "allergens": ["milk"],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 1.2,
+        "prepTime": 40,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 14,
+          "carbs": 25,
+          "fats": 12,
+          "calories": 240
+        },
+        "micronutrients": {
+          "calcium": 180,
+          "iron": 4.5,
+          "magnesium": 90
+        },
+        "glycemicIndex": 45,
+        "proteinType": "complete"
+      }
+    ],
+    "day6": [
+      {
+        "name": "Ful",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.7,
+        "prepTime": 20,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 10,
+          "carbs": 30,
+          "fats": 5,
+          "calories": 200
+        },
+        "micronutrients": {
+          "iron": 3.2,
+          "magnesium": 80,
+          "potassium": 400
+        },
+        "glycemicIndex": 40,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Chechebsa",
+        "category": "staple",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": true,
+        "dinnerFriendly": false,
+        "costPerServing": 0.5,
+        "prepTime": 15,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 6,
+          "carbs": 40,
+          "fats": 12,
+          "calories": 280
+        },
+        "micronutrients": {
+          "iron": 2.5,
+          "thiamine": 0.4,
+          "niacin": 3.2
+        },
+        "glycemicIndex": 55,
+        "proteinType": "incomplete"
+      }
+    ],
+    "day7": [
+      {
+        "name": "Doro Wot",
+        "category": "meat",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 2.0,
+        "prepTime": 60,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 25,
+          "carbs": 8,
+          "fats": 15,
+          "calories": 250
+        },
+        "micronutrients": {
+          "vitaminB12": 1.8,
+          "iron": 2.8,
+          "zinc": 3.5
+        },
+        "glycemicIndex": 0,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Atakilt Wot",
+        "category": "vegetable",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 0.6,
+        "prepTime": 30,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 4,
+          "carbs": 12,
+          "fats": 6,
+          "calories": 120
+        },
+        "micronutrients": {
+          "vitaminA": 150,
+          "vitaminC": 30,
+          "potassium": 350
+        },
+        "glycemicIndex": 20,
+        "proteinType": "incomplete"
+      }
+    ],
+    "day8": [
+      {
+        "name": "Tegabino Shiro",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 0.8,
+        "prepTime": 35,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 15,
+          "carbs": 25,
+          "fats": 8,
+          "calories": 220
+        },
+        "micronutrients": {
+          "iron": 5.0,
+          "magnesium": 95,
+          "zinc": 3.0
+        },
+        "glycemicIndex": 42,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Kik Alicha",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 0.7,
+        "prepTime": 40,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 12,
+          "carbs": 30,
+          "fats": 5,
+          "calories": 210
+        },
+        "micronutrients": {
+          "folate": 200,
+          "iron": 4.0,
+          "magnesium": 85
+        },
+        "glycemicIndex": 38,
+        "proteinType": "complete"
+      }
+    ],
+    "day9": [
+      {
+        "name": "Kitfo Special",
+        "category": "meat",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": true,
+        "allergens": ["milk"],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 3.0,
+        "prepTime": 20,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 30,
+          "carbs": 2,
+          "fats": 25,
+          "calories": 350
+        },
+        "micronutrients": {
+          "vitaminB12": 3.5,
+          "iron": 4.0,
+          "zinc": 7.0
+        },
+        "glycemicIndex": 0,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Gomen Besiga",
+        "category": "meat",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 2.5,
+        "prepTime": 35,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 28,
+          "carbs": 8,
+          "fats": 20,
+          "calories": 300
+        },
+        "micronutrients": {
+          "vitaminB12": 2.8,
+          "iron": 3.8,
+          "zinc": 5.5
+        },
+        "glycemicIndex": 0,
+        "proteinType": "complete"
+      }
+    ],
+    "day10": [
+      {
+        "name": "Shiro Fitfit",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.9,
+        "prepTime": 15,
+        "standardPortion": 200,
+        "minPortion": 100,
+        "maxPortion": 300,
+        "macros": {
+          "protein": 14,
+          "carbs": 35,
+          "fats": 10,
+          "calories": 280
+        },
+        "micronutrients": {
+          "iron": 4.5,
+          "magnesium": 90,
+          "zinc": 3.2
+        },
+        "glycemicIndex": 45,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Buticha",
+        "category": "legume",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.6,
+        "prepTime": 10,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 10,
+          "carbs": 20,
+          "fats": 8,
+          "calories": 190
+        },
+        "micronutrients": {
+          "iron": 3.0,
+          "magnesium": 70,
+          "folate": 150
+        },
+        "glycemicIndex": 35,
+        "proteinType": "complete"
+      }
+    ],
+    "day11": [
+      {
+        "name": "Tere Siga",
+        "category": "meat",
+        "halal": true,
+        "kosher": false,
+        "containsGluten": false,
+        "containsDairy": false,
+        "allergens": [],
+        "breakfastFriendly": false,
+        "dinnerFriendly": true,
+        "costPerServing": 2.8,
+        "prepTime": 10,
+        "standardPortion": 150,
+        "minPortion": 75,
+        "maxPortion": 250,
+        "macros": {
+          "protein": 32,
+          "carbs": 0,
+          "fats": 20,
+          "calories": 320
+        },
+        "micronutrients": {
+          "vitaminB12": 4.0,
+          "iron": 4.5,
+          "zinc": 8.0
+        },
+        "glycemicIndex": 0,
+        "proteinType": "complete"
+      },
+      {
+        "name": "Kurt",
+        "category": "dairy",
+        "halal": true,
+        "kosher": true,
+        "containsGluten": false,
+        "containsDairy": true,
+        "allergens": ["milk"],
+        "breakfastFriendly": true,
+        "dinnerFriendly": true,
+        "costPerServing": 0.9,
+        "prepTime": 5,
+        "standardPortion": 50,
+        "minPortion": 25,
+        "maxPortion": 100,
+        "macros": {
+          "protein": 18,
+          "carbs": 4,
+          "fats": 10,
+          "calories": 180
+        },
+        "micronutrients": {
+          "calcium": 350,
+          "phosphorus": 250,
+          "vitaminB12": 1.2
+        },
+        "glycemicIndex": 25,
+        "proteinType": "complete"
+      }
+    ]
+  }

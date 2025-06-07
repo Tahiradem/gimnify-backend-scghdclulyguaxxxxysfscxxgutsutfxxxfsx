@@ -1,0 +1,48 @@
+{
+    "interactions": {
+      "PCOS": {
+        "recommended": ["low-glycemic foods", "anti-inflammatory foods"],
+        "avoid": ["processed sugars", "refined carbs"],
+        "supplements": ["inositol", "magnesium"]
+      },
+      "diabetes": {
+        "recommended": ["high-fiber foods", "lean proteins"],
+        "avoid": ["simple sugars", "juices"],
+        "supplements": ["chromium", "alpha-lipoic acid"]
+      }
+    },
+    "religious_rules": {
+      "halal": {
+        "allowed": ["beef", "lamb", "chicken", "fish"],
+        "forbidden": ["pork", "alcohol"]
+      },
+      "kosher": {
+        "allowed": ["beef", "chicken", "salmon"],
+        "forbidden": ["shellfish", "pork", "meat-dairy mixtures"]
+      }
+    },
+    "budget_levels": {
+      "low": {
+        "max_cost_per_meal": 3.0,
+        "recommended_foods": ["eggs", "beans", "rice", "seasonal vegetables"]
+      },
+      "medium": {
+        "max_cost_per_meal": 6.0,
+        "recommended_foods": ["chicken", "quinoa", "frozen vegetables"]
+      },
+      "high": {
+        "max_cost_per_meal": 10.0,
+        "recommended_foods": ["salmon", "organic produce", "grass-fed beef"]
+      }
+    },
+    "nutrient_synergy": {
+      "iron": {
+        "enhancers": ["vitamin C"],
+        "inhibitors": ["calcium", "tannins"]
+      },
+      "calcium": {
+        "enhancers": ["vitamin D", "magnesium"],
+        "inhibitors": ["excess fiber", "oxalates"]
+      }
+    }
+  }

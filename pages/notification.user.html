@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="./notification.user.css"> -->
+    <link rel="stylesheet" href="./notification.darkMood.user.css" id="styleRoom">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>Gymnify Notifications for admins</title>
+</head>
+<body>
+    <div class="main-container">
+        <nav>
+            <div class="logo_top">Gimnify</div>
+            <div class="nav_items">
+                <a href="./Dashboard.html"><span><i class="fa fa-chart-line"></i></span><p>Dashboard</p></a>
+                <a href=""><span><i class="fa fa-bell"></i><div class="notification_red"></div></span><p>Notifications</p></a>
+                <a href="../index.html"><span><i class="fa fa-home"></i></span><p>Home</p></a>
+                <a href="../index.html#service"><span><i class="fa fa-tag"></i></span><p>Service</p></a>
+                <a href="./payment.user.html"><span><i class="fa-regular fa-credit-card"></i></span><p>Subscription</p></a>
+                <a href="./poster.html"><span><i class="fa fa-feather-pointed"></i></span><p>Digital Posters</p></a>
+                <div class="line_break_nav" style="width: 80%; height: 1px; margin-left: 20px;margin-top: 10px; background: #ffffffbc;"></div>
+                <a href="./setting.user.html" style="margin-top: 10px;"><span><i class="fa fa-gear"></i></span><p>Setting</p></a>
+                <a href="./help.user.html"><span><i class="fa fa-question"></i></span><p>Help</p></a>
+                <a href="./profile.user.html"><span><i class="fa fa-user"></i></span><p>profile</p></a>
+            </div>
+        </nav>
+        <div class="gym_house_name"></div>
+        <div class="notification_cont">
+            <div class="top_part"><h2><i class="fa fa-bell"></i><p>List Notifications</p></h2></div>
+            <div class="total_notification">180 Notification</div>
+            <div class="notification_headers">
+                <p><span>All</span> Messages</p>
+            </div>
+            <div class="all_notifications">
+                
+            </div>
+        </div>
+    </div>
+    <script>
+            const username = localStorage.getItem('username');
+
+            const active_users = document.querySelector(".active_users");
+
+async function notificationGotting() {
+    try {
+        const response = await fetch("http://localhost:5000/users");
+        if (!response.ok) throw new Error("Network response was not ok");
+
+        const users = await response.json(); // Fetch users
+        const username = localStorage.getItem('username'); // Get username from local storage
+        const password = localStorage.getItem('password'); // Get password from local storage
+
+        // Find the gymHouse by username
+        const gymHouse = users.find(gym => gym.name === username);
+
+
+        // Update the notification count in the DOM
+        document.querySelector('.total_notification').innerHTML = 
+            `${gymHouse.adminNotifications.length} Notification`;
+
+        // Loop through the `users` array inside the `gymHouse` object
+        const notificationsContainer = document.querySelector(".all_notifications"); // Assuming you have a <ul> or <ol> with this class
+
+gymHouse.adminNotifications.forEach((element, index) => {
+    // Create the <li> element
+    const listItem = document.createElement("li");
+
+    listItem.textContent = element; // Assuming `element` contains the notification text
+    notificationsContainer.appendChild(listItem);
+});
+
+    } catch (error) {
+        console.error("Error fetching users:", error);
+    }
+}
+
+// Call the function
+notificationGotting();
+
+        document.querySelector('.gym_house_name').innerHTML = username
+    </script>
+    <script src="./script.js"></script>
+    <script>
+        let darkMode = localStorage.getItem('colorMood')
+        const Room = document.querySelector('#styleRoom')
+        if(darkMode === "true"){
+            Room.href = './notification.darkMood.user.css'
+        }
+        else if (darkMode === "false"){
+            Room.href = './notification.user.css'
+        }
+    </script>
+</body>
+</html>

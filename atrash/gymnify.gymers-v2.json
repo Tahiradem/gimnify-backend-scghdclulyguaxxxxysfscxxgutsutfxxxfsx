@@ -1,0 +1,1164 @@
+[{
+  "_id": {
+    "$oid": "67f005f0e438eac227fb5b32"
+  },
+  "name": "Thunder Gym",
+  "users": [
+    {
+      "ID": 1,
+      "userName": "Thair Adem",
+      "email": "ademt0614@gmail.com",
+      "password": "7878",
+      "phone": "0978787960",
+      "age": 20,
+      "sex": "male",
+      "height": 181,
+      "weight": 60,
+      "registeredDate": "Apr 5, 2025, 10:14 AM",
+      "paymentDate": "May 5",
+      "paymentStatus": false,
+      "exerciseTimePerDay": "45 Min",
+      "notificationTime": "2:25 PM",
+      "healthStatus": "fully good",
+      "exerciseType": "Strength",
+      "enteringTime": "10:00",
+      "bloodType": "A+",
+      "exercises": [
+        "sholder",
+        "arm",
+        "break",
+        "arm",
+        "chest",
+        "arm",
+        "leg"
+      ],
+      "upComingExercise": "",
+      "totalTimeSpendOnGym": 0,
+      "TodayNotification": "Hey Thair Adem, here's your Day 1 nutrition plan:\n\nDaily Nutrition Targets:\n- Protein: 110g\n- Carbs: 215g\n- Fats: 50g\n- Calories: 1719kcal\n\nMeal Plan (Today's Variation):\n7:00 (breakfast):\n- 200g Injera (Rich in: calcium)\n- 175g Shiro\n- 100g Doro Wat\n- 100g Gomen (Rich in: calcium)\n\n11:30 (lunch):\n- 200g Injera (Rich in: calcium)\n- 175g Shiro\n- 100g Doro Wat\n- 100g Gomen (Rich in: calcium)\n\n15:30 (snack):\n- 200g Injera (Rich in: calcium)\n- 175g Shiro\n- 100g Doro Wat\n- 100g Gomen (Rich in: calcium)\n\n19:30 (dinner):\n- 200g Injera (Rich in: calcium)\n- 175g Shiro\n- 100g Doro Wat\n- 100g Gomen (Rich in: calcium)\n\nToday's Micronutrient Focus:\n- calcium: Aim for 1000mg\n\nHydration: Aim for 2574ml of water throughout the day\n\nRest & Recovery:\n- Target 9.0 hours of sleep\n- Recommended bedtime: 22:00\n- Recovery tips:\n  * Consider post-workout protein within 30 minutes of training\n\nSupplement Guidance:\n- whey protein: Take with your breakfast with food\n\nWorkout Recommendation:\n- Frequency: 3-4 times per week\n- Type: Resistance training with progressive overload\n- Duration: 45-75 minutes\n- Nutrition Timing:\n  * preWorkout: Carbs + protein 1-2 hours before\n  * postWorkout: Protein within 30 minutes, carbs within 2 hours\n\nRemember: Consistency is key to seeing results!",
+      "activityLevel": "sedentary",
+      "fitnessGoal": "muscle_gain",
+      "bodyFat": 18,
+      "metabolicHealth": "slow",
+      "livesInHotClimate": true,
+      "medicalConditions": [],
+      "dietaryPreferences": {
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "dairyFree": true,
+        "halal": true,
+        "kosher": false,
+        "allergies": [
+          "nuts"
+        ],
+        "dislikes": [
+          "olive"
+        ],
+        "preferredCuisines": [
+          "asian"
+        ],
+        "budget": "medium"
+      },
+      "mealFrequency": 4,
+      "wakeTime": "07:00",
+      "sleepTime": "23:00",
+      "cookingTime": "medium",
+      "supplements": [
+        {
+          "name": "whey protein",
+          "type": "protein",
+          "timing": "morning"
+        }
+      ],
+      "lastUpdated": {
+        "$date": "2025-04-05T12:03:20.058Z"
+      },
+      "nutritionHistory": [
+        {
+          "date": {
+            "$date": "2025-04-05T07:15:06.549Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T07:27:24.667Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T07:52:44.793Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T10:43:57.427Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T10:54:30.826Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T11:00:57.697Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T11:06:54.041Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T11:20:17.511Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T11:30:28.486Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T11:33:56.353Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T11:49:06.477Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        },
+        {
+          "date": {
+            "$date": "2025-04-05T12:03:20.058Z"
+          },
+          "macros": {
+            "protein": 110,
+            "carbs": 215,
+            "fats": 50,
+            "calories": 1719
+          },
+          "foodsConsumed": [
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            },
+            {
+              "name": "Injera",
+              "portion": 200
+            },
+            {
+              "name": "Shiro",
+              "portion": 175
+            },
+            {
+              "name": "Doro Wat",
+              "portion": 100
+            },
+            {
+              "name": "Gomen",
+              "portion": 100
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "dailyIncome": [],
+  "dailyOutcome": [],
+  "dailyRevenue": 0,
+  "weeklyIncome": [
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 1000,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    }
+  ],
+  "weeklyExpense": [
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 750,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    }
+  ],
+  "weeklyRevenue": [
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 250,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    },
+    {
+      "Mon": 0,
+      "Tue": 0,
+      "Wed": 0,
+      "Thu": 0,
+      "Fri": 0,
+      "Sat": 0,
+      "Sun": 0
+    }
+  ],
+  "monthlyIncome": [],
+  "monthlyExpense": [],
+  "monthlyRevenue": [],
+  "email": "thundergym@gmail.com",
+  "password": "7878",
+  "phoneNumber": "978787960",
+  "registeredDate": "04, 04, 2025",
+  "totalUsers": 0,
+  "currentUsers": 0,
+  "location": "Ethiopia",
+  "adminNotifications": [],
+  "pricePlan": 2000,
+  "paymentsList": [],
+  "accountNumbers": [],
+  "payDone": false,
+  "serviceTermination": false,
+  "memberShip": {
+    "Basic": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    },
+    "Plus": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    },
+    "Pro": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "6": "",
+      "12": "",
+      "services": []
+    }
+  },
+  "__v": 2
+}]

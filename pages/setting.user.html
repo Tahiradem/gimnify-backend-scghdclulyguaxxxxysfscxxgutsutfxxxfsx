@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./setting.darkMood.user.css" id="styleRoom">
+    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Gymnify setting , adjestments and customization</title>
+</head>
+<body class="light-mode">
+    <div class="setting_page">
+        <nav>
+            <div class="logo_top">Gymnify</div>
+            <div class="nav_items">
+                <a href="./Dashboard.html"><span><i class="fa fa-chart-line"></i></span><p>Dashboard</p></a>
+                <a href="./notification.user.html"><span><i class="fa fa-bell"></i><div class="notification_red"></div></span><p>Notifications</p></a>
+                <a href="../index.html"><span><i class="fa fa-home"></i></span><p>Home</p></a>
+                <a href="../index.html#service"><span><i class="fa fa-tag"></i></span><p>Service</p></a>
+                <a href="./payment.user.html"><span><i class="fa-regular fa-credit-card"></i></span><p>Subscription</p></a>
+                <a href="./poster.html"><span><i class="fa fa-feather-pointed"></i></span><p>Digital Posters</p></a>
+                <div class="line_break_nav" style="width: 80%; height: 1px; margin-left: 20px;margin-top: 10px; background: #ffffffbc;"></div>
+                <a href="" style="margin-top: 10px;"><span><i class="fa fa-gear"></i></span><p>Setting</p></a>
+                <a href="./help.user.html"><span><i class="fa fa-question"></i></span><p>Help</p></a>
+                <a href="./profile.user.html"><span><i class="fa fa-user"></i></span><p>Profile</p></a>
+            </div>
+        </nav>
+        <div class="section_main">
+            <div class="sec1_sett b">
+                <p class="txt_1">Setting</p>
+                <div class="dark_light_mood" onclick="darkmood()">
+                    <i class="fa fa-toggle-off" id="off_on"></i>
+                    <p>Light Mode</p>
+                </div>
+                <!-- <div class="show_time_left">
+                    <i class="fa fa-toggle-on"></i>
+                    <p>show time left for payment</p>
+                </div>  -->
+                <div class="language">
+                    <i class="fa-solid fa-language"></i>
+                    <p>change Language</p>
+                </div>
+            </div>
+            <div class="membership-container">
+                <div class="membership-box" id="basic">
+                    <h3>Basic Plan</h3>
+                    <input type="number" placeholder="1 Month Price" id="basic-1">
+                    <input type="number" placeholder="2 Months Price" id="basic-2">
+                    <input type="number" placeholder="3 Months Price" id="basic-3">
+                    <input type="number" placeholder="6 Months Price" id="basic-6">
+                    <input type="number" placeholder="12 Months Price" id="basic-12">
+                    <input type="text" placeholder="Services (comma-separated)" id="basic-services">
+                </div>
+        
+                <div class="membership-box" id="plus">
+                    <h3>Plus Plan</h3>
+                    <input type="number" placeholder="1 Month Price" id="plus-1">
+                    <input type="number" placeholder="2 Months Price" id="plus-2">
+                    <input type="number" placeholder="3 Months Price" id="plus-3">
+                    <input type="number" placeholder="6 Months Price" id="plus-6">
+                    <input type="number" placeholder="12 Months Price" id="plus-12">
+                    <input type="text" placeholder="Services (comma-separated)" id="plus-services">
+                </div>
+        
+                <div class="membership-box" id="pro">
+                    <h3>Pro Plan</h3>
+                    <input type="number" placeholder="1 Month Price" id="pro-1">
+                    <input type="number" placeholder="2 Months Price" id="pro-2">
+                    <input type="number" placeholder="3 Months Price" id="pro-3">
+                    <input type="number" placeholder="6 Months Price" id="pro-6">
+                    <input type="number" placeholder="12 Months Price" id="pro-12">
+                    <input type="text" placeholder="Services (comma-separated)" id="pro-services">
+                </div>
+            </div>
+            <button onclick="submitMembership()">Submit Membership Plans</button>
+        </div>
+    </div>
+    <script>
+        let darkMode = localStorage.getItem('darkMode') === 'true';
+        // Update the webpage mode based on the saved state
+        function updateMode() {
+            const body = document.body;
+            const toggleIcon = document.querySelector("#off_on");
+            const Room = document.querySelector('#styleRoom')
+            if (darkMode) {
+                toggleIcon.classList = 'fa fa-toggle-on';
+                Room.href = './setting.user.css'
+                localStorage.setItem('colorMood',false)
+                
+            } else {
+                Room.href = './setting.darkMood.user.css'
+                toggleIcon.classList = 'fa fa-toggle-off';
+                localStorage.setItem('colorMood',true)
+            }
+        }
+        function darkmood() {
+            darkMode = !darkMode;
+            localStorage.setItem('darkMode', darkMode);
+            updateMode();
+        }
+        updateMode();
+    </script>
+    <script>
+        function submitMembership() {
+            const email = localStorage.getItem("email");
+            const membershipData = {
+                Basic: {
+                    "1": document.getElementById("basic-1").value,
+                    "2": document.getElementById("basic-2").value,
+                    "3": document.getElementById("basic-3").value,
+                    "6": document.getElementById("basic-6").value,
+                    "12": document.getElementById("basic-12").value,
+                    "services": document.getElementById("basic-services").value.split(",").map(service => service.trim())
+                },
+                Plus: {
+                    "1": document.getElementById("plus-1").value,
+                    "2": document.getElementById("plus-2").value,
+                    "3": document.getElementById("plus-3").value,
+                    "6": document.getElementById("plus-6").value,
+                    "12": document.getElementById("plus-12").value,
+                    "services": document.getElementById("plus-services").value.split(",").map(service => service.trim())
+                },
+                Pro: {
+                    "1": document.getElementById("pro-1").value,
+                    "2": document.getElementById("pro-2").value,
+                    "3": document.getElementById("pro-3").value,
+                    "6": document.getElementById("pro-6").value,
+                    "12": document.getElementById("pro-12").value,
+                    "services": document.getElementById("pro-services").value.split(",").map(service => service.trim())
+                }
+            };
+            fetch("http://localhost:5000/membership-update", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ membershipData, email })
+            })
+            .then(response => response.json())
+            .then(data => alert("Membership data submitted successfully!"))
+            .catch(error => console.error("Error submitting membership:", error));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send SMS - AfroMessage Trial</title>
+</head>
+<body>
+  <h1>Send SMS</h1>
+  <form action="/send-sms" method="POST">
+    <label>Phone Number:
+      <input type="text" name="to" required placeholder="+251911123456">
+    </label><br><br>
+    <label>Message:
+      <textarea name="message" required></textarea>
+    </label><br><br>
+    <button type="submit">Send SMS</button>
+  </form>
+</body>
+</html>

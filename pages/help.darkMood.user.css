@@ -1,0 +1,199 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #282828;
+    overflow: hidden;
+}
+.container{
+    width: 1350px;
+    height: 630px;
+    display: flex;
+}
+.telegram_div{
+    width: 330px;
+    height: 96%;
+    background: #494949;
+    display: flex;
+    flex-direction: column;
+    margin-top: 7px;
+    border-radius: 20px;
+    margin-left: 20px;
+    border: 1px solid #ffffff3c;
+}
+.back_and_logo{
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+.backTo{
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    gap: 7px;
+    font-size: 17px;
+    margin-top: 15px;
+    margin-left: 15px;
+    background: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+.backTo i{
+    margin-top: 0px;
+    color: #565656;
+}
+.telegram_div h1{
+    color: #fff;
+    margin-left: 25px;
+    font-size: 26px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+.telegram_qr_code{
+    width: 190px;
+    height: 190px;
+    border-radius: 20px;
+    margin: 0 auto;
+    border: 2px solid #d45ed220;
+}
+.telegram_link_copy{
+    cursor: pointer;
+    margin-left: 25px;
+    font-size: 18px;
+    margin-top: 30px;
+    color: #ece9ff;
+}
+.text_description_1{
+    width: 90%;
+    margin-left: 20px;
+    margin-top: 0px;
+    color: #fff;
+}
+.callUs_section{
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    margin-left: 20px;
+    gap: 6px;
+}
+button{
+    cursor: pointer;
+}
+.callUs_section a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.callUs_section i{
+    font-size: 21px;
+    margin-top: 0px;
+    color: #4747478c;
+}
+.email_div{
+    width: 930px;
+    height: 96%;
+    background: #494949;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    border-radius: 20px;
+    margin-left: 40px;
+    border: 1px solid #ffffff3c;
+}
+.txt_1_email{
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: #fff;
+}
+.txt_1_email i{
+    font-weight: 200;
+    font-size: 25px;
+    margin-left: 5px;
+    color: #ab9df2;
+}
+.long_txt{
+    text-align: center;
+    width: 70%;
+    margin: 20px auto;
+    color: #fff;
+}
+.email_inputs{
+    width: 60%;
+    height: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 30px;
+}
+.email_div input{
+    border: none;
+    outline: none;
+    background: #e8e8e8;
+    border-radius: 8px;
+    text-indent: 10px;
+    font-size: 17px;
+
+}
+.phone_num_email{
+    width: 47%;
+    display: flex;
+}
+.phone_num_email input{
+    width: 90%;
+    height: 40px;
+}
+.phone_num_email span {
+    margin-right: 7px;
+    margin-top: 7px;
+    color: #fff;
+    font-size: 16px;
+  }
+::placeholder{
+    color: #474747;
+}
+.location_email{
+    width: 45%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: #e8e8e8;
+    border-radius: 8px;
+    text-indent: 10px;
+}
+.email_emailer{
+    height: 40px;
+}
+.text_area_email{
+    height: 200px;
+    border: none;
+    outline: none;
+    background: #e8e8e8;
+    border-radius: 8px;
+    text-indent: 10px;
+    font-size: 17px;
+}
+.email_div button{
+    width: 120px;
+    height: 35px;
+    outline: none;
+    border: none;
+    background: #878787;
+    border: 1px solid #fff;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 20px;
+}
+.email_div button i{
+    margin-left: 5px;
+}

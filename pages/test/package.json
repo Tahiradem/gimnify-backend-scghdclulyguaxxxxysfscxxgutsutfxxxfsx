@@ -1,0 +1,13 @@
+{
+  "name": "afromessage-sms-trial",
+  "version": "1.0.0",
+  "description": "Trial project for sending SMS using AfroMessage API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "express": "^4.19.2"
+  }
+}

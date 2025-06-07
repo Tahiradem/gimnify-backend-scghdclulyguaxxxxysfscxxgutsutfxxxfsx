@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            min-height: 100vh;
+            overflow:hidden;
+            background: #00000018;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            width: 450px;
+            border-radius: 10px;
+            height: 400px;
+            align-items: center;
+            gap: 30px;
+        }
+        h2 {
+            margin-top: 40px;
+            color: #555;
+        }
+        .input {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+        }
+        input {
+            width: 300px;
+            height: 40px;
+            outline: none;
+            text-indent: 15px;
+            border: 1px solid #00000029;
+            border-radius: 7px;
+            font-size: 17px;
+        }
+        #password{
+            position: relative;
+        }
+        .fa{
+            position: absolute;
+            top: 87px;
+            left: 88%;
+            z-index: 1000;
+        }
+        button {
+            height: 40px;
+            width: 150px;
+            border-radius: 30px;
+            border: none;
+            font-size: 18px;
+            background: #6d5fb49f;
+            color: #fff;
+            box-shadow: 2px 4px 15px -7px #5555559d;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .alert {
+            color: red;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: -10px;
+            opacity: 0;
+        }
+    </style>
+    <title>Gymnify Login Page</title>
+</head>
+<body>
+    <form action="" id="login-form">
+        <h2>Login to Gimnify</h2>
+        <div class="input">
+            <input type="text" placeholder="email" id="email">
+                <i class="fa fa-eye-slash" onclick="password_hide()" id="toggle-icon"></i>
+                <input type="password" placeholder="password" id="password" class="password">
+        </div>
+        
+            <p class="alert" id="alert-msg" style="
+            color: red;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: -10px;
+            opacity: 0;
+            ">Invalid email or password!</p>
+            <button type="submit" style="
+            margin-top: -25px;
+            ">login</button>
+    </form>
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const alertMsg = document.getElementById('alert-msg');
+
+        loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+                localStorage.setItem('userLoggedIn', true);
+                localStorage.setItem('password', password);
+                localStorage.setItem('email', email);
+
+            try {
+                const response = await fetch("http://localhost:5000/users");
+                if (!response.ok) throw new Error("Network response was not ok");
+
+                const users = await response.json();
+                const user = users.find(u => u.email === email && u.password === password);
+
+                if (user) {
+                    if(user.payDone){
+                        window.location.href = './Dashboard.html'; // Redirect to the desired page
+                        localStorage.setItem('username', user.name);
+                    }else{
+                        window.location.href = './pleasePayPage.html';
+                        localStorage.setItem('username', user.name);
+                    }
+                } else {
+                    alertMsg.style.opacity = 1; // Show the alert message
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alertMsg.textContent = "An error occurred. Please try again.";
+                alertMsg.style.opacity = 1; // Show the alert message
+            }
+        });
+    </script>
+    <script>
+        function password_hide() {
+    const passwordField = document.querySelector('.password');
+    const hideIcon = document.querySelector('#toggle-icon'); // Query for the icon dynamically
+
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        hideIcon.classList.remove('fa-eye-slash');
+        hideIcon.classList.add('fa-eye'); // Switch to eye icon
+    } else {
+        passwordField.type = 'password';
+        hideIcon.classList.remove('fa-eye');
+        hideIcon.classList.add('fa-eye-slash'); // Switch to eye-slash icon
+    }
+}
+    </script>
+</body>
+</html>
