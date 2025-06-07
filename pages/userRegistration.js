@@ -21,7 +21,7 @@ const formatDate = (date) => {
 // Function to fetch gym membership plans
 async function fetchMembershipPlans() {
     try {
-        const response = await fetch(`http://localhost:5000/gym-plans?email=${encodeURIComponent(email)}`);
+        const response = await fetch(`/gym-plans?email=${encodeURIComponent(email)}`);
         const data = await response.json();
         if (data.success) {
             gymMembershipPlans = data.plans;
@@ -251,7 +251,7 @@ document.getElementById('addUserForm').addEventListener('submit', async function
     }
     
     try {
-        const response = await fetch('http://localhost:5000/add-user', {
+        const response = await fetch('/add-user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -42,7 +42,7 @@ out/
 
 # Gatsby files
 .cache/
-public
+# public  <-- Commented out to allow qr-scanner-pwa/public
 
 # Vue.js build output
 dist/
@@ -126,3 +126,6 @@ Desktop.ini
 
 # Visual Studio Code
 .history/
+
+# Explicitly allow qr-scanner-pwa/public while keeping other public/ folders ignored
+!/qr-scanner-pwa/public/
