@@ -251,7 +251,7 @@ document.getElementById('addUserForm').addEventListener('submit', async function
     }
     
     try {
-        const response = await fetch('/add-user', {
+        const response = await fetch('/add_user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

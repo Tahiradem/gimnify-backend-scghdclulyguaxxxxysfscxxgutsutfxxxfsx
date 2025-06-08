@@ -67,7 +67,7 @@ function setupEditListeners() {
 
         try {
             showLoading();
-            const response = await fetch(`http://localhost:5000/update_user/${userEmail}/${gymEmail}`, {
+            const response = await fetch(`/update_user/${userEmail}/${gymEmail}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ function setupEditListeners() {
 
         if (confirm('Are you sure you want to delete this user?')) {
             try {
-                const response = await fetch('http://localhost:5000/delete-user', {
+                const response = await fetch('/delete-user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ async function populateEditForm(userEmail, gymEmail) {
     try {
         showLoading();
         
-         const url = new URL('http://localhost:5000/user-details');
+         const url = new URL('/user-details');
         url.searchParams.append('userEmail', userEmail);
         url.searchParams.append('gymEmail', gymEmail);
         

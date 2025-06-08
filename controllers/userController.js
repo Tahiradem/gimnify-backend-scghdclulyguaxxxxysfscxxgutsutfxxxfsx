@@ -19,7 +19,15 @@ exports.addUser = async (req, res) => {
         }
 
         let gymHouse = await Gym.findOne({ email });
+        const requiredFields = ['name', 'email', 'userName', 'password', 'phone'];
+        const missingFields = requiredFields.filter(field => !user[field]);
         
+        if (missingFields.length > 0) {
+            return res.status(400).json({
+                success: false,
+                message: `Missing required fields: ${missingFields.join(', ')}`
+            });
+        }
         if (!gymHouse) {
             return res.status(404).json({ 
                 success: false, 

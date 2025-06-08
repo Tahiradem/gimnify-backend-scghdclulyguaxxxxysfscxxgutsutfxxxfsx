@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
     exercises: [String],
     dailyAttendance: String,
     upComingExercise: String,
-    totalTimeSpendOnGym: Number,
+    totalTimeSpendOnGym: String,
     proteinAmountRequired: String,
     TodayNotification: { type: String, default: "Stay fit and healthy!" },
     activityLevel: { 
@@ -125,7 +125,11 @@ const GymSchema = new mongoose.Schema({
     location: String,
     adminNotifications: [Array],
     pricePlan: Number,
-    paymentsList: [String],
+    paymentsList: [{
+    date_of_payment: String,
+    amount: Number,
+    // ... other payment fields
+  }],
     accountNumbers: [String],
     payDone: Boolean,
     serviceTermination: Boolean,

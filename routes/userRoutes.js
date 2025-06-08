@@ -31,7 +31,7 @@ router.get('/gym-plans', async (req, res) => {
 });
 
 router.get('/users', userController.getUsers);
-router.post('/add-user', userController.addUser);
+router.post('/add_user', userController.addUser);
 router.put('/update_user/:userName/:email', userController.updateUser);
 router.put('/update-password', userController.updatePassword);
 router.post('/update-notification', userController.updateNotification);
