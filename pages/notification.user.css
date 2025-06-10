@@ -231,3 +231,13 @@ summary{
     overflow: hidden;
     margin-top: 12px;
 }
+@media (max-width:768px) {
+    body{
+    align-items: start;
+    justify-content: start;
+    background: #e3e2ef00;
+}
+.main-container{
+    border: 1px solid #00000027;
+}
+}

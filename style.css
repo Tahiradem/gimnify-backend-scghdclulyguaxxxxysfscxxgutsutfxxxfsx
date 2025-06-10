@@ -30,6 +30,7 @@ html{
     margin-top: 0px;
     overflow: hidden;
     animation: home_anim 1s 1s forwards;
+    /* padding: 0 0 30px 0; */
 }
 @keyframes home_anim {
     0%{
@@ -382,7 +383,7 @@ header nav a:hover{
 }
 /* Testimonials Section */
 .testimonials {
-    padding: 5rem 5%;
+    padding: 0 20px 50px 20px;
     background: rgb(255, 255, 255);
     text-align: center;
 }
@@ -441,7 +442,7 @@ header nav a:hover{
 }
 .price_plan{
     width: 100%;
-    height: 100vh;
+    height: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -459,10 +460,11 @@ header nav a:hover{
 .main_price_area{
     background: #ececec;
     border-radius: 20px;
-    height: 440px;
+    height: auto;
+    padding: 0 0 30px 0;
 }
 .price_plan div{
-    height: 410px;
+    height: auto;
     width: 350px;
     border-radius: 20px;
     display: flex;
@@ -472,6 +474,8 @@ header nav a:hover{
 }
 .price_plan div:nth-child(2){
     background: #fff;
+    padding: 20px;
+
 }
 .price_plan div:nth-child(2) .subscription_btn{
     /* margin-top: 90px; */
@@ -508,8 +512,8 @@ header nav a:hover{
     font-size: 18px;
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    height: 150px;
+    gap: 3px;
+    height: auto;
 }
 .price_plan div ul li{
     color: #333333;
@@ -529,7 +533,7 @@ header nav a:hover{
     height: 40px;
     border-radius: 30px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 50px;
     transition: .3s;
 }
 .price_plan div .subscription_btn:hover{
@@ -550,6 +554,7 @@ header nav a:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
 }
 .contact .raw{
     display: flex;
@@ -639,6 +644,8 @@ header nav a:hover{
     }
     .home{
         min-height: auto;
+        width:100%;
+        margin: 0 auto;
     }
     .home_cover{
         height: 100%;
@@ -647,7 +654,15 @@ header nav a:hover{
         display: none;
     }
     .act_btns{
+        /* display: none; */
+    }
+    .act_btns a:nth-child(1){
         display: none;
+    }
+    .act_btns a:nth-child(2){
+        margin-top: 8px;
+        scale: 0.9;
+        font-weight: 500;
     }
     .block2 h1{
         width: 90%;
@@ -659,6 +674,10 @@ header nav a:hover{
     }
     .block3{
         gap: 20px;
+    }
+    .active_users{
+        width: 100%;
+        margin-top: -10px;
     }
     .scroll_home{
         left: 40%;
@@ -678,6 +697,7 @@ header nav a:hover{
     }
     .price_plan{
         height: auto;
+        margin-top: 40px;
     }
     .price_plan section{
         width: 95%;
@@ -693,6 +713,9 @@ header nav a:hover{
     .howtouse{
         height: auto;
     }
+    .price_plan .txt_1{
+    color: #514a76;
+}
     .contact{
         height: auto;
         margin-top: 20px;
@@ -704,7 +727,7 @@ header nav a:hover{
         color: #333;
     }
     .howtouse .txt_1{
-        font-size: 45px;
+        font-size: 42px;
         margin-top: -20px;
         width: 100%;
         margin-left: 15px;
@@ -719,6 +742,12 @@ header nav a:hover{
         margin: 30px auto;
         /* margin-left: -500px; */
     }
+    .testimonials{
+        margin-top: -50px;
+    }
+    .testimonial-text {
+    width: 100%;
+}
     .howtoText{
         margin-top: 0px;
         width:95%;
@@ -726,5 +755,7 @@ header nav a:hover{
     }
     .personal_assistant_btn{
         margin: 60px auto;
+        margin-top: 20px;
+        z-index: 1000;
     }
 }

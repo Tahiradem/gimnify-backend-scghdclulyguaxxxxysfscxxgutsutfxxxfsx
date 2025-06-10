@@ -176,3 +176,13 @@ nav .notification_red{
     margin: 20px auto;
     border-radius: 20px;
 }
+@media (max-width:768px) {
+    body{
+    align-items: start;
+    justify-content: start;
+    background: #282828;
+}
+.main-container{
+    border: 1px solid #ffffff27;
+}
+}

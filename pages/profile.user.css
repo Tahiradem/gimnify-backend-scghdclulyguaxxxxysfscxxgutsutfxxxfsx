@@ -243,3 +243,13 @@ tr td:nth-child(1){
     width: 70px;
     text-align: left;
 }
+@media (max-width:768px) {
+    body{
+    align-items: start;
+    justify-content: start;
+    background: #e3e2ef00;
+}
+.main-container{
+    border: 1px solid #00000027;
+}
+}
