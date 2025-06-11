@@ -165,3 +165,23 @@ exports.getUserDetails = async (req, res) => {
         res.status(500).json({ success: false, message: 'Error fetching user details' });
     }
 };
+// In your controllers/userController.js
+exports.deleteUser = async (req, res) => {
+    try {
+        const { gymEmail, userEmail } = req.body;
+        
+        const result = await Gym.updateOne(
+            { email: gymEmail },
+            { $pull: { users: { email: userEmail } } }
+        );
+        
+        if (result.modifiedCount === 0) {
+            return res.status(404).json({ message: 'User not found or no changes made' });
+        }
+
+        res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).json({ message: 'Error deleting user' });
+    }
+};

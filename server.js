@@ -23,7 +23,7 @@ const revenueRoutes = require('./routes/revenue');
 const monthlyRevenueRoutes = require('./routes/monthlyRevenueRoutes');
 const qrCodeRoutes = require('./routes/qrCodeRoutes');
 const attendanceRoutes = require('./routes/attendanceUpdaingRoutes');
-const monthlyRevenueController = ('./controllers/monthlyRevenueController')
+const monthlyRevenueController = ('./controllers/monthlyRevenueController');
 
 // AfroMessage SMS Configuration
 const AFRO_TOKEN = process.env.AFRO_TOKEN || '';
@@ -150,6 +150,7 @@ app.use('/api/qrScanning', qrScanningRouter);
 // Routes
 app.use('/api', apiRoutes);
 app.use(userRoutes);
+app.use('/api', userRoutes); 
 app.use(financeRoutes);
 app.use(emailRoutes);
 app.use(gymRoutes);
@@ -288,25 +289,25 @@ cron.schedule('0 0 * * 0', async () => {
 });
 
 // Delete user endpoint
-app.post('/delete-user', async (req, res) => {
-    try {
-        const { gymEmail, userEmail } = req.body;
+// app.post('/delete-user', async (req, res) => {
+//     try {
+//         const { gymEmail, userEmail } = req.body;
         
-        const result = await Gym.updateOne(
-            { email: gymEmail },
-            { $pull: { users: { email: userEmail } } }
-        );
+//         const result = await Gym.updateOne(
+//             { email: gymEmail },
+//             { $pull: { users: { email: userEmail } } }
+//         );
         
-        if (result.modifiedCount === 0) {
-            return res.status(404).json({ message: 'User not found or no changes made' });
-        }
+//         if (result.modifiedCount === 0) {
+//             return res.status(404).json({ message: 'User not found or no changes made' });
+//         }
 
-        res.json({ message: 'User deleted successfully' });
-    } catch (error) {
-        logger.error('Error deleting user:', error);
-        res.status(500).json({ message: 'Error deleting user' });
-    }
-});
+//         res.json({ message: 'User deleted successfully' });
+//     } catch (error) {
+//         logger.error('Error deleting user:', error);
+//         res.status(500).json({ message: 'Error deleting user' });
+//     }
+// });
 
 // Enhanced scheduling with overlapping job prevention
 let isJobRunning = false;

@@ -105,7 +105,7 @@ function setupEditListeners() {
 
         if (confirm('Are you sure you want to delete this user?')) {
             try {
-                const response = await fetch('/delete-user', {
+                const response = await fetch('/api/delete-user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

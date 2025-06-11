@@ -36,5 +36,7 @@ router.put('/update_user/:userName/:email', userController.updateUser);
 router.put('/update-password', userController.updatePassword);
 router.post('/update-notification', userController.updateNotification);
 router.get('/user-details', userController.getUserDetails);
+router.post('/delete-user', userController.deleteUser);
+
 
 module.exports = router;
