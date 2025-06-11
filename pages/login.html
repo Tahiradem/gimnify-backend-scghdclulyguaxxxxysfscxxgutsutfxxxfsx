@@ -74,6 +74,12 @@
             margin-top: -10px;
             opacity: 0;
         }
+        button {
+    transition: all 0.3s ease;
+}
+button:disabled {
+    cursor: not-allowed;
+}
     </style>
     <title>Gymnify Login Page</title>
 </head>
@@ -97,58 +103,59 @@
             ">login</button>
     </form>
     <script>
-        const loginForm = document.getElementById('login-form');
-        const alertMsg = document.getElementById('alert-msg');
+    const loginForm = document.getElementById('login-form');
+    const alertMsg = document.getElementById('alert-msg');
+    const loginButton = document.querySelector('button[type="submit"]'); // Get the login button
 
-        loginForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
+    loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
 
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-                localStorage.setItem('userLoggedIn', true);
-                localStorage.setItem('password', password);
-                localStorage.setItem('email', email);
+        // Disable the button and show loading state
+        loginButton.disabled = true;
+        loginButton.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Logging in...';
+        loginButton.style.opacity = '0.7';
 
-            try {
-                const response = await fetch("/users");
-                if (!response.ok) throw new Error("Network response was not ok");
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        localStorage.setItem('userLoggedIn', true);
+        localStorage.setItem('password', password);
+        localStorage.setItem('email', email);
 
-                const users = await response.json();
-                const user = users.find(u => u.email === email && u.password === password);
+        try {
+            const response = await fetch("/users");
+            if (!response.ok) throw new Error("Network response was not ok");
 
-                if (user) {
-                    if(user.payDone){
-                        window.location.href = './Dashboard.html'; // Redirect to the desired page
-                        localStorage.setItem('username', user.name);
-                    }else{
-                        window.location.href = './pleasePayPage.html';
-                        localStorage.setItem('username', user.name);
-                    }
+            const users = await response.json();
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                if(user.payDone){
+                    window.location.href = './Dashboard.html'; // Redirect to the desired page
+                    localStorage.setItem('username', user.name);
                 } else {
-                    alertMsg.style.opacity = 1; // Show the alert message
+                    window.location.href = './pleasePayPage.html';
+                    localStorage.setItem('username', user.name);
                 }
-            } catch (error) {
-                console.error("Error:", error);
-                alertMsg.textContent = "An error occurred. Please try again.";
-                alertMsg.style.opacity = 1; // Show the alert message
+                // Button stays disabled during redirect
+            } else {
+                alertMsg.style.opacity = 1;
+                // Re-enable button if login fails
+                resetLoginButton();
             }
-        });
-    </script>
-    <script>
-        function password_hide() {
-    const passwordField = document.querySelector('.password');
-    const hideIcon = document.querySelector('#toggle-icon'); // Query for the icon dynamically
+        } catch (error) {
+            console.error("Error:", error);
+            alertMsg.textContent = "An error occurred. Please try again.";
+            alertMsg.style.opacity = 1;
+            // Re-enable button on error
+            resetLoginButton();
+        }
+    });
 
-    if (passwordField.type === 'password') {
-        passwordField.type = 'text';
-        hideIcon.classList.remove('fa-eye-slash');
-        hideIcon.classList.add('fa-eye'); // Switch to eye icon
-    } else {
-        passwordField.type = 'password';
-        hideIcon.classList.remove('fa-eye');
-        hideIcon.classList.add('fa-eye-slash'); // Switch to eye-slash icon
+    function resetLoginButton() {
+        loginButton.disabled = false;
+        loginButton.innerHTML = 'Login';
+        loginButton.style.opacity = '1';
     }
-}
-    </script>
+</script>
 </body>
 </html>
