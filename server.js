@@ -23,6 +23,7 @@ const revenueRoutes = require('./routes/revenue');
 const monthlyRevenueRoutes = require('./routes/monthlyRevenueRoutes');
 const qrCodeRoutes = require('./routes/qrCodeRoutes');
 const attendanceRoutes = require('./routes/attendanceUpdaingRoutes');
+const monthlyRevenueController = ('./controllers/monthlyRevenueController')
 
 // AfroMessage SMS Configuration
 const AFRO_TOKEN = process.env.AFRO_TOKEN || '';

@@ -138,7 +138,9 @@ async function populateEditForm(userEmail, gymEmail) {
     try {
         showLoading();
         
-         const url = new URL('/user-details');
+         const baseUrl = window.location.origin; // "https://gymnify.up.railway.app"
+        const url = new URL(`${baseUrl}/user-details`);
+        
         url.searchParams.append('userEmail', userEmail);
         url.searchParams.append('gymEmail', gymEmail);
         
@@ -151,7 +153,7 @@ async function populateEditForm(userEmail, gymEmail) {
         const data = await response.json();
         
         if (!data.success) {
-            throw new Error(data.message || 'User not founded');
+            throw new Error(data.message || 'User not found');
         }
         
         const user = data.user;
