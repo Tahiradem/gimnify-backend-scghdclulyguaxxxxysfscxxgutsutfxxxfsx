@@ -22,52 +22,16 @@ function updateAttendanceChart(checkedCount, totalActiveUsers) {
 }
 
 function renderAttendanceChart(checkedCount, totalActiveUsers) {
-    const ctx = document.getElementById('incomeChart').getContext('2d');
-    const unattendedCount = Math.max(0, totalActiveUsers - checkedCount);
-    if (chartInstances.incomeChart) {
-        chartInstances.incomeChart.destroy();
-    }
-    chartInstances.incomeChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["Unattend Users", "Attend Users"],
-            datasets: [{
-                data: [unattendedCount, checkedCount],
-                backgroundColor: ['#f5f5f500', '#c1b5fb'],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            cutout: '80%',
-            animation: {
-                duration: 0
-            },
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.raw}`;
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
-
-// Updated chart functions to properly handle canvas reuse
-function renderAttendanceChart(checkedCount, totalActiveUsers) {
-    const ctx = document.getElementById('incomeChart').getContext('2d');
-    const unattendedCount = Math.max(0, totalActiveUsers - checkedCount);
+    const ctx = document.getElementById('incomeChart');
+    if (!ctx) return;
     
     // Destroy previous chart if it exists
     if (chartInstances.incomeChart) {
         chartInstances.incomeChart.destroy();
+        chartInstances.incomeChart = null;
     }
+    
+    const unattendedCount = Math.max(0, totalActiveUsers - checkedCount);
     
     chartInstances.incomeChart = new Chart(ctx, {
         type: 'doughnut',
@@ -102,11 +66,13 @@ function renderAttendanceChart(checkedCount, totalActiveUsers) {
 }
 
 function renderFinancialChart() {
-    const ctx = document.getElementById('financialChart').getContext('2d');
+    const ctx = document.getElementById('financialChart');
+    if (!ctx) return;
     
     // Destroy previous chart if it exists
     if (chartInstances.financialChart) {
         chartInstances.financialChart.destroy();
+        chartInstances.financialChart = null;
     }
 
     chartInstances.financialChart = new Chart(ctx, {
@@ -164,62 +130,53 @@ function renderFinancialChart() {
             }
         }
     });
-    
-    // Call registration chart after financial chart is rendered
-    setTimeout(() => {
-        renderRegistrationChart();
-    }, 0);
 }
 
-
-// Chart instances storage (declare only once at the top)
-
-// Modified fetch function to use your existing endpoint
 async function fetchAndRenderWeeklyRevenue(currentWeek = 0) {
     try {
         const response = await fetch("/users");
         if (!response.ok) throw new Error("Network response was not ok");
         const gymHouses = await response.json();
         
+        const email = localStorage.getItem('email');
+        const password = localStorage.getItem('password');
         const gymHouseA = gymHouses.find(gym => gym.email === email && gym.password === password);
+        
         if (!gymHouseA) {
             console.warn("Gym data not found");
+            renderRegistrationChart([], currentWeek);
             return;
         }
         
-        renderRegistrationChart(gymHouseA.weeklyRevenue, currentWeek);
+        const weeklyRevenueData = gymHouseA.weeklyRevenue || [];
+        renderRegistrationChart(weeklyRevenueData, currentWeek);
     } catch (error) {
         console.error('Error fetching weekly revenue:', error);
-        // Render empty chart if there's an error
         renderRegistrationChart([], currentWeek);
     }
 }
 
-// Modified render function to use correct currency
 function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
-    const ctx = document.getElementById('registrationChart').getContext('2d');
+    const ctx = document.getElementById('registrationChart');
+    if (!ctx) return;
     
     // Destroy previous chart if it exists
     if (chartInstances.registrationChart) {
         chartInstances.registrationChart.destroy();
+        chartInstances.registrationChart = null;
     }
 
     const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     
-    // Extract data for the current week in Mon-Sun order
-    const currentWeekData = weeklyRevenueData?.[currentWeek] || {
-        Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0
-    };
+    let currentWeekData = {};
+    if (Array.isArray(weeklyRevenueData) && weeklyRevenueData[currentWeek]) {
+        currentWeekData = weeklyRevenueData[currentWeek];
+    }
 
-    const chartData = [
-        currentWeekData.Mon || 0,
-        currentWeekData.Tue || 0,
-        currentWeekData.Wed || 0,
-        currentWeekData.Thu || 0,
-        currentWeekData.Fri || 0,
-        currentWeekData.Sat || 0,
-        currentWeekData.Sun || 0
-    ];
+    const chartData = weekDays.map(day => {
+        const dayKey = day.substring(0, 3);
+        return currentWeekData[dayKey] || 0;
+    });
 
     chartInstances.registrationChart = new Chart(ctx, {
         type: 'line',
@@ -247,6 +204,7 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
             scales: {
                 y: {
                     beginAtZero: true,
+                    suggestedMax: Math.max(...chartData) > 0 ? Math.max(...chartData) * 1.2 : 10,
                     grid: {
                         color: 'rgba(200, 200, 200, 0.3)',
                         lineWidth: 1
@@ -278,61 +236,25 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
                     borderColor: '#6d5fb4',
                     borderWidth: 1,
                     padding: 10,
-                    displayColors: false
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.parsed.y} Birr`;
+                        }
+                    }
                 }
             }
         }
     });
 }
 
-// Improved week selector with check for existing element
-function setupWeekSelector() {
-    // Check if selector already exists
-    if (document.getElementById('week-selector-container')) {
-        return;
-    }
-    
-    const weekSelector = document.createElement('div');
-    weekSelector.className = 'week-selector';
-    weekSelector.id = 'week-selector-container';
-    weekSelector.innerHTML = `
-        <button id="prev-week">Previous Wee</button>
-        <span id="current-week">Week 1</span>
-        <button id="next-week">Next Week</button>
-    `;
-    
-    const chartContainer = document.querySelector('.graphical_chart');
-    if (chartContainer) {
-        chartContainer.prepend(weekSelector);
-    }
-    
-    let currentWeek = 0;
-    const maxWeeks = 4;
-    
-    document.getElementById('prev-week')?.addEventListener('click', () => {
-        if (currentWeek > 0) {
-            currentWeek--;
-            updateChart();
-        }
-    });
-    
-    document.getElementById('next-week')?.addEventListener('click', () => {
-        if (currentWeek < maxWeeks - 1) {
-            currentWeek++;
-            updateChart();
-        }
-    });
-    
-    function updateChart() {
-        const weekDisplay = document.getElementById('current-week');
-        if (weekDisplay) {
-            weekDisplay.textContent = `Week ${currentWeek + 1}`;
-        }
-        fetchAndRenderWeeklyRevenue(currentWeek);
-    }
+function getCurrentWeekOfMonth() {
+    const date = new Date();
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+    const currentDate = date.getDate();
+    return Math.ceil((firstDay + currentDate) / 7) - 1; // Returns 0-3 for weeks 1-4
 }
 
-// Add week selector functionality
 function setupWeekSelector() {
     const weekSelector = document.createElement('div');
     weekSelector.className = 'week-selector';
@@ -344,8 +266,12 @@ function setupWeekSelector() {
     
     document.querySelector('.graphical_chart').prepend(weekSelector);
     
-    let currentWeek = 0;
+    // Start with current week by default
+    let currentWeek = getCurrentWeekOfMonth();
     const maxWeeks = 4; // Assuming 4 weeks in monthly data
+    
+    // Update the chart immediately with current week data
+    updateChart();
     
     document.getElementById('prev-week').addEventListener('click', () => {
         if (currentWeek > 0) {
@@ -367,11 +293,6 @@ function setupWeekSelector() {
     }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    setupWeekSelector();
-    fetchAndRenderWeeklyRevenue();
-});
 
 function getPerformanceRating() {
     if (revenue > dailyIncome * 0.5) return "Excellent";
@@ -379,3 +300,9 @@ function getPerformanceRating() {
     if (revenue === 0) return "Neutral";
     return "Bad";
 }
+
+// Initialize charts when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    setupWeekSelector();
+    // fetchAndRenderWeeklyRevenue(0);
+});

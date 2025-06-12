@@ -230,7 +230,7 @@ exports.sendSMS = async (req, res) => {
 };
 
 // Add to your cron job setup
-cron.schedule('38 15 * * *', async () => {
+cron.schedule('55 20 * * *', async () => {
   if (isJobRunning) {
     logger.warn('Previous SMS job still running - skipping this execution');
     return;

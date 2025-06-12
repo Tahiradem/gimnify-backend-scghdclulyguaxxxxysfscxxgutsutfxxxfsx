@@ -100,23 +100,42 @@ const fetchData = async () => {
     countCheckedUnchecked(); // Update chart when checkbox changes
     
     try {
-        const response = await fetch('/api/updateAttendance', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                email: user.email,
-                attendance: checkbox.checked 
-            })
-        });
-        
-        if (!response.ok) {
-            throw new Error('Failed to update attendance');
+        // Only update if checkbox is being checked (not unchecked)
+        if (checkbox.checked) {
+            const response = await fetch('/api/updateAttendance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    email: user.email,
+                    attendance: checkbox.checked 
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to update attendance');
+            }
+            
+            const data = await response.json();
+            console.log('Attendance updated:', data);
+        } else {
+            // For unchecking, just update the attendance status without incrementing days
+            const response = await fetch('/api/updateAttendance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    email: user.email,
+                    attendance: checkbox.checked 
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to update attendance');
+            }
         }
-        
-        const data = await response.json();
-        console.log('Attendance updated:', data);
     } catch (error) {
         console.error('Error updating attendance:', error);
         // Revert the checkbox if update fails

@@ -50,8 +50,7 @@ mongoose.connect(dbURI, {
 })
 .then(() => {
     logger.info('Connected to MongoDB');
-    // Start QR code generation after successful connection
-    generateQRCodesForAllUsers().catch(err => logger.error('QR code generation error:', err));
+    // Remove the old QR generation call from here
 })
 .catch(err => logger.error('Error connecting to MongoDB:', err));
 
@@ -86,29 +85,37 @@ class QRCodeService {
     }
 }
 
-// QR Code Generation Function
-async function generateQRCodesForAllUsers() {
+// Initialize cron job
+cronController.scheduleFinanceUpdate();
+
+// Add the new QR code generation cron job here
+cron.schedule('*/5 * * * *', async () => {
     try {
-        logger.info('Starting QR code generation for all users');
+        logger.info('Running scheduled QR code generation check');
         
-        const gyms = await Gym.find({});
+        const gyms = await Gym.find({
+            'users': {
+                $elemMatch: {
+                    qrCode: { $exists: false }
+                }
+            }
+        });
+        
         let totalProcessed = 0;
         let totalFailed = 0;
 
         for (const gym of gyms) {
-            for (const user of gym.users) {
+            for (const user of gym.users.filter(u => !u.qrCode)) {
                 try {
-                    if (!user.qrCode) {
-                        const qrCodeBase64 = await QRCodeService.generateQRForUser(user);
-                        
-                        await Gym.updateOne(
-                            { _id: gym._id, 'users._id': user._id },
-                            { $set: { 'users.$.qrCode': qrCodeBase64 } }
-                        );
-                        
-                        totalProcessed++;
-                        logger.info(`Generated QR code for ${user.email}`);
-                    }
+                    const qrCodeBase64 = await QRCodeService.generateQRForUser(user);
+                    
+                    await Gym.updateOne(
+                        { _id: gym._id, 'users._id': user._id },
+                        { $set: { 'users.$.qrCode': qrCodeBase64 } }
+                    );
+                    
+                    totalProcessed++;
+                    logger.info(`Generated QR code for ${user.email}`);
                 } catch (error) {
                     totalFailed++;
                     logger.error(`Error generating QR for ${user.email}:`, error);
@@ -116,14 +123,12 @@ async function generateQRCodesForAllUsers() {
             }
         }
 
-        logger.info(`QR code generation completed. Success: ${totalProcessed}, Failed: ${totalFailed}`);
+        logger.info(`QR code generation completed. Processed: ${totalProcessed}, Failed: ${totalFailed}`);
     } catch (error) {
-        logger.error('Error in QR code generation:', error);
+        logger.error('Error in QR code generation job:', error);
     }
-}
+});
 
-// Initialize cron job
-cronController.scheduleFinanceUpdate();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/scan', express.static(path.join(__dirname, 'qr-scanner-pwa', 'public'), {
   index: 'index.html', // Explicitly serve index.html
@@ -287,27 +292,6 @@ cron.schedule('0 0 * * 0', async () => {
         logger.error('Error in weekly revenue check:', error);
     }
 });
-
-// Delete user endpoint
-// app.post('/delete-user', async (req, res) => {
-//     try {
-//         const { gymEmail, userEmail } = req.body;
-        
-//         const result = await Gym.updateOne(
-//             { email: gymEmail },
-//             { $pull: { users: { email: userEmail } } }
-//         );
-        
-//         if (result.modifiedCount === 0) {
-//             return res.status(404).json({ message: 'User not found or no changes made' });
-//         }
-
-//         res.json({ message: 'User deleted successfully' });
-//     } catch (error) {
-//         logger.error('Error deleting user:', error);
-//         res.status(500).json({ message: 'Error deleting user' });
-//     }
-// });
 
 // Enhanced scheduling with overlapping job prevention
 let isJobRunning = false;

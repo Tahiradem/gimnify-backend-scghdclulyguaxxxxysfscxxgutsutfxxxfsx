@@ -56,7 +56,7 @@ exports.updateAttendance = async (req, res) => {
                 daysAttended: 1 
             });
         }
-
+        
         user.attendance = true;
 
         // Save changes
