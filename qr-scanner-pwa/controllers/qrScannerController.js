@@ -6,6 +6,12 @@ const getCurrentMonth = () => {
     return months[new Date().getMonth()];
 };
 
+// Helper function to get current date in YYYY-MM-DD format
+const getCurrentDate = () => {
+    const date = new Date();
+    return date.toISOString().split('T')[0]; // Returns "YYYY-MM-DD"
+};
+
 exports.updateAttendance = async (req, res) => {
     try {
         const { email } = req.body;
@@ -18,6 +24,7 @@ exports.updateAttendance = async (req, res) => {
         }
 
         const currentMonth = getCurrentMonth();
+        const currentDate = getCurrentDate();
         const currentTime = new Date().toISOString();
 
         // Find the gym and user
@@ -47,13 +54,22 @@ exports.updateAttendance = async (req, res) => {
         const monthEntry = user.monthlyAttendance.find(entry => entry.month === currentMonth);
 
         if (monthEntry) {
-            // Increment if month exists
-            monthEntry.daysAttended += 1;
+            // Initialize dateOfAttended if it doesn't exist
+            if (!monthEntry.dateOfAttended) {
+                monthEntry.dateOfAttended = [];
+            }
+            
+            // Only increment if this date hasn't been recorded yet
+            if (!monthEntry.dateOfAttended.includes(currentDate)) {
+                monthEntry.daysAttended += 1;
+                monthEntry.dateOfAttended.push(currentDate);
+            }
         } else {
             // Add new entry if month doesn't exist
             user.monthlyAttendance.push({ 
                 month: currentMonth, 
-                daysAttended: 1 
+                daysAttended: 1,
+                dateOfAttended: [currentDate]
             });
         }
         
