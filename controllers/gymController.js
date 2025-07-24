@@ -51,6 +51,7 @@ exports.createGymHouse = async (req, res) => {
             monthlyExpense: [],
             monthlyRevenue: [],
             adminNotifications: [],
+            notificationOperator: [],
             pricePlan: price_plan,
             paymentsList: [],
             accountNumbers: [],

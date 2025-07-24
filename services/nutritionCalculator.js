@@ -38,7 +38,7 @@ class AdvancedNutritionCalculator {
             
             // Religious restrictions
             if (prefs.halal && food.category === 'meat' && !food.halal) return false;
-            if (prefs.kosher && food.category === 'meat' && !food.kosher) return false;
+            if (prefs.fastingFood && food.category === 'meat' && !food.fastingFood) return false;
             
             // Allergies and dislikes
             if (prefs.allergies?.some(a => food.allergens?.includes(a))) return false;
@@ -583,71 +583,7 @@ class AdvancedNutritionCalculator {
         return advice;
     }
 
-    generateWorkoutRecommendation() {
-        if (!this.user.activityLevel || !this.user.fitnessGoal) {
-            return null;
-        }
-        
-        const recommendation = {
-            frequency: '',
-            intensity: '',
-            type: '',
-            duration: '',
-            nutritionTiming: {}
-        };
-        
-        switch (this.user.fitnessGoal) {
-            case 'muscle_gain':
-                recommendation.frequency = '4-5 times per week';
-                recommendation.intensity = 'High (80-85% 1RM)';
-                recommendation.type = 'Resistance training with progressive overload';
-                recommendation.duration = '45-75 minutes';
-                recommendation.nutritionTiming = {
-                    preWorkout: 'Carbs + protein 1-2 hours before',
-                    postWorkout: 'Protein within 30 minutes, carbs within 2 hours'
-                };
-                break;
-            case 'fat_loss':
-                recommendation.frequency = '5-6 times per week';
-                recommendation.intensity = 'Moderate-High';
-                recommendation.type = 'Combination of resistance training and HIIT';
-                recommendation.duration = '30-60 minutes';
-                recommendation.nutritionTiming = {
-                    preWorkout: 'Light carbs + protein if fasted',
-                    postWorkout: 'Protein within 45 minutes'
-                };
-                break;
-            case 'endurance':
-                recommendation.frequency = '5-7 times per week';
-                recommendation.intensity = 'Varied (include long slow distance and intervals)';
-                recommendation.type = 'Cardiovascular training';
-                recommendation.duration = '30-120 minutes';
-                recommendation.nutritionTiming = {
-                    preWorkout: 'Carbs 1-3 hours before',
-                    duringWorkout: 'Carbs if >60 minutes',
-                    postWorkout: 'Carbs + protein within 30 minutes'
-                };
-                break;
-            default: // maintenance
-                recommendation.frequency = '3-5 times per week';
-                recommendation.intensity = 'Moderate';
-                recommendation.type = 'Balanced program of resistance and cardio';
-                recommendation.duration = '30-60 minutes';
-                recommendation.nutritionTiming = {
-                    preWorkout: 'Optional light snack',
-                    postWorkout: 'Protein within 1 hour'
-                };
-        }
-        
-        // Adjust for activity level
-        if (this.user.activityLevel === 'sedentary') {
-            recommendation.frequency = recommendation.frequency.replace(/\d/g, n => Math.max(2, n-1));
-        } else if (this.user.activityLevel === 'very_active') {
-            recommendation.frequency = recommendation.frequency.replace(/\d/g, n => Math.min(7, +n+1));
-        }
-        
-        return recommendation;
-    }
+   
 
     generateRecommendation() {
         try {
@@ -657,7 +593,6 @@ class AdvancedNutritionCalculator {
             const optimalFoods = this.findOptimalFoods(macros);
             const mealPlan = this.generateMealPlan(optimalFoods, macros, this.user.mealFrequency || 3);
             const supplementAdvice = this.generateSupplementAdvice();
-            const workoutRecommendation = this.generateWorkoutRecommendation();
             
             // Generate comprehensive notification with micronutrient focus
             let message = `Hey ${this.user.name}, here's your Day ${this.currentDay} nutrition plan:\n\n`;
@@ -694,52 +629,14 @@ class AdvancedNutritionCalculator {
             // Add hydration
             message += `Hydration: Aim for ${hydration}ml of water throughout the day\n\n`;
             
-            // Add rest recommendations
-            message += `Rest & Recovery:\n`;
-            message += `- Target ${rest.sleepHours} hours of sleep\n`;
-            message += `- Recommended bedtime: ${rest.recommendedBedtime}\n`;
-            if (rest.recoveryTips.length > 0) {
-                message += `- Recovery tips:\n`;
-                rest.recoveryTips.forEach(tip => message += `  * ${tip}\n`);
-            }
             message += `\n`;
             
-            // Add supplement advice if any
-            if (supplementAdvice) {
-                message += `Supplement Guidance:\n`;
-                supplementAdvice.forEach(supp => {
-                    message += `- ${supp.name}: Take ${supp.timing}`;
-                    if (supp.withFood) message += ` with food`;
-                    message += `\n`;
-                });
-                message += `\n`;
-            }
-            
-            // Add workout recommendation if available
-            if (workoutRecommendation) {
-                message += `Workout Recommendation:\n`;
-                message += `- Frequency: ${workoutRecommendation.frequency}\n`;
-                message += `- Type: ${workoutRecommendation.type}\n`;
-                message += `- Duration: ${workoutRecommendation.duration}\n`;
-                message += `- Nutrition Timing:\n`;
-                Object.entries(workoutRecommendation.nutritionTiming).forEach(([timing, advice]) => {
-                    message += `  * ${timing}: ${advice}\n`;
-                });
-            }
-            
-            // Add motivational note
-            message += `\nRemember: Consistency is key to seeing results!`;
             
             return {
                 notification: message,
                 macros,
                 mealPlan,
                 hydration,
-                rest,
-                supplements: supplementAdvice,
-                workout: workoutRecommendation,
-                dayOfCycle: this.currentDay,
-                timestamp: new Date()
             };
         } catch (error) {
             logger.error('Error generating recommendation:', error);

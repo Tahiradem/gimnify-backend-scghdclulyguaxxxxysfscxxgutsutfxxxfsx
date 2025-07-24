@@ -6,6 +6,15 @@ const getCurrentMonth = () => {
     return months[new Date().getMonth()];
 };
 
+// Helper function to get current date in YYYY-MM-DD format
+const getCurrentDate = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
 exports.attendanceChanging = async (req, res) => {
     try {
         const { email, attendance } = req.body;
@@ -35,9 +44,10 @@ exports.attendanceChanging = async (req, res) => {
             });
         }
 
-        // Only increment daysAttended when marking as present (attendance=true)
+        // Only update when marking as present (attendance=true)
         if (attendance) {
             const currentMonth = getCurrentMonth();
+            const currentDate = getCurrentDate();
 
             // Initialize monthlyAttendance if it doesn't exist
             if (!user.monthlyAttendance) {
@@ -48,13 +58,21 @@ exports.attendanceChanging = async (req, res) => {
             const monthEntry = user.monthlyAttendance.find(entry => entry.month === currentMonth);
 
             if (monthEntry) {
-                // Increment if month exists
-                monthEntry.daysAttended = (monthEntry.daysAttended || 0) + 1;
+                // Check if today's date is already recorded (to prevent duplicates)
+                if (!monthEntry.dateOfAttended) {
+                    monthEntry.dateOfAttended = [];
+                }
+                
+                if (!monthEntry.dateOfAttended.includes(currentDate)) {
+                    monthEntry.daysAttended = (monthEntry.daysAttended || 0) + 1;
+                    monthEntry.dateOfAttended.push(currentDate);
+                }
             } else {
                 // Add new entry if month doesn't exist
                 user.monthlyAttendance.push({ 
                     month: currentMonth, 
-                    daysAttended: 1 
+                    daysAttended: 1,
+                    dateOfAttended: [currentDate]
                 });
             }
         }

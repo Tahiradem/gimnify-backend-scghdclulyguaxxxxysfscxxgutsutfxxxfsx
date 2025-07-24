@@ -6,7 +6,7 @@ const cron = require('node-cron');  // Add this line at the top with other requi
 // SMS Configuration
 const smsConfig = {
   baseUrl: 'https://api.afromessage.com/api/send',
-  token: 'eyJhbGciOiJIUzI1NiJ9.eyJpZGVudGlmaWVyIjoiUWJSdnJPVW56Mng4OXJ3d2JDWEdGMmlwcllyUDRkOXoiLCJleHAiOjE5MDQwMTg3NTQsImlhdCI6MTc0NjI1MjM1NCwianRpIjoiZWQwYjcyNmUtOWU2NC00M2U3LTljODYtNWEyOTg3NjBjMDBmIn0.RaDgwxyWo-E5EQARb0X6Pfr9kekPgZ1IHizq3nOC--A',
+  token: 'eyJhbGciOiJIUzI1NiJ9.eyJpZGVudGlmaWVyIjoiS28xYXp6ODZyRW56bXNWbUZtVVd6NU55TklvOWJYbnEiLCJleHAiOjE5MTA0NjUyMTYsImlhdCI6MTc1MjY5ODgxNiwianRpIjoiYzUwZWZhNTQtNDdiYS00ODFkLWJiM2UtOTlkZDliYjUzNThlIn0.ESHRvf1Dr_Q0tbZp_zMQxky5PZj4hWnY--nG1UV5Beo',
   callback: 'https://yourdomain.com/sms-callback',
   from: 'e80ad9d8-adf3-463f-80f4-7c4b39f7f164',
   defaultSender: '',

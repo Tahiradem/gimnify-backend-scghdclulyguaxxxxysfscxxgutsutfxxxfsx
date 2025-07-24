@@ -107,23 +107,15 @@ document.getElementById('addSupplement').addEventListener('click', function() {
 
 document.getElementById('addUserForm').addEventListener('submit', async function (event) {
     event.preventDefault();
-    showLoading(); // Show loader before fetch
+    showLoading();
 
     const formData = new FormData(event.target);
     const currentDate = new Date();
-    const registeredDate = formatDate(currentDate);
-
-    // Format notificationTime
-    const rawNotificationTime = formData.get('notificationTime');
-    const [hours, minutes] = rawNotificationTime.split(':');
-    const notificationTimeDate = new Date();
-    notificationTimeDate.setHours(parseInt(hours));
-    notificationTimeDate.setMinutes(parseInt(minutes));
-    const formattedNotificationTime = notificationTimeDate.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true
-    });
+    
+    // Format dates consistently
+    const formatDateForServer = (date) => {
+        return date.toISOString(); // Or your preferred format that matches server expectations
+    };
 
     // Process supplements
     const supplementNames = formData.getAll('supplementName[]');
@@ -141,51 +133,55 @@ document.getElementById('addUserForm').addEventListener('submit', async function
         }
     }
 
-    // Process medical conditions
-    const medicalConditions = formData.get('medicalConditions') 
-        ? formData.get('medicalConditions').split(',').map(item => item.trim()) 
-        : [];
-        
+    // Process medical conditions and other arrays
+    const processArrayInput = (input) => {
+        return input ? input.split(',').map(item => item.trim()).filter(item => item) : [];
+    };
+
     const data = {
         email: email,
         user: {
-            ID: parseInt(formData.get('ID')),
-            name: formData.get('name'),
-            userName: formData.get('userName'),
-            email: formData.get('email'),
-            password: formData.get('password'),
-            phone: formData.get('phone'),
+            ID: parseInt(formData.get('ID')) || 0,
+            name: formData.get('name') || '',
+            userName: formData.get('userName') || '',
+            email: formData.get('email') || '',
+            password: formData.get('password') || '',
+            phone: formData.get('phone') || '',
             upComingExercise: "",
-            age: parseInt(formData.get('age')),
-            sex: formData.get('sex'),
-            attendance:false,
-            height: parseInt(formData.get('height')),
-            weight: parseInt(formData.get('weight')),
-            bodyFat: parseFloat(formData.get('bodyFat')),
-            registeredDate: registeredDate,
+            age: parseInt(formData.get('age')) || 0,
+            sex: formData.get('sex') || 'male',
+            attendance: false,
+            height: parseInt(formData.get('height')) || 0,
+            weight: parseInt(formData.get('weight')) || 0,
+            registeredDate: formatDateForServer(currentDate),
             paymentStatus: formData.get('paymentStatus') === 'on',
-            exerciseTimePerDay: formData.get('exerciseTimePerDay'),
-            notificationTime: formattedNotificationTime,
-            healthStatus: formData.get('healthStatus'),
-            exerciseType: formData.get('exerciseType'),
+            exerciseTimePerDay: formData.get('exerciseTimePerDay') || '30 Min',
+            notificationTime: formData.get('notificationTime') || '12:00',
+            healthStatus: formData.get('healthStatus') || 'good',
+            exerciseType: formData.get('exerciseType') || 'Strength',
+            bodyMeasurements: {
+                waistSize: parseFloat(formData.get('waistSize')) || 0,
+                neckSize: parseFloat(formData.get('neckSize')) || 0,
+                hipSize: parseFloat(formData.get('hipSize')) || 0
+            },
             exercises: [
-                formData.get('mon'),
-                formData.get('tue'),
-                formData.get('wed'),
-                formData.get('thu'),
-                formData.get('fri'),
-                formData.get('sat'),
-                formData.get('sun')
-            ],
-            enteringTime: formData.get('enteringTime'),
-            activityLevel: formData.get('activityLevel'),
-            fitnessGoal: formData.get('fitnessGoal'),
-            bloodType: formData.get('bloodType'),
+                formData.get('mon') || '',
+                formData.get('tue') || '',
+                formData.get('wed') || '',
+                formData.get('thu') || '',
+                formData.get('fri') || '',
+                formData.get('sat') || '',
+                formData.get('sun') || ''
+            ].filter(ex => ex),
+            enteringTime: formData.get('enteringTime') || '08:00',
+            activityLevel: formData.get('activityLevel') || 'moderately_active',
+            fitnessGoal: formData.get('fitnessGoal') || 'maintenance',
+            bloodType: formData.get('bloodType') || 'A+',
             TodayNotification: "",
             totalTimeSpendOnGym: 0,
-            metabolicHealth: formData.get('metabolicHealth'),
+            metabolicHealth: formData.get('metabolicHealth') || 'normal',
             livesInHotClimate: formData.get('livesInHotClimate') === 'on',
-            medicalConditions: medicalConditions,
+            medicalConditions: processArrayInput(formData.get('medicalConditions')),
             dietaryPreferences: {
                 vegetarian: formData.get('vegetarian') === 'on',
                 vegan: formData.get('vegan') === 'on',
@@ -193,63 +189,36 @@ document.getElementById('addUserForm').addEventListener('submit', async function
                 dairyFree: formData.get('dairyFree') === 'on',
                 halal: formData.get('halal') === 'on',
                 kosher: formData.get('kosher') === 'on',
-                allergies: formData.get('allergies') ? formData.get('allergies').split(',').map(item => item.trim()) : [],
-                dislikes: formData.get('dislikes') ? formData.get('dislikes').split(',').map(item => item.trim()) : [],
-                preferredCuisines: formData.get('preferredCuisines') ? formData.get('preferredCuisines').split(',').map(item => item.trim()) : [],
-                budget: formData.get('budget')
+                allergies: processArrayInput(formData.get('allergies')),
+                dislikes: processArrayInput(formData.get('dislikes')),
+                preferredCuisines: processArrayInput(formData.get('preferredCuisines')),
+                budget: formData.get('budget') || 'medium'
             },
-            mealFrequency: parseInt(formData.get('mealFrequency')),
-            wakeTime: formData.get('wakeTime'),
-            sleepTime: formData.get('sleepTime'),
-            cookingTime: formData.get('cookingTime'),
-            supplements: supplements
+            mealFrequency: parseInt(formData.get('mealFrequency')) || 3,
+            wakeTime: formData.get('wakeTime') || '07:00',
+            sleepTime: formData.get('sleepTime') || '23:00',
+            cookingTime: formData.get('cookingTime') || 'medium',
+            supplements: supplements,
+            membershipDetail: [],
+            paymentDate: formatDateForServer(new Date(currentDate.setMonth(currentDate.getMonth() + 1)))
         }
     };
 
-    // Handle membership details and payment date
+    // Handle membership details if selected
     const membershipPlan = formData.get('membershipPlan');
     const packageLength = formData.get('packageLength');
     const price = document.getElementById('priceValue').textContent;
 
     if (membershipPlan && packageLength && price !== '0') {
-        // Calculate payment date based on package length
-        const calculatePaymentDate = (registeredDate, packageLength) => {
-            const date = new Date(registeredDate);
-            const match = packageLength.match(/^(\d+)\s*(month|year)s?$/i);
-            
-            if (!match) return date;
-            
-            const value = parseInt(match[1]);
-            const unit = match[2].toLowerCase();
-            
-            if (unit === 'month') {
-                date.setMonth(date.getMonth() + value);
-            } else if (unit === 'year') {
-                date.setFullYear(date.getFullYear() + value);
-            }
-            
-            return date;
-        };
-
-        const paymentDate = calculatePaymentDate(currentDate, packageLength);
-        const formattedPaymentDate = formatDate(paymentDate);
-
-        data.user.membershipDetail = [{
+        data.user.membershipDetail.push({
             planName: membershipPlan,
             packageLength: packageLength,
             price: price,
-            startDate: registeredDate,  // "DD, MM, YYYY"
-            endDate: formattedPaymentDate  // "DD, MM, YYYY"
-        }];
-        
-        data.user.paymentDate = formattedPaymentDate;
-    } else {
-        // Default to 1 month if no plan selected
-        const defaultPaymentDate = new Date(currentDate);
-        defaultPaymentDate.setMonth(defaultPaymentDate.getMonth() + 1);
-        data.user.paymentDate = formatDate(defaultPaymentDate);
+            startDate: formatDateForServer(currentDate),
+            endDate: formatDateForServer(new Date(currentDate.setMonth(currentDate.getMonth() + parseInt(packageLength))))
+        });
     }
-    
+
     try {
         const response = await fetch('/add_user', {
             method: 'POST',
@@ -259,18 +228,19 @@ document.getElementById('addUserForm').addEventListener('submit', async function
             body: JSON.stringify(data)
         });
         
-        const result = await response.json();
-
-        if (result.success) {
-            hideLoading();
-            alert('User added successfully');
-            window.open("./Dashboard.html", "_self");
-        } else {
-            alert(`Error: ${result.message}`);
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to add user');
         }
+
+        const result = await response.json();
+        hideLoading();
+        alert('User added successfully');
+        window.open("./Dashboard.html", "_self");
     } catch (error) {
+        hideLoading();
         console.error('Error:', error);
-        alert('An error occurred while adding the user');
+        alert(`Error: ${error.message}`);
     }
 });
 

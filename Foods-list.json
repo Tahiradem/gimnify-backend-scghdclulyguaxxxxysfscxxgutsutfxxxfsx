@@ -1,0 +1,2212 @@
+{
+  "day1": {
+    "breakFast": {
+      "lowBudget": [
+        {
+          "foodName": "Banana",
+          "macrosPerScalingType": {
+            "protein": 3.2,
+            "carbs": 20.1,
+            "fats": 0.4,
+            "calories": 96
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.1,
+            "calcium": 40,
+            "thiamine": 0.2
+          },
+          "period": ["breakFast", "lunch"],
+          "scalingType": "count",
+          "combineWith": ["milk", "white bread"],
+          "notCombineWith": ["lemon"],
+          "popularity": "95%",
+          "availability": "90%",
+          "ingredients": ["single"],
+          "description": "Rich in potassium and easy to digest",
+          "foodType": "natural fruit",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 3]
+        },
+        {
+          "foodName": "Oatmeal",
+          "macrosPerScalingType": {
+            "protein": 5.0,
+            "carbs": 27.0,
+            "fats": 2.5,
+            "calories": 150
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.8,
+            "calcium": 20,
+            "thiamine": 0.3
+          },
+          "period": ["breakFast"],
+          "scalingType": "grams",
+          "combineWith": ["honey", "milk", "banana"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "95%",
+          "ingredients": ["oats", "water"],
+          "description": "High fiber breakfast that keeps you full",
+          "foodType": "grain",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [30, 100]
+        },
+        {
+          "foodName": "Boiled Eggs",
+          "macrosPerScalingType": {
+            "protein": 6.3,
+            "carbs": 0.6,
+            "fats": 5.3,
+            "calories": 78
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.6,
+            "calcium": 25,
+            "thiamine": 0.1
+          },
+          "period": ["breakFast", "snack"],
+          "scalingType": "count",
+          "combineWith": ["toast", "avocado"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "95%",
+          "ingredients": ["eggs"],
+          "description": "Excellent source of protein and healthy fats",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 4]
+        },
+        {
+          "foodName": "Peanut Butter Toast",
+          "macrosPerScalingType": {
+            "protein": 8.0,
+            "carbs": 25.0,
+            "fats": 10.0,
+            "calories": 210
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.0,
+            "calcium": 30,
+            "thiamine": 0.2
+          },
+          "period": ["breakFast", "snack"],
+          "scalingType": "slice",
+          "combineWith": ["banana", "honey"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "85%",
+          "ingredients": ["bread", "peanut butter"],
+          "description": "Quick energy boost with healthy fats",
+          "foodType": "spread",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 3]
+        }
+      ],
+      "midLowBudget": [
+        {
+          "foodName": "Greek Yogurt with Berries",
+          "macrosPerScalingType": {
+            "protein": 15.0,
+            "carbs": 12.0,
+            "fats": 5.0,
+            "calories": 150
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.5,
+            "calcium": 150,
+            "thiamine": 0.1
+          },
+          "period": ["breakFast", "snack"],
+          "scalingType": "grams",
+          "combineWith": ["granola", "honey"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["yogurt", "strawberries", "blueberries"],
+          "description": "Creamy yogurt with antioxidant-rich berries",
+          "foodType": "dairy",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [100, 300]
+        },
+        {
+          "foodName": "Avocado Toast",
+          "macrosPerScalingType": {
+            "protein": 5.0,
+            "carbs": 30.0,
+            "fats": 15.0,
+            "calories": 250
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.2,
+            "calcium": 40,
+            "thiamine": 0.3
+          },
+          "period": ["breakFast", "lunch"],
+          "scalingType": "slice",
+          "combineWith": ["eggs", "tomato"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "80%",
+          "ingredients": ["whole grain bread", "avocado", "salt", "pepper"],
+          "description": "Healthy fats with complex carbohydrates",
+          "foodType": "vegetable",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 3]
+        },
+        {
+          "foodName": "Smoothie Bowl",
+          "macrosPerScalingType": {
+            "protein": 8.0,
+            "carbs": 45.0,
+            "fats": 5.0,
+            "calories": 250
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.5,
+            "calcium": 100,
+            "thiamine": 0.4
+          },
+          "period": ["breakFast"],
+          "scalingType": "bowl",
+          "combineWith": ["granola", "nuts"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "70%",
+          "ingredients": ["banana", "berries", "yogurt", "milk"],
+          "description": "Refreshing and nutrient-dense breakfast",
+          "foodType": "mixed",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Scrambled Eggs with Whole Wheat Toast",
+          "macrosPerScalingType": {
+            "protein": 18.0,
+            "carbs": 25.0,
+            "fats": 12.0,
+            "calories": 280
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 80,
+            "thiamine": 0.3
+          },
+          "period": ["breakFast"],
+          "scalingType": "plate",
+          "combineWith": ["avocado", "tomato"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "90%",
+          "ingredients": ["eggs", "whole wheat bread", "butter"],
+          "description": "High-protein breakfast with complex carbs",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "midBudget": [
+        {
+          "foodName": "Smoked Salmon Bagel",
+          "macrosPerScalingType": {
+            "protein": 20.0,
+            "carbs": 45.0,
+            "fats": 12.0,
+            "calories": 350
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.5,
+            "calcium": 50,
+            "thiamine": 0.4
+          },
+          "period": ["breakFast", "lunch"],
+          "scalingType": "bagel",
+          "combineWith": ["cream cheese", "capers"],
+          "notCombineWith": [],
+          "popularity": "70%",
+          "availability": "65%",
+          "ingredients": ["bagel", "smoked salmon", "cream cheese", "red onion"],
+          "description": "Rich in omega-3 fatty acids",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Chia Pudding",
+          "macrosPerScalingType": {
+            "protein": 8.0,
+            "carbs": 30.0,
+            "fats": 15.0,
+            "calories": 280
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 200,
+            "thiamine": 0.3
+          },
+          "period": ["breakFast", "snack"],
+          "scalingType": "bowl",
+          "combineWith": ["berries", "nuts"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "70%",
+          "ingredients": ["chia seeds", "almond milk", "honey"],
+          "description": "High fiber and omega-3 content",
+          "foodType": "vegan",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Breakfast Burrito",
+          "macrosPerScalingType": {
+            "protein": 22.0,
+            "carbs": 35.0,
+            "fats": 18.0,
+            "calories": 380
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 150,
+            "thiamine": 0.5
+          },
+          "period": ["breakFast", "lunch"],
+          "scalingType": "burrito",
+          "combineWith": ["salsa", "avocado"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "75%",
+          "ingredients": ["tortilla", "eggs", "beans", "cheese", "vegetables"],
+          "description": "Hearty breakfast with balanced macros",
+          "foodType": "mixed",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Pancakes with Maple Syrup",
+          "macrosPerScalingType": {
+            "protein": 10.0,
+            "carbs": 60.0,
+            "fats": 8.0,
+            "calories": 350
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.8,
+            "calcium": 120,
+            "thiamine": 0.4
+          },
+          "period": ["breakFast"],
+          "scalingType": "stack",
+          "combineWith": ["berries", "whipped cream"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "90%",
+          "ingredients": ["flour", "eggs", "milk", "butter", "maple syrup"],
+          "description": "Classic breakfast treat",
+          "foodType": "grain",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [2, 4]
+        }
+      ],
+      "midHighBudget": [
+        {
+          "foodName": "Eggs Benedict",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 30.0,
+            "fats": 25.0,
+            "calories": 420
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 180,
+            "thiamine": 0.5
+          },
+          "period": ["breakFast", "brunch"],
+          "scalingType": "plate",
+          "combineWith": ["asparagus", "smoked salmon"],
+          "notCombineWith": [],
+          "popularity": "70%",
+          "availability": "60%",
+          "ingredients": ["english muffin", "poached eggs", "ham", "hollandaise sauce"],
+          "description": "Decadent breakfast classic",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Acai Bowl",
+          "macrosPerScalingType": {
+            "protein": 6.0,
+            "carbs": 65.0,
+            "fats": 12.0,
+            "calories": 350
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 80,
+            "thiamine": 0.3
+          },
+          "period": ["breakFast", "snack"],
+          "scalingType": "bowl",
+          "combineWith": ["granola", "nut butter"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "65%",
+          "ingredients": ["acai berries", "banana", "granola", "honey"],
+          "description": "Antioxidant-rich superfood breakfast",
+          "foodType": "fruit",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Steak and Eggs",
+          "macrosPerScalingType": {
+            "protein": 35.0,
+            "carbs": 5.0,
+            "fats": 25.0,
+            "calories": 380
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.0,
+            "calcium": 60,
+            "thiamine": 0.6
+          },
+          "period": ["breakFast", "brunch"],
+          "scalingType": "plate",
+          "combineWith": ["avocado", "sweet potato"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "70%",
+          "ingredients": ["sirloin steak", "eggs", "butter"],
+          "description": "High-protein power breakfast",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "French Toast with Berry Compote",
+          "macrosPerScalingType": {
+            "protein": 15.0,
+            "carbs": 55.0,
+            "fats": 12.0,
+            "calories": 380
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 150,
+            "thiamine": 0.4
+          },
+          "period": ["breakFast", "brunch"],
+          "scalingType": "slice",
+          "combineWith": ["whipped cream", "bacon"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["bread", "eggs", "milk", "cinnamon", "berries"],
+          "description": "Sweet and satisfying breakfast",
+          "foodType": "grain",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [2, 4]
+        }
+      ],
+      "highBudget": [
+        {
+          "foodName": "Lobster Omelette",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 5.0,
+            "fats": 22.0,
+            "calories": 350
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 200,
+            "thiamine": 0.5
+          },
+          "period": ["breakFast", "brunch"],
+          "scalingType": "omelette",
+          "combineWith": ["asparagus", "hollandaise"],
+          "notCombineWith": [],
+          "popularity": "60%",
+          "availability": "50%",
+          "ingredients": ["lobster", "eggs", "cream", "chives"],
+          "description": "Luxury breakfast with high-quality protein",
+          "foodType": "seafood",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Truffle Scrambled Eggs",
+          "macrosPerScalingType": {
+            "protein": 18.0,
+            "carbs": 3.0,
+            "fats": 25.0,
+            "calories": 300
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 120,
+            "thiamine": 0.3
+          },
+          "period": ["breakFast", "brunch"],
+          "scalingType": "plate",
+          "combineWith": ["caviar", "toast points"],
+          "notCombineWith": [],
+          "popularity": "55%",
+          "availability": "45%",
+          "ingredients": ["eggs", "truffle", "cream", "butter"],
+          "description": "Decadent eggs with luxurious truffle flavor",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Caviar Blini",
+          "macrosPerScalingType": {
+            "protein": 12.0,
+            "carbs": 20.0,
+            "fats": 18.0,
+            "calories": 280
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 80,
+            "thiamine": 0.4
+          },
+          "period": ["breakFast", "brunch"],
+          "scalingType": "piece",
+          "combineWith": ["champagne", "crème fraîche"],
+          "notCombineWith": [],
+          "popularity": "50%",
+          "availability": "40%",
+          "ingredients": ["blini", "caviar", "crème fraîche"],
+          "description": "Ultimate luxury breakfast item",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [2, 6]
+        },
+        {
+          "foodName": "Kobe Beef Breakfast Sausage",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 2.0,
+            "fats": 30.0,
+            "calories": 380
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.5,
+            "calcium": 50,
+            "thiamine": 0.6
+          },
+          "period": ["breakFast"],
+          "scalingType": "serving",
+          "combineWith": ["eggs", "hash browns"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "55%",
+          "ingredients": ["kobe beef", "spices"],
+          "description": "Premium quality breakfast meat",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 3]
+        }
+      ]
+    },
+    "lunch": {
+      "lowBudget": [
+        {
+          "foodName": "Rice and Beans",
+          "macrosPerScalingType": {
+            "protein": 12.0,
+            "carbs": 60.0,
+            "fats": 5.0,
+            "calories": 330
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 80,
+            "thiamine": 0.4
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "bowl",
+          "combineWith": ["avocado", "salsa"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "95%",
+          "ingredients": ["rice", "beans", "onion", "garlic"],
+          "description": "Complete protein vegetarian meal",
+          "foodType": "vegetarian",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Tuna Sandwich",
+          "macrosPerScalingType": {
+            "protein": 20.0,
+            "carbs": 35.0,
+            "fats": 10.0,
+            "calories": 300
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 60,
+            "thiamine": 0.3
+          },
+          "period": ["lunch"],
+          "scalingType": "sandwich",
+          "combineWith": ["lettuce", "tomato"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "90%",
+          "ingredients": ["tuna", "mayo", "bread", "celery"],
+          "description": "Quick and protein-packed lunch",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Vegetable Stir Fry",
+          "macrosPerScalingType": {
+            "protein": 8.0,
+            "carbs": 40.0,
+            "fats": 10.0,
+            "calories": 280
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 100,
+            "thiamine": 0.3
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["rice", "tofu"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "85%",
+          "ingredients": ["mixed vegetables", "soy sauce", "oil"],
+          "description": "Nutrient-dense vegetable medley",
+          "foodType": "vegetarian",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Chicken Wrap",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 30.0,
+            "fats": 12.0,
+            "calories": 320
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 80,
+            "thiamine": 0.3
+          },
+          "period": ["lunch"],
+          "scalingType": "wrap",
+          "combineWith": ["avocado", "salsa"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["chicken", "tortilla", "lettuce", "tomato"],
+          "description": "Portable protein-packed lunch",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "midLowBudget": [
+        {
+          "foodName": "Grilled Chicken Salad",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 15.0,
+            "fats": 12.0,
+            "calories": 280
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 120,
+            "thiamine": 0.4
+          },
+          "period": ["lunch"],
+          "scalingType": "bowl",
+          "combineWith": ["avocado", "croutons"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["chicken breast", "mixed greens", "cucumber", "tomato", "vinaigrette"],
+          "description": "Lean protein with fresh vegetables",
+          "foodType": "animal product",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Quinoa Bowl",
+          "macrosPerScalingType": {
+            "protein": 15.0,
+            "carbs": 45.0,
+            "fats": 12.0,
+            "calories": 330
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 100,
+            "thiamine": 0.3
+          },
+          "period": ["lunch"],
+          "scalingType": "bowl",
+          "combineWith": ["avocado", "grilled vegetables"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "80%",
+          "ingredients": ["quinoa", "chickpeas", "cucumber", "tomato", "lemon dressing"],
+          "description": "Complete protein plant-based meal",
+          "foodType": "vegan",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Turkey Club Sandwich",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 35.0,
+            "fats": 15.0,
+            "calories": 350
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 80,
+            "thiamine": 0.4
+          },
+          "period": ["lunch"],
+          "scalingType": "sandwich",
+          "combineWith": ["soup", "salad"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["turkey", "bacon", "lettuce", "tomato", "bread", "mayo"],
+          "description": "Classic deli-style sandwich",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Vegetable Lasagna",
+          "macrosPerScalingType": {
+            "protein": 18.0,
+            "carbs": 45.0,
+            "fats": 15.0,
+            "calories": 380
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 200,
+            "thiamine": 0.4
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "slice",
+          "combineWith": ["garlic bread", "salad"],
+          "notCombineWith": [],
+          "popularity": "70%",
+          "availability": "75%",
+          "ingredients": ["pasta", "ricotta", "spinach", "tomato sauce"],
+          "description": "Comfort food with vegetables",
+          "foodType": "vegetarian",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 3]
+        }
+      ],
+      "midBudget": [
+        {
+          "foodName": "Salmon with Quinoa",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 35.0,
+            "fats": 20.0,
+            "calories": 420
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 80,
+            "thiamine": 0.5
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["asparagus", "lemon"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "70%",
+          "ingredients": ["salmon fillet", "quinoa", "olive oil", "herbs"],
+          "description": "Omega-3 rich meal with complete protein",
+          "foodType": "seafood",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Beef Burger with Sweet Potato Fries",
+          "macrosPerScalingType": {
+            "protein": 28.0,
+            "carbs": 50.0,
+            "fats": 25.0,
+            "calories": 520
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.0,
+            "calcium": 100,
+            "thiamine": 0.6
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["coleslaw", "pickles"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "80%",
+          "ingredients": ["beef patty", "bun", "cheese", "sweet potato", "oil"],
+          "description": "Satisfying meal with quality protein",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Sushi Platter",
+          "macrosPerScalingType": {
+            "protein": 22.0,
+            "carbs": 60.0,
+            "fats": 8.0,
+            "calories": 400
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 60,
+            "thiamine": 0.4
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["miso soup", "edamame"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "75%",
+          "ingredients": ["rice", "fish", "seaweed", "vegetables"],
+          "description": "Fresh and light Japanese cuisine",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [6, 12]
+        },
+        {
+          "foodName": "Chicken Pesto Pasta",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 55.0,
+            "fats": 20.0,
+            "calories": 500
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 150,
+            "thiamine": 0.5
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["garlic bread", "salad"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "90%",
+          "ingredients": ["pasta", "chicken", "pesto", "parmesan"],
+          "description": "Flavorful Italian-inspired dish",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "midHighBudget": [
+        {
+          "foodName": "Filet Mignon with Mashed Potatoes",
+          "macrosPerScalingType": {
+            "protein": 35.0,
+            "carbs": 40.0,
+            "fats": 30.0,
+            "calories": 550
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 5.0,
+            "calcium": 100,
+            "thiamine": 0.8
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["asparagus", "red wine sauce"],
+          "notCombineWith": [],
+          "popularity": "70%",
+          "availability": "65%",
+          "ingredients": ["filet mignon", "potatoes", "butter", "cream"],
+          "description": "Premium cut of beef with creamy potatoes",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Lobster Roll",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 30.0,
+            "fats": 25.0,
+            "calories": 450
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 120,
+            "thiamine": 0.5
+          },
+          "period": ["lunch"],
+          "scalingType": "roll",
+          "combineWith": ["chips", "coleslaw"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "60%",
+          "ingredients": ["lobster", "mayo", "brioche bun", "herbs"],
+          "description": "Decadent seafood sandwich",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Duck Confit",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 15.0,
+            "fats": 35.0,
+            "calories": 500
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.0,
+            "calcium": 80,
+            "thiamine": 0.6
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["roasted potatoes", "green beans"],
+          "notCombineWith": [],
+          "popularity": "60%",
+          "availability": "55%",
+          "ingredients": ["duck leg", "duck fat", "herbs"],
+          "description": "French classic with crispy skin",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Truffle Risotto",
+          "macrosPerScalingType": {
+            "protein": 15.0,
+            "carbs": 60.0,
+            "fats": 25.0,
+            "calories": 500
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 120,
+            "thiamine": 0.4
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["white wine", "parmesan"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "65%",
+          "ingredients": ["arborio rice", "truffle", "parmesan", "white wine"],
+          "description": "Creamy Italian rice dish with luxury ingredient",
+          "foodType": "vegetarian",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "highBudget": [
+        {
+          "foodName": "Wagyu Beef Steak",
+          "macrosPerScalingType": {
+            "protein": 40.0,
+            "carbs": 5.0,
+            "fats": 50.0,
+            "calories": 650
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 6.0,
+            "calcium": 60,
+            "thiamine": 1.0
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "steak",
+          "combineWith": ["truffle mashed potatoes", "asparagus"],
+          "notCombineWith": [],
+          "popularity": "60%",
+          "availability": "50%",
+          "ingredients": ["wagyu beef", "salt", "pepper"],
+          "description": "Ultra-premium Japanese beef with intense marbling",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [100, 300]
+        },
+        {
+          "foodName": "Caviar Service",
+          "macrosPerScalingType": {
+            "protein": 15.0,
+            "carbs": 5.0,
+            "fats": 30.0,
+            "calories": 350
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.5,
+            "calcium": 100,
+            "thiamine": 0.5
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "serving",
+          "combineWith": ["blini", "champagne"],
+          "notCombineWith": [],
+          "popularity": "50%",
+          "availability": "40%",
+          "ingredients": ["beluga caviar", "crème fraîche", "egg yolk"],
+          "description": "Ultimate luxury seafood experience",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [30, 100]
+        },
+        {
+          "foodName": "Foie Gras",
+          "macrosPerScalingType": {
+            "protein": 10.0,
+            "carbs": 5.0,
+            "fats": 45.0,
+            "calories": 450
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 50,
+            "thiamine": 0.4
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "slice",
+          "combineWith": ["sauternes wine", "brioche"],
+          "notCombineWith": [],
+          "popularity": "55%",
+          "availability": "45%",
+          "ingredients": ["duck liver", "salt", "pepper"],
+          "description": "Rich and buttery French delicacy",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [50, 150]
+        },
+        {
+          "foodName": "Black Truffle Pasta",
+          "macrosPerScalingType": {
+            "protein": 20.0,
+            "carbs": 60.0,
+            "fats": 35.0,
+            "calories": 600
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 150,
+            "thiamine": 0.5
+          },
+          "period": ["lunch", "dinner"],
+          "scalingType": "plate",
+          "combineWith": ["white truffle oil", "parmesan"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "55%",
+          "ingredients": ["pasta", "black truffle", "cream", "parmesan"],
+          "description": "Luxury pasta dish with earthy flavors",
+          "foodType": "vegetarian",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ]
+    },
+    "snack": {
+      "lowBudget": [
+        {
+          "foodName": "Apple with Peanut Butter",
+          "macrosPerScalingType": {
+            "protein": 5.0,
+            "carbs": 25.0,
+            "fats": 8.0,
+            "calories": 180
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.5,
+            "calcium": 20,
+            "thiamine": 0.1
+          },
+          "period": ["snack"],
+          "scalingType": "serving",
+          "combineWith": ["cinnamon", "raisins"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "90%",
+          "ingredients": ["apple", "peanut butter"],
+          "description": "Sweet and satisfying snack",
+          "foodType": "fruit",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Hard Boiled Eggs",
+          "macrosPerScalingType": {
+            "protein": 6.0,
+            "carbs": 0.6,
+            "fats": 5.0,
+            "calories": 78
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.6,
+            "calcium": 25,
+            "thiamine": 0.1
+          },
+          "period": ["snack"],
+          "scalingType": "count",
+          "combineWith": ["salt", "pepper"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "95%",
+          "ingredients": ["eggs"],
+          "description": "Portable protein snack",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 4]
+        },
+        {
+          "foodName": "Popcorn",
+          "macrosPerScalingType": {
+            "protein": 3.0,
+            "carbs": 15.0,
+            "fats": 1.5,
+            "calories": 90
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.5,
+            "calcium": 10,
+            "thiamine": 0.1
+          },
+          "period": ["snack"],
+          "scalingType": "cup",
+          "combineWith": ["nutritional yeast", "paprika"],
+          "notCombineWith": [],
+          "popularity": "90%",
+          "availability": "95%",
+          "ingredients": ["popcorn kernels"],
+          "description": "Light whole grain snack",
+          "foodType": "grain",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 4]
+        },
+        {
+          "foodName": "Trail Mix",
+          "macrosPerScalingType": {
+            "protein": 5.0,
+            "carbs": 20.0,
+            "fats": 12.0,
+            "calories": 200
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.0,
+            "calcium": 30,
+            "thiamine": 0.2
+          },
+          "period": ["snack"],
+          "scalingType": "handful",
+          "combineWith": ["dried fruit", "dark chocolate"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "90%",
+          "ingredients": ["nuts", "seeds", "dried fruit"],
+          "description": "Energy-boosting mix of nuts and fruits",
+          "foodType": "mixed",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 3]
+        }
+      ],
+      "midLowBudget": [
+        {
+          "foodName": "Protein Shake",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 10.0,
+            "fats": 5.0,
+            "calories": 180
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.0,
+            "calcium": 200,
+            "thiamine": 0.3
+          },
+          "period": ["snack", "post-workout"],
+          "scalingType": "shake",
+          "combineWith": ["banana", "peanut butter"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["protein powder", "milk or water"],
+          "description": "Quick and convenient protein source",
+          "foodType": "supplement",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Greek Yogurt with Honey",
+          "macrosPerScalingType": {
+            "protein": 15.0,
+            "carbs": 15.0,
+            "fats": 5.0,
+            "calories": 160
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.5,
+            "calcium": 150,
+            "thiamine": 0.1
+          },
+          "period": ["snack"],
+          "scalingType": "cup",
+          "combineWith": ["granola", "berries"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "90%",
+          "ingredients": ["greek yogurt", "honey"],
+          "description": "Creamy and protein-rich snack",
+          "foodType": "dairy",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Rice Cakes with Almond Butter",
+          "macrosPerScalingType": {
+            "protein": 5.0,
+            "carbs": 20.0,
+            "fats": 8.0,
+            "calories": 170
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.8,
+            "calcium": 40,
+            "thiamine": 0.2
+          },
+          "period": ["snack"],
+          "scalingType": "serving",
+          "combineWith": ["banana slices", "cinnamon"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "80%",
+          "ingredients": ["rice cake", "almond butter"],
+          "description": "Crunchy and satisfying snack",
+          "foodType": "grain",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 3]
+        },
+        {
+          "foodName": "Dark Chocolate and Almonds",
+          "macrosPerScalingType": {
+            "protein": 6.0,
+            "carbs": 15.0,
+            "fats": 15.0,
+            "calories": 210
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.5,
+            "calcium": 60,
+            "thiamine": 0.2
+          },
+          "period": ["snack"],
+          "scalingType": "serving",
+          "combineWith": ["sea salt", "dried cherries"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["dark chocolate", "almonds"],
+          "description": "Antioxidant-rich treat with healthy fats",
+          "foodType": "mixed",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "midBudget": [
+        {
+          "foodName": "Hummus with Veggies",
+          "macrosPerScalingType": {
+            "protein": 5.0,
+            "carbs": 20.0,
+            "fats": 10.0,
+            "calories": 180
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.5,
+            "calcium": 50,
+            "thiamine": 0.2
+          },
+          "period": ["snack"],
+          "scalingType": "plate",
+          "combineWith": ["pita bread", "olives"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["chickpeas", "tahini", "olive oil", "vegetables"],
+          "description": "Fiber-rich dip with fresh vegetables",
+          "foodType": "vegetarian",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Smoked Salmon on Crackers",
+          "macrosPerScalingType": {
+            "protein": 10.0,
+            "carbs": 15.0,
+            "fats": 12.0,
+            "calories": 200
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.0,
+            "calcium": 40,
+            "thiamine": 0.2
+          },
+          "period": ["snack"],
+          "scalingType": "serving",
+          "combineWith": ["cream cheese", "capers"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "70%",
+          "ingredients": ["smoked salmon", "whole grain crackers"],
+          "description": "Omega-3 rich elegant snack",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 3]
+        },
+        {
+          "foodName": "Cheese and Fruit Plate",
+          "macrosPerScalingType": {
+            "protein": 10.0,
+            "carbs": 20.0,
+            "fats": 15.0,
+            "calories": 250
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.8,
+            "calcium": 200,
+            "thiamine": 0.2
+          },
+          "period": ["snack"],
+          "scalingType": "plate",
+          "combineWith": ["nuts", "honey"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "80%",
+          "ingredients": ["cheese selection", "grapes", "apple", "pear"],
+          "description": "Balanced savory and sweet snack",
+          "foodType": "dairy",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Protein Energy Balls",
+          "macrosPerScalingType": {
+            "protein": 8.0,
+            "carbs": 20.0,
+            "fats": 10.0,
+            "calories": 200
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.0,
+            "calcium": 50,
+            "thiamine": 0.2
+          },
+          "period": ["snack", "post-workout"],
+          "scalingType": "ball",
+          "combineWith": ["dark chocolate", "coconut"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "75%",
+          "ingredients": ["oats", "protein powder", "nut butter", "honey"],
+          "description": "No-bake protein-packed bites",
+          "foodType": "supplement",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 3]
+        }
+      ],
+      "midHighBudget": [
+        {
+          "foodName": "Charcuterie Board",
+          "macrosPerScalingType": {
+            "protein": 15.0,
+            "carbs": 10.0,
+            "fats": 25.0,
+            "calories": 300
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 150,
+            "thiamine": 0.3
+          },
+          "period": ["snack"],
+          "scalingType": "board",
+          "combineWith": ["wine", "mustard"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "70%",
+          "ingredients": ["cured meats", "artisanal cheeses", "olives", "nuts"],
+          "description": "Sophisticated meat and cheese selection",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Tuna Tartare",
+          "macrosPerScalingType": {
+            "protein": 20.0,
+            "carbs": 5.0,
+            "fats": 15.0,
+            "calories": 250
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.5,
+            "calcium": 40,
+            "thiamine": 0.3
+          },
+          "period": ["snack"],
+          "scalingType": "plate",
+          "combineWith": ["avocado", "wonton chips"],
+          "notCombineWith": [],
+          "popularity": "70%",
+          "availability": "65%",
+          "ingredients": ["sushi-grade tuna", "avocado", "sesame oil", "soy sauce"],
+          "description": "Fresh and flavorful raw tuna dish",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Artisanal Cheese Plate",
+          "macrosPerScalingType": {
+            "protein": 12.0,
+            "carbs": 5.0,
+            "fats": 25.0,
+            "calories": 280
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.5,
+            "calcium": 300,
+            "thiamine": 0.2
+          },
+          "period": ["snack"],
+          "scalingType": "plate",
+          "combineWith": ["honey", "walnuts"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "75%",
+          "ingredients": ["specialty cheeses", "fig jam", "crackers"],
+          "description": "Selection of premium cheeses with accompaniments",
+          "foodType": "dairy",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Prosciutto-Wrapped Melon",
+          "macrosPerScalingType": {
+            "protein": 10.0,
+            "carbs": 15.0,
+            "fats": 12.0,
+            "calories": 200
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.0,
+            "calcium": 40,
+            "thiamine": 0.3
+          },
+          "period": ["snack"],
+          "scalingType": "piece",
+          "combineWith": ["mozzarella", "basil"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "70%",
+          "ingredients": ["prosciutto", "cantaloupe"],
+          "description": "Sweet and salty flavor combination",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [2, 6]
+        }
+      ],
+      "highBudget": [
+        {
+          "foodName": "Caviar Canapés",
+          "macrosPerScalingType": {
+            "protein": 10.0,
+            "carbs": 5.0,
+            "fats": 20.0,
+            "calories": 220
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 100,
+            "thiamine": 0.4
+          },
+          "period": ["snack"],
+          "scalingType": "piece",
+          "combineWith": ["champagne", "crème fraîche"],
+          "notCombineWith": [],
+          "popularity": "60%",
+          "availability": "50%",
+          "ingredients": ["caviar", "blini", "crème fraîche"],
+          "description": "Ultimate luxury bite-sized snack",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [2, 6]
+        },
+        {
+          "foodName": "Truffle Popcorn",
+          "macrosPerScalingType": {
+            "protein": 3.0,
+            "carbs": 15.0,
+            "fats": 20.0,
+            "calories": 250
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.8,
+            "calcium": 20,
+            "thiamine": 0.2
+          },
+          "period": ["snack"],
+          "scalingType": "bowl",
+          "combineWith": ["parmesan", "black pepper"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "55%",
+          "ingredients": ["popcorn", "truffle oil", "salt"],
+          "description": "Gourmet version of classic snack",
+          "foodType": "grain",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Kobe Beef Sliders",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 20.0,
+            "fats": 30.0,
+            "calories": 450
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.0,
+            "calcium": 80,
+            "thiamine": 0.6
+          },
+          "period": ["snack"],
+          "scalingType": "slider",
+          "combineWith": ["truffle aioli", "caramelized onions"],
+          "notCombineWith": [],
+          "popularity": "70%",
+          "availability": "60%",
+          "ingredients": ["kobe beef", "brioche bun", "cheese"],
+          "description": "Mini luxury burgers with premium beef",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 3]
+        },
+        {
+          "foodName": "Foie Gras Toast",
+          "macrosPerScalingType": {
+            "protein": 8.0,
+            "carbs": 15.0,
+            "fats": 35.0,
+            "calories": 400
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 60,
+            "thiamine": 0.4
+          },
+          "period": ["snack"],
+          "scalingType": "toast",
+          "combineWith": ["sauternes jelly", "black truffle"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "55%",
+          "ingredients": ["foie gras", "brioche", "fruit compote"],
+          "description": "Decadent French delicacy on toast",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ]
+    },
+    "dinner": {
+      "lowBudget": [
+        {
+          "foodName": "Vegetable Soup with Bread",
+          "macrosPerScalingType": {
+            "protein": 8.0,
+            "carbs": 40.0,
+            "fats": 5.0,
+            "calories": 230
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 100,
+            "thiamine": 0.3
+          },
+          "period": ["dinner"],
+          "scalingType": "bowl",
+          "combineWith": ["cheese", "salad"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "95%",
+          "ingredients": ["mixed vegetables", "broth", "bread"],
+          "description": "Hearty and comforting meal",
+          "foodType": "vegetarian",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Pasta with Tomato Sauce",
+          "macrosPerScalingType": {
+            "protein": 10.0,
+            "carbs": 60.0,
+            "fats": 5.0,
+            "calories": 320
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 80,
+            "thiamine": 0.4
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["parmesan", "salad"],
+          "notCombineWith": [],
+          "popularity": "90%",
+          "availability": "95%",
+          "ingredients": ["pasta", "tomato sauce", "garlic", "herbs"],
+          "description": "Simple and satisfying Italian classic",
+          "foodType": "vegetarian",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Baked Chicken with Potatoes",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 40.0,
+            "fats": 10.0,
+            "calories": 380
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 60,
+            "thiamine": 0.5
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["vegetables", "gravy"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "90%",
+          "ingredients": ["chicken thighs", "potatoes", "oil", "herbs"],
+          "description": "Comforting one-pan meal",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Vegetable Curry with Rice",
+          "macrosPerScalingType": {
+            "protein": 8.0,
+            "carbs": 50.0,
+            "fats": 10.0,
+            "calories": 320
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 120,
+            "thiamine": 0.3
+          },
+          "period": ["dinner"],
+          "scalingType": "bowl",
+          "combineWith": ["naan", "yogurt"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["mixed vegetables", "coconut milk", "curry paste", "rice"],
+          "description": "Flavorful plant-based meal",
+          "foodType": "vegetarian",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "midLowBudget": [
+        {
+          "foodName": "Grilled Salmon with Vegetables",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 20.0,
+            "fats": 25.0,
+            "calories": 400
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.0,
+            "calcium": 80,
+            "thiamine": 0.5
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["quinoa", "lemon"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "75%",
+          "ingredients": ["salmon fillet", "asparagus", "zucchini", "olive oil"],
+          "description": "Omega-3 rich healthy dinner",
+          "foodType": "seafood",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Beef Stir Fry with Rice",
+          "macrosPerScalingType": {
+            "protein": 28.0,
+            "carbs": 45.0,
+            "fats": 15.0,
+            "calories": 420
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.0,
+            "calcium": 60,
+            "thiamine": 0.6
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["egg rolls", "soup"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "80%",
+          "ingredients": ["beef strips", "vegetables", "soy sauce", "rice"],
+          "description": "Quick and flavorful Asian-inspired dish",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Stuffed Bell Peppers",
+          "macrosPerScalingType": {
+            "protein": 18.0,
+            "carbs": 30.0,
+            "fats": 12.0,
+            "calories": 320
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.5,
+            "calcium": 100,
+            "thiamine": 0.4
+          },
+          "period": ["dinner"],
+          "scalingType": "pepper",
+          "combineWith": ["salad", "bread"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "80%",
+          "ingredients": ["bell peppers", "ground turkey", "rice", "tomato sauce"],
+          "description": "Colorful and nutritious meal",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Shrimp Scampi Pasta",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 55.0,
+            "fats": 15.0,
+            "calories": 450
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 120,
+            "thiamine": 0.5
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["salad", "garlic bread"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "75%",
+          "ingredients": ["shrimp", "pasta", "garlic", "white wine", "butter"],
+          "description": "Classic Italian seafood pasta",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "midBudget": [
+        {
+          "foodName": "Filet Mignon with Roasted Vegetables",
+          "macrosPerScalingType": {
+            "protein": 35.0,
+            "carbs": 20.0,
+            "fats": 30.0,
+            "calories": 500
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 5.0,
+            "calcium": 80,
+            "thiamine": 0.8
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["red wine", "mashed potatoes"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "70%",
+          "ingredients": ["filet mignon", "asparagus", "carrots", "potatoes"],
+          "description": "Premium cut of beef with seasonal vegetables",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Lobster Risotto",
+          "macrosPerScalingType": {
+            "protein": 25.0,
+            "carbs": 60.0,
+            "fats": 25.0,
+            "calories": 550
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 150,
+            "thiamine": 0.6
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["white wine", "salad"],
+          "notCombineWith": [],
+          "popularity": "70%",
+          "availability": "65%",
+          "ingredients": ["lobster", "arborio rice", "white wine", "parmesan"],
+          "description": "Creamy rice dish with luxury seafood",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Duck Breast with Cherry Sauce",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 25.0,
+            "fats": 35.0,
+            "calories": 520
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.0,
+            "calcium": 60,
+            "thiamine": 0.7
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["red wine", "roasted potatoes"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "60%",
+          "ingredients": ["duck breast", "cherries", "red wine", "herbs"],
+          "description": "French-inspired gourmet dish",
+          "foodType": "animal product",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Seafood Paella",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 55.0,
+            "fats": 20.0,
+            "calories": 500
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.0,
+            "calcium": 100,
+            "thiamine": 0.6
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["white wine", "salad"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "75%",
+          "ingredients": ["rice", "shrimp", "mussels", "clams", "saffron"],
+          "description": "Spanish seafood rice dish",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "midHighBudget": [
+        {
+          "foodName": "Wagyu Beef with Truffle Mash",
+          "macrosPerScalingType": {
+            "protein": 40.0,
+            "carbs": 30.0,
+            "fats": 50.0,
+            "calories": 700
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 6.0,
+            "calcium": 100,
+            "thiamine": 1.0
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["red wine", "asparagus"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "55%",
+          "ingredients": ["wagyu beef", "potatoes", "truffle", "cream"],
+          "description": "Ultra-premium beef with luxurious sides",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Whole Roasted Turbot",
+          "macrosPerScalingType": {
+            "protein": 35.0,
+            "carbs": 5.0,
+            "fats": 25.0,
+            "calories": 400
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 120,
+            "thiamine": 0.5
+          },
+          "period": ["dinner"],
+          "scalingType": "fish",
+          "combineWith": ["white wine sauce", "vegetables"],
+          "notCombineWith": [],
+          "popularity": "60%",
+          "availability": "50%",
+          "ingredients": ["turbot", "herbs", "lemon", "butter"],
+          "description": "Delicate and flavorful whole fish",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Rack of Lamb with Mint Jelly",
+          "macrosPerScalingType": {
+            "protein": 35.0,
+            "carbs": 15.0,
+            "fats": 40.0,
+            "calories": 550
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.5,
+            "calcium": 80,
+            "thiamine": 0.7
+          },
+          "period": ["dinner"],
+          "scalingType": "rack",
+          "combineWith": ["red wine", "roasted potatoes"],
+          "notCombineWith": [],
+          "popularity": "70%",
+          "availability": "65%",
+          "ingredients": ["lamb rack", "herbs", "mint jelly"],
+          "description": "Tender and flavorful lamb dish",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Truffle Pasta with Scallops",
+          "macrosPerScalingType": {
+            "protein": 30.0,
+            "carbs": 60.0,
+            "fats": 35.0,
+            "calories": 650
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.5,
+            "calcium": 120,
+            "thiamine": 0.6
+          },
+          "period": ["dinner"],
+          "scalingType": "plate",
+          "combineWith": ["white wine", "salad"],
+          "notCombineWith": [],
+          "popularity": "75%",
+          "availability": "70%",
+          "ingredients": ["pasta", "scallops", "truffle", "cream"],
+          "description": "Luxury seafood pasta dish",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ],
+      "highBudget": [
+        {
+          "foodName": "Kobe Beef Wellington",
+          "macrosPerScalingType": {
+            "protein": 45.0,
+            "carbs": 30.0,
+            "fats": 60.0,
+            "calories": 850
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 7.0,
+            "calcium": 100,
+            "thiamine": 1.2
+          },
+          "period": ["dinner"],
+          "scalingType": "slice",
+          "combineWith": ["red wine", "truffle sauce"],
+          "notCombineWith": [],
+          "popularity": "60%",
+          "availability": "50%",
+          "ingredients": ["kobe beef", "puff pastry", "mushrooms", "foie gras"],
+          "description": "Ultimate luxury beef dish",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        },
+        {
+          "foodName": "Alaskan King Crab Legs",
+          "macrosPerScalingType": {
+            "protein": 40.0,
+            "carbs": 5.0,
+            "fats": 15.0,
+            "calories": 350
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 3.0,
+            "calcium": 150,
+            "thiamine": 0.6
+          },
+          "period": ["dinner"],
+          "scalingType": "leg",
+          "combineWith": ["melted butter", "lemon"],
+          "notCombineWith": [],
+          "popularity": "55%",
+          "availability": "45%",
+          "ingredients": ["king crab legs", "butter", "herbs"],
+          "description": "Sweet and delicate premium seafood",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [1, 3]
+        },
+        {
+          "foodName": "Osetra Caviar Service",
+          "macrosPerScalingType": {
+            "protein": 20.0,
+            "carbs": 5.0,
+            "fats": 35.0,
+            "calories": 400
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 4.0,
+            "calcium": 120,
+            "thiamine": 0.6
+          },
+          "period": ["dinner"],
+          "scalingType": "serving",
+          "combineWith": ["blini", "champagne"],
+          "notCombineWith": [],
+          "popularity": "50%",
+          "availability": "40%",
+          "ingredients": ["osetra caviar", "crème fraîche", "egg yolk"],
+          "description": "Premium caviar dining experience",
+          "foodType": "seafood",
+          "forGoalOf": ["maintenace"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [30, 100]
+        },
+        {
+          "foodName": "Truffle-Infused Wagyu Burger",
+          "macrosPerScalingType": {
+            "protein": 45.0,
+            "carbs": 35.0,
+            "fats": 60.0,
+            "calories": 850
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 6.0,
+            "calcium": 150,
+            "thiamine": 1.0
+          },
+          "period": ["dinner"],
+          "scalingType": "burger",
+          "combineWith": ["truffle fries", "craft beer"],
+          "notCombineWith": [],
+          "popularity": "65%",
+          "availability": "55%",
+          "ingredients": ["wagyu beef", "brioche bun", "truffle aioli", "foie gras"],
+          "description": "Ultimate gourmet burger experience",
+          "foodType": "animal product",
+          "forGoalOf": ["muscle gain"],
+          "halal": false,
+          "fasting": false,
+          "minMaxPortion": [1, 2]
+        }
+      ]
+    }
+  }
+}

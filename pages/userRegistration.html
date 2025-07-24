@@ -16,7 +16,7 @@
             <div class="block1">
                 <div class="id_pay">
                     <label for="ID">User ID</label>
-                    <input type="number" id="ID" name="ID" placeholder="User ID" value="000001" required>
+                    <input type="number" id="ID" name="ID" placeholder="User ID" value="000001">
                     <div class="pay_not">
                         <p id="pay_label">Paid</p>
                         <input type="checkbox" id="paymentStatus" name="paymentStatus" ><br>
@@ -25,21 +25,20 @@
                 <br>
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" placeholder="Full Name" required>
-
                 <label for="username">Username</label>
-                <input type="text" id="username" name="userName" placeholder="Username" required>
+                <input type="text" id="username" name="userName" placeholder="Username" required value="Selman Fuad">
 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Email" required >
+                <input type="email" id="email" name="email" placeholder="Email" required value="selman@gmail.com">
     
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Password" required >
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="Phone" required ><br>
+                <input type="tel" id="phone" name="phone" placeholder="Phone" required value="0918183644" ><br>
     
                 <div class="age_se">
                     <label for="age">Age</label>
-                <input type="number" id="age" name="age" placeholder="age" required>
+                <input type="number" id="age" name="age" placeholder="age" required value="21">
     
                 <label for="sex">Sex</label>
                 <select id="sex" name="sex" >
@@ -50,12 +49,16 @@
                 </div>
                 <br>
                 <div class="hei_we">
-                    <input type="number" id="height" name="height" placeholder="Height (cm)" required >
-                    <input type="number" id="weight" name="weight" placeholder="Weight (kg)" required >
+                    <input type="number" id="height" name="height" placeholder="Height (cm)" required value="185">
+                    <input type="number" id="weight" name="weight" placeholder="Weight (kg)" required value="65">
                 </div>
                 <br>
-                <label for="bodyFat">Body Fat Percentage</label>
-                <input type="number" id="bodyFat" name="bodyFat" placeholder="Body Fat %" required><br>
+                <label for="bodyFat">body measure</label>
+                <div class="body_measure">
+                    <input type="number" id="waistSize" name="waistSize" placeholder="waist size" required value="65">
+                    <input type="number" id="neckSize" name="neckSize" placeholder="neck size" required value="55">
+                    <input type="number" id="hipSize" name="hipSize" placeholder="hip size" required value="75">
+                </div><br>
                 
 
                 <label for="metabolicHealth">Metabolic Health</label>
@@ -69,13 +72,13 @@
     <h3>Membership Details</h3>
     
     <label for="membershipPlan">Membership Plan</label>
-    <select id="membershipPlan" name="membershipPlan" required>
+    <select id="membershipPlan" name="membershipPlan">
         <option value="">Select a plan</option>
         <!-- Options will be populated by JavaScript -->
     </select>
     
     <label for="packageLength">Package Length</label>
-    <select id="packageLength" name="packageLength" required disabled>
+    <select id="packageLength" name="packageLength" disabled>
         <option value="">Select package length</option>
         <!-- Options will be populated by JavaScript based on selected plan -->
     </select>
@@ -106,7 +109,7 @@
                     <option value="2 Hr">2 Hr</option>
                 </select>
                 <label for="notificationTime" style="display: flex;">Notification Time</label>
-                <input type="time" id="notificationTime" name="notificationTime" placeholder="Notification Time" required><br>
+                <input type="time" id="notificationTime" name="notificationTime" placeholder="Notification Time"><br>
     
                 <label for="healthStatus">Health Status</label>
                 <select id="healthStatus" name="healthStatus" placeholder="Health Status">
@@ -117,7 +120,7 @@
                 </select>
                 <br>
                 <label for="exerciseType">Exercise Type</label>
-                <select name="exerciseType" id="exerciseType" placeholder="Exercise Type">
+                <select name="exerciseType" id="exerciseType" placeholder="Exercise Type" required>
                     <option value="Strength">Strength Training</option>
                     <option value="Cardiovascular (Aerobic)">Cardiovascular (Aerobic) Training</option>
                     <option value="Flexibility">Flexibility</option>

@@ -10,6 +10,8 @@ body{
 }
 html{
     scroll-behavior: smooth;
+        overflow-x: hidden;
+
 }
 .main_container{
     width: 100%;
@@ -524,6 +526,7 @@ header nav a:hover{
   }
 .price_plan div .subscription_btn{
     display: flex;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
     text-decoration: none;
@@ -542,6 +545,7 @@ header nav a:hover{
 .price_plan div .subscription_btn p{
     font-size: 18px;
     color: #2f2f2f;
+    cursor: pointer;
 }
 .price_plan div:nth-child(2) .subscription_btn p{
     color: #fff;
@@ -698,6 +702,7 @@ header nav a:hover{
     .price_plan{
         height: auto;
         margin-top: 40px;
+        margin-left: -40px;
     }
     .price_plan section{
         width: 95%;
@@ -757,5 +762,19 @@ header nav a:hover{
         margin: 60px auto;
         margin-top: 20px;
         z-index: 1000;
+    }
+    .price_plan div{
+        height: auto;
+        width: 350px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .price_plan div:nth-child(2){
+        background: #fff;
+        padding: 0px;
+
     }
 }

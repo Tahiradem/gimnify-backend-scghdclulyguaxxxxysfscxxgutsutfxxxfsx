@@ -7,15 +7,21 @@ const calculateMonthlyRevenue = async () => {
     try {
         const gyms = await Gym.find({});
         const currentMonth = moment().format('MMM').toLowerCase();
+        const currentDay = moment().date(); // Get current day of month (1-31)
         
+        // Only proceed if it's the first day of the month OR if we're in development
+        if (currentDay !== 1 && process.env.NODE_ENV !== 'development') {
+            logger.info('Not the first day of month - skipping monthly revenue calculation');
+            return;
+        }
+
         for (const gym of gyms) {
-            // Check if we have at least 4 weeks of weeklyRevenue data
-            if (gym.weeklyRevenue && gym.weeklyRevenue.length >= 4) {
-                const last4Weeks = gym.weeklyRevenue.slice(-4);
+            // Check if we have weeklyRevenue data
+            if (gym.weeklyRevenue && gym.weeklyRevenue.length > 0) {
                 let totalMonthlyRevenue = 0;
                 
-                // Sum up revenue from last 4 weeks
-                last4Weeks.forEach(week => {
+                // Sum up revenue from all available weeks
+                gym.weeklyRevenue.forEach(week => {
                     Object.values(week).forEach(dayRevenue => {
                         totalMonthlyRevenue += dayRevenue;
                     });
@@ -28,16 +34,16 @@ const calculateMonthlyRevenue = async () => {
                 
                 if (existingMonthIndex >= 0) {
                     // Update existing month entry
-                    gym.monthlyRevenue[existingMonthIndex][currentMonth] = `${totalMonthlyRevenue}birr`;
+                    gym.monthlyRevenue[existingMonthIndex][currentMonth] = totalMonthlyRevenue;
                 } else {
                     // Add new month entry
                     gym.monthlyRevenue.push({
-                        [currentMonth]: `${totalMonthlyRevenue}birr`
+                        [currentMonth]: totalMonthlyRevenue
                     });
                 }
                 
                 await gym.save();
-                logger.info(`Updated monthly revenue for gym ${gym.name} for ${currentMonth}`);
+                logger.info(`Updated monthly revenue for gym ${gym.name} for ${currentMonth}: ${totalMonthlyRevenue}`);
             }
         }
     } catch (error) {
@@ -51,15 +57,20 @@ const checkAndUpdateMonthlyRevenue = async () => {
     try {
         const gyms = await Gym.find({});
         const currentMonth = moment().format('MMM').toLowerCase();
+        const currentDay = moment().date();
+        
+        // Check if it's the first day of the month
+        const isFirstDayOfMonth = currentDay === 1;
         
         for (const gym of gyms) {
             if (gym.monthlyRevenue && gym.monthlyRevenue.length > 0) {
                 const lastEntry = gym.monthlyRevenue[gym.monthlyRevenue.length - 1];
                 const lastMonth = Object.keys(lastEntry)[0];
                 
-                if (lastMonth !== currentMonth) {
+                // If month changed or it's the first day of month
+                if (lastMonth !== currentMonth || isFirstDayOfMonth) {
                     await calculateMonthlyRevenue();
-                    break; // No need to check other gyms if month changed
+                    break; // No need to check other gyms if condition met
                 }
             } else {
                 // No monthly revenue data yet, calculate for first time

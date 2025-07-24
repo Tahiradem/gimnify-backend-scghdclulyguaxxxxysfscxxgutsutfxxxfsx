@@ -18,9 +18,10 @@ const userSchema = new mongoose.Schema({
     registeredDate: String,
     paymentDate: String,
     monthlyAttendance: [{
-        month: String,      // e.g., "jan", "feb"
-        daysAttended: Number // e.g., 5 (days)
-    }],
+            month: String,
+            daysAttended: { type: Number, default: 0 },
+            dateOfAttended: { type: [String], default: [] }
+        }],
     paymentStatus: Boolean,
     exerciseTimePerDay: String,
     notificationTime: String,
@@ -87,11 +88,21 @@ const userSchema = new mongoose.Schema({
             portion: Number
         }]
     }],
+    spentTimeOnGym: {
+    type: Map,
+    of: String,
+    default: {}
+  },
     membershipDetail: [{
         planName: String,
         packageLength: String,
         price: String
     }],
+    bodyMeasurements: {
+        waistSize: Number,
+        neckSize: Number,
+        hipSize: Number // Only required for females
+  },
 });     
 
 const weeklySchema = new mongoose.Schema({

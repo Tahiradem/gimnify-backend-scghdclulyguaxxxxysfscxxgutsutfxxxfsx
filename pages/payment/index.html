@@ -7,8 +7,191 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Gymnify Payment Page</title>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .logo_top {
+            font-size:30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .txt1 {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #444;
+        }
+        
+        .cbe_div, .telebirr_div {
+            display: flex;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .cbe_div img, .telebirr_div img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-right: 15px;
+        }
+        
+        .txt2 {
+            font-weight: 700;
+            margin: 0;
+            color: #333;
+        }
+        
+        .txt3 {
+            margin: 5px 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .send_bill {
+            margin-top: 30px;
+        }
+        
+        .txt4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #444;
+            text-align: center;
+        }
+        
+        .bo {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .hidden_upload_area {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .hidden_upload_area:hover {
+            border-color: #888;
+        }
+        
+        .hidden_upload_area.active {
+            border-color: #4CAF50;
+            background-color: #f0fff0;
+        }
+        
+        .icon_of {
+            font-size: 30px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .hidden_upload_area.active .icon_of {
+            color: #4CAF50;
+            transform: rotate(45deg);
+        }
+        
+        .hidden_upload_area.has-file .icon_of {
+            content: "✓";
+            color: #4CAF50;
+            font-size: 30px;
+            transform: none;
+        }
+        
+        .file-upload-text {
+            color: #666;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .Book_input_f1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .emailInput {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+        
+        .alert {
+            display: none;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .red {
+            background-color: #ffebee;
+            color: #f44336;
+        }
+        
+        .green {
+            background-color: #e8f5e9;
+            color: #4CAF50;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #6d5fb48e;
+            box-shadow: 3px 0px 15px -4px #6d5fb4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #d3cbfa;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -36,9 +219,121 @@
                         class="Book_input_f1" 
                       />
                 </div>
-                <input type="text" placeholder="write you email" class="emailInput">
+                <input type="text" placeholder="your email" class="emailInput">
+                <p class="alert red">please submit your email !</p>
+                <p class="alert green">✅ submited successfully </p> 
         <button>Done</button>
         </form>
+        <script>
+            // Handle file input change
+            const fileInput = document.querySelector('.Book_input_f1');
+            const uploadArea = document.querySelector('.hidden_upload_area');
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    uploadArea.classList.add('has-file');
+                    const icon = uploadArea.querySelector('.icon_of');
+                    icon.textContent = '✓';
+                    
+                    // Update the text to show file name
+                    const fileName = this.files[0].name;
+                    const uploadText = uploadArea.querySelector('.file-upload-text');
+                    uploadText.textContent = fileName.length > 20 
+                        ? fileName.substring(0, 20) + '...' 
+                        : fileName;
+                } else {
+                    uploadArea.classList.remove('has-file');
+                    const icon = uploadArea.querySelector('.icon_of');
+                    icon.textContent = '+';
+                    const uploadText = uploadArea.querySelector('.file-upload-text');
+                    uploadText.textContent = 'Click to send bill';
+                }
+            });
+            
+            // Handle drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('active');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('active');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('active');
+                fileInput.files = e.dataTransfer.files;
+                fileInput.dispatchEvent(new Event('change'));
+            });
+            
+            // Handle form submission
+            document.querySelector('.send_bill').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const emailInput = document.querySelector('.emailInput');
+                const redAlert = document.querySelector(".red");
+                const greenAlert = document.querySelector(".green");
+
+                // Hide alerts first
+                redAlert.style.display = "none";
+                greenAlert.style.display = "none";
+
+                if (!fileInput.files.length || !emailInput.value) {
+                    redAlert.style.display = "flex";
+                    return;
+                }
+
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = async function(event) {
+                    try {
+                        const base64String = event.target.result.split(',')[1]; // Remove data URL prefix
+                        const response = await fetch('/api/upload-bill', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                email: emailInput.value,
+                                fileData: base64String,
+                                fileName: file.name,
+                                fileType: file.type
+                            })
+                        });
+
+                        const data = await response.json();
+                        if (response.ok) {
+                            greenAlert.style.display = "flex";
+                            // Reset form after successful submission
+                            setTimeout(() => {
+                                fileInput.value = '';
+                                emailInput.value = '';
+                                uploadArea.classList.remove('has-file');
+                                const icon = uploadArea.querySelector('.icon_of');
+                                icon.textContent = '+';
+                                const uploadText = uploadArea.querySelector('.file-upload-text');
+                                uploadText.textContent = 'Click to send bill';
+                                greenAlert.style.display = "none";
+                            }, 3000);
+                        } else {
+                            alert('Error: ' + (data.error || 'Failed to submit bill'));
+                        }
+                    } catch (err) {
+                        console.error('Upload failed:', err);
+                        alert('Something went wrong!');
+                    }
+                };
+
+                reader.onerror = function(error) {
+                    console.error('File reading error:', error);
+                    alert('Error reading file!');
+                };
+
+                reader.readAsDataURL(file);
+            });
+        </script>
     </div>
 </body>
 </html>

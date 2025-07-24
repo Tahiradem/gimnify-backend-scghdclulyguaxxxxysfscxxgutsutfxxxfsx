@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AfroMessage Test</title>
+</head>
+<body>
+  <h2>Send SMS via AfroMessage</h2>
+  <input type="text" id="phone" placeholder="Recipient Phone (e.g. +2519...)" />
+  <br><br>
+  <textarea id="message" placeholder="Your Message Here..."></textarea>
+  <br><br>
+  <button onclick="sendSMS()">Send Message</button>
+
+  <p id="status"></p>
+
+  <script>
+async function sendSMS() {
+  const phone = document.getElementById("phone").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!phone || !message) {
+    document.getElementById("status").innerText = "❌ Please fill both fields";
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5001/sending-sms", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        phone: phone,
+        message: message
+      })
+    });
+
+    const result = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(result.error || 'SMS sending failed');
+    }
+    
+    document.getElementById("status").innerText = "✅ Message Sent!";
+    console.log("Success:", result);
+  } catch (error) {
+    console.error("Error:", error);
+    document.getElementById("status").innerText = `❌ Error: ${error.message}`;
+  }
+}
+</script>
+</body>
+</html>

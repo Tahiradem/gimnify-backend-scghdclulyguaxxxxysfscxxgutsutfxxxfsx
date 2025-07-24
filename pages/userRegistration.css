@@ -235,3 +235,7 @@ button:hover{
 .loading-spinner {
     animation: spin 1s ease-in-out infinite, pulse 2s ease-in-out infinite;
 }
+.body_measure{
+    display: flex;
+    gap: 10px;
+}

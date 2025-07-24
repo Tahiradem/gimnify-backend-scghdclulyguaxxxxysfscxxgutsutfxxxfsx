@@ -1,0 +1,185 @@
+i just want to make an algorithm for nutration suggestion and here is what the algorithm general
+structure looks like 
+- first we will have user data the containes macro and micro nutrients like this (in gram)
+   -> userNeeds = [
+    {
+        protein:100,
+        calcium:100,
+        ....
+    }
+   ]
+- here is our Foods.json file structure
+    {
+  "day1": {
+    "breakFast": {
+      "lowBudget": [
+        {
+          "foodName": "Banana",
+          "macrosPerScalingType": {
+            "protein": 3.2,
+            "carbs": 20.1,
+            "fats": 0.4,
+            "calories": 96
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 2.1,
+            "calcium": 40,
+            "thiamine": 0.2
+          },
+          "period": ["breakFast", "lunch"],
+          "scalingType": "count",
+          "combineWith": ["milk", "white bread"],
+          "notCombineWith": ["lemon"],
+          "popularity": "95%",
+          "availability": "90%",
+          "ingredients": ["single"],
+          "description": "Rich in potassium and easy to digest",
+          "foodType": "natural fruit",
+          "forGoalOf": ["maintenace", "muscle gain"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 3]
+        },
+        {
+          "foodName": "Oatmeal",
+          "macrosPerScalingType": {
+            "protein": 5.0,
+            "carbs": 27.0,
+            "fats": 2.5,
+            "calories": 150
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.8,
+            "calcium": 20,
+            "thiamine": 0.3
+          },
+          "period": ["breakFast"],
+          "scalingType": "grams",
+          "combineWith": ["honey", "milk", "banana"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "95%",
+          "ingredients": ["oats", "water"],
+          "description": "High fiber breakfast that keeps you full",
+          "foodType": "grain",
+          "forGoalOf": ["weight loss", "maintenace"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [30, 100]
+        },
+        {
+          "foodName": "Boiled Eggs",
+          "macrosPerScalingType": {
+            "protein": 6.3,
+            "carbs": 0.6,
+            "fats": 5.3,
+            "calories": 78
+          },....
+          ],
+      "midLowBudget": [
+        {
+          "foodName": "Greek Yogurt with Berries",
+          "macrosPerScalingType": {
+            "protein": 15.0,
+            "carbs": 12.0,
+            "fats": 5.0,
+            "calories": 150
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 0.5,
+            "calcium": 150,
+            "thiamine": 0.1
+          },
+          "period": ["breakFast", "snack"],
+          "scalingType": "grams",
+          "combineWith": ["granola", "honey"],
+          "notCombineWith": [],
+          "popularity": "80%",
+          "availability": "85%",
+          "ingredients": ["yogurt", "strawberries", "blueberries"],
+          "description": "Creamy yogurt with antioxidant-rich berries",
+          "foodType": "dairy",
+          "forGoalOf": ["muscle gain", "maintenace"],
+          "halal": true,
+          "fasting": false,
+          "minMaxPortion": [100, 300]
+        },
+        {
+          "foodName": "Avocado Toast",
+          "macrosPerScalingType": {
+            "protein": 5.0,
+            "carbs": 30.0,
+            "fats": 15.0,
+            "calories": 250
+          },
+          "micronutrientsPerScalingType": {
+            "iron": 1.2,
+            "calcium": 40,
+            "thiamine": 0.3
+          },
+          "period": ["breakFast", "lunch"],
+          "scalingType": "slice",
+          "combineWith": ["eggs", "tomato"],
+          "notCombineWith": [],
+          "popularity": "85%",
+          "availability": "80%",
+          "ingredients": ["whole grain bread", "avocado", "salt", "pepper"],
+          "description": "Healthy fats with complex carbohydrates",
+          "foodType": "vegetable",
+          "forGoalOf": ["maintenace", "weight loss"],
+          "halal": true,
+          "fasting": true,
+          "minMaxPortion": [1, 3]
+        },
+        and there is lowBudget,midLowBudget, midBudget, midHighBudget,highBudget budget levels
+- this "minMaxPortion" entity holds 2 values minimum and maximum portion of the food like 
+if we take banana it's minimum portion is 1 and no none shouldn't eat more than 3 banana for
+his or her Health.
+- let's say we need 100 gram of protein so the the algorithm will select random days like day1 day2 or day3 (from 1-11)
+- then checks the user's budget like low, low-mid or high...
+- order foods based on there availability ,popularity and nutration amount that it takes
+if like banana have better protein , calcium, and other nutrients than other foods list on the array
+it will apprear first , then the next food have better popularity, availability and better nutrients 
+appear next (in assending order) and put it in array form
+- and make another array object that takes the foods with their amount of nutrients.And here is 
+what the amount of calorire will take. let's say the user body needs 110 gram of protein daily
+and we have 9 foods on the ordered food array and 6 of them has protein 20.0 , 18 , 8, 5,15,3.2 
+and the sum is 69.2 gram but we need 110 gram so we add the portion of the food for the most 
+popular food in the list like banana has 3.2 protein so we add the portion from 1 to 2 banana 
+so it will be 6.4 protein if some food on the list have 20.0 amount of protein on one portion
+so we add 1 portion on it so it will be 40.0, another food on the list has 18 amount of protein,
+we double the portion so we got 36.0 amount of protein now we got 110.4 amount of protein so that's
+fine. and put the nutrient name and amount in object pair form.
+- remember if the food amount/portion is equal to maximum portion the food stays at the maximum 
+portion like never add 4 banana to get waht the amount of protein needed
+- do for all nutrients. 
+- then we put the period of the food like we can eat foods based on the user goal and use your best 
+way
+
+
+i don't need to use those things
+- Include dietary restrictions (vegan, gluten-free, allergies)
+- Cooking skill level
+- Taste preferences (like/dislike foods)
+- Add preparation time/cooking difficulty
+- Include seasonal availability data
+- Add glycemic index for diabetic considerations
+- Include texture/flavor profiles (for meal variety)
+- Add meal preparation methods (raw, cooked, etc.)
+
+i want to improve 
+- Implement nutrient prioritization (some nutrients are harder to meet)
+- Add meal variety scoring (avoid same foods daily)
+- supplement consideration
+- meal sequencing (leftovers utilization)
+- hydration tracking (water intake)
+
+
+
+
+Now just give me the idea what you think about this project based on this 
+- what you understand, write me 
+- what do you suggest
+- what things left
+- what data needs from user side
+- what data should have to be add on the foods.json file structure

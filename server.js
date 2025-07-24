@@ -11,6 +11,7 @@ const QRCode = require('qrcode');
 
 // Import models and routes
 const Gym = require('./models/Gym');
+const billRoutes = require('./routes/billRoutes');
 const apiRoutes = require('./routes/api');
 const userRoutes = require('./routes/userRoutes');
 const financeRoutes = require('./routes/financeRoutes');
@@ -24,6 +25,7 @@ const monthlyRevenueRoutes = require('./routes/monthlyRevenueRoutes');
 const qrCodeRoutes = require('./routes/qrCodeRoutes');
 const attendanceRoutes = require('./routes/attendanceUpdaingRoutes');
 const monthlyRevenueController = ('./controllers/monthlyRevenueController');
+
 
 // AfroMessage SMS Configuration
 const AFRO_TOKEN = process.env.AFRO_TOKEN || '';
@@ -41,6 +43,7 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use('/scan-assets', express.static('public/scan-assets'));
+app.use('/api', billRoutes);
 
 // Database connection
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gimnify';
@@ -273,23 +276,23 @@ app.post('/send-sms', async (req, res) => {
     }
 });
 
-// Monthly revenue cron jobs
-cron.schedule('40 15 * * *', async () => {
+// Monthly revenue cron jobs - runs daily but will only execute logic on month change or day 1
+cron.schedule('0 0 * * *', async () => { // Runs at midnight every day
     try {
         await monthlyRevenueController.checkAndUpdateMonthlyRevenue();
-        logger.info('Monthly revenue check completed at month change');
+        logger.info('Daily check for monthly revenue update completed');
     } catch (error) {
         logger.error('Error in monthly revenue cron job:', error);
     }
 });
 
-// Weekly check for monthly revenue
-cron.schedule('0 0 * * 0', async () => {
+// Additional safety check at start of month (1st day at 00:05)
+cron.schedule('5 0 1 * *', async () => {
     try {
-        await monthlyRevenueController.checkAndUpdateMonthlyRevenue();
-        logger.info('Weekly check of monthly revenue completed');
+        await monthlyRevenueController.calculateMonthlyRevenue();
+        logger.info('First-of-month monthly revenue calculation completed');
     } catch (error) {
-        logger.error('Error in weekly revenue check:', error);
+        logger.error('Error in first-of-month revenue calculation:', error);
     }
 });
 
@@ -358,6 +361,36 @@ process.on('SIGINT', () => {
             process.exit(0);
         });
     });
+});
+// Consistent endpoint (use just one)
+app.post('/sending-sms', async (req, res) => {
+  try {
+    console.log("Incoming request:", req.body);
+    
+    const { phone, message } = req.body;
+    
+    if (!phone || !message) {
+      return res.status(400).json({ error: 'Recipient and message are required' });
+    }
+
+    // Proper POST request to AfroMessage
+    const response = await axios.post('https://api.afromessage.com/api/send', {
+      to: phone,  // Map phone to 'to'
+      message: message
+    }, {
+      headers: {
+        'Authorization': `Bearer ${AFRO_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("SMS Error:", error.response?.data || error.message);
+    res.status(500).json({ 
+      error: error.response?.data?.message || 'Failed to send SMS' 
+    });
+  }
 });
 
 // Global error handlers
