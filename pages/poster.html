@@ -1,158 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <title>Gymnify posters for gyms</title>
-    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
-    <style>
-        body{
-            background: #2a2a2a;
-        }
-        .container{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-       .sub_header{
-        color: #fff;
-        display: flex;
-        align-content: center;
-        gap: 5px;
-        font-size: 18px;
-        margin-top: 20px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-       }
-       .sub_header a{
-        color: #c7a2eb;
-        font-size: 20px;
-        margin-top: -3px;
-       }
-        .header{
-            font-size: 35px;
-            font-weight: 700;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            width: 70%;
-            text-align: center;
-            margin-top: 20px
-        }
-        .img_cont{
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
-            display: flex;
-            margin: 0 auto;
-            border: 1px solid #ffffff24;
-            border-radius: 10px;
-            background: #353535;
-            margin-top: 50px;
-            width: 100%;
-        }
-        .img_cont div{
-            width: 300px;
-            margin: 15px;
-        }
-        .img_cont div img{
-            width: 300px;
-        }
-        button{
-            width: 40px;
-            border: none;
-            outline: none;
-            height: 40px;
-            margin-top: 10px;
-            border-radius: 50%;
-            background: #d2c9fb17;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            cursor: pointer;
-        }
-        .back{
-            position: absolute;
-            top: 20px;
-            left: 40px;
-            color: #fff;
-            align-items: center;
-            display: flex;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 25px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gymnify Posters for Gyms</title>
+  <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2a2a2a;
+      --accent: #955be1;
+      --text-light: #ffffff;
+      --text-muted: #cfcfcf;
+      --card-bg: #353535;
+      --border: #444;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--primary);
+      font-family: "Poppins", sans-serif;
+      color: var(--text-light);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .back {
+      position: fixed;
+      top: 20px;
+      left: 30px;
+      color: var(--text-light);
+      font-size: 24px;
+      z-index: 999;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 100px auto 50px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .sub_header {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .sub_header a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .img_grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      width: 100%;
+    }
+
+    .poster_card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .poster_card:hover {
+      transform: translateY(-4px);
+    }
+
+    .poster_card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .download_btn {
+      margin-top: 15px;
+      background-color: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .download_btn:hover {
+      background-color: #7c43d6;
+    }
+  </style>
 </head>
 <body>
-    <a href="./Dashboard.html" class="back"><i class="fa-solid fa-arrow-left"></i></a>
-    <div class="container">
-        <div class="header">Download And Use Digital Posters For Boosting Your Brand.</div>
-        <div class="sub_header">For More Marketing Supports click <a href="tel:0978787960"> Here</a></div>
-        <div class="img_cont">
-            <div>
-                <img src="../images/photo-1532029837206-abbe2b7620e3.avif" alt="">
-                <a href="./images/photo-1532029837206-abbe2b7620e3.avif" download="photo-1532029837206-abbe2b7620e3.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1583454110551-21f2fa2afe61.avif" alt="">
-                <a href="../images/photo-1583454110551-21f2fa2afe61.avif" download="photo-1583454110551-21f2fa2afe61.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1660154531278-a066979d6307.avif" alt="">
-                <a href="../images/photo-1660154531278-a066979d6307.avif" download="photo-1660154531278-a066979d6307.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1683889842943-17e8eea3ac7c.avif" alt="">
-                <a href="../images/photo-1683889842943-17e8eea3ac7c.avif" download="photo-1683889842943-17e8eea3ac7c.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1571019613914-85f342c6a11e.avif" alt="">
-                <a href="../images/photo-1571019613914-85f342c6a11e.avif" download="photo-1571019613914-85f342c6a11e.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1583454110551-21f2fa2afe61.avif" alt="">
-                <a href="../images/photo-1583454110551-21f2fa2afe61.avif" download="photo-1583454110551-21f2fa2afe61.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1660154531278-a066979d6307.avif" alt="">
-                <a href="../images/photo-1660154531278-a066979d6307.avif" download="photo-1660154531278-a066979d6307.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1683889842943-17e8eea3ac7c.avif" alt="">
-                <a href="../images/photo-1683889842943-17e8eea3ac7c.avif" download="photo-1683889842943-17e8eea3ac7c.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1571019613914-85f342c6a11e.avif" alt="">
-                <a href="../images/photo-1571019613914-85f342c6a11e.avif" download="photo-1571019613914-85f342c6a11e.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            <div>
-                <img src="../images/photo-1583454110551-21f2fa2afe61.avif" alt="">
-                <a href="../images/photo-1583454110551-21f2fa2afe61.avif" download="photo-1583454110551-21f2fa2afe61.avif">
-                    <button><i class="fa-solid fa-download"></i></button>
-                </a>
-            </div>
-            
-        </div>
+  <a href="./Dashboard.html" class="back"><i class="fa-solid fa-arrow-left"></i></a>
+  <div class="container">
+    <div class="header">Download & Use Digital Posters to Boost Your Brand</div>
+    <div class="sub_header">
+      For more marketing support, click <a href="tel:0978787960">here</a>
     </div>
+
+    <div class="img_grid">
+      <!-- Repeatable Poster Card -->
+      <div class="poster_card">
+        <img src="../images/photo-1532029837206-abbe2b7620e3.avif" alt="Poster 1" />
+        <a href="../images/photo-1532029837206-abbe2b7620e3.avif" download>
+          <button class="download_btn">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+        </a>
+      </div>
+
+      <div class="poster_card">
+        <img src="../images/photo-1583454110551-21f2fa2afe61.avif" alt="Poster 2" />
+        <a href="../images/photo-1583454110551-21f2fa2afe61.avif" download>
+          <button class="download_btn">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+        </a>
+      </div>
+
+      <div class="poster_card">
+        <img src="../images/photo-1660154531278-a066979d6307.avif" alt="Poster 3" />
+        <a href="../images/photo-1660154531278-a066979d6307.avif" download>
+          <button class="download_btn">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+        </a>
+      </div>
+
+      <div class="poster_card">
+        <img src="../images/photo-1683889842943-17e8eea3ac7c.avif" alt="Poster 4" />
+        <a href="../images/photo-1683889842943-17e8eea3ac7c.avif" download>
+          <button class="download_btn">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+        </a>
+      </div>
+
+      <div class="poster_card">
+        <img src="../images/photo-1571019613914-85f342c6a11e.avif" alt="Poster 5" />
+        <a href="../images/photo-1571019613914-85f342c6a11e.avif" download>
+          <button class="download_btn">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+        </a>
+      </div>
+
+      <!-- Add more posters below this comment using the same block -->
+    </div>
+  </div>
 </body>
 </html>

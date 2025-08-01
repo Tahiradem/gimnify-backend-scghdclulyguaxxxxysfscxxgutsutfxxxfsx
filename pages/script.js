@@ -218,7 +218,6 @@ const fetchData = async () => {
         }
     } catch (error) {
         console.error("Error fetching data:", error);
-        alert("Failed to load user data.");
     }
 };
 
@@ -272,7 +271,6 @@ function setupEditListeners() {
         const email = localStorage.getItem('email');
         
         if (!userId || !email) {
-            alert('Error: Missing required data');
             return;
         }
 
@@ -312,7 +310,6 @@ function setupEditListeners() {
             fetchData();
         } catch (error) {
             console.error('Error updating user:', error);
-            alert(`Error updating user: ${error.message}`);
         }
     });
 
@@ -347,11 +344,9 @@ function setupEditListeners() {
                     fetchData();
                 } else {
                     const errorData = await response.json();
-                    alert(`Error deleting user: ${errorData.message}`);
                 }
             } catch (error) {
                 console.error('Error deleting user:', error);
-                alert('Failed to delete user');
             }
         }
     });

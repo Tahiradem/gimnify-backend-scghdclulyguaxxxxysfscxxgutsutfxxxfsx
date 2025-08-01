@@ -1,20 +1,80 @@
+/**
+ * Adjusts table column widths based on content
+ */
 function adjustColumnWidths() {
-    const table = document.getElementById("dynamicTable");
-    const headers = table.querySelectorAll("th");
-    const columns = Array.from(headers).map(() => 0);
-    const rows = tableBody.querySelectorAll("tr");
+    try {
+        const table = document.getElementById("dynamicTable");
+        if (!table) {
+            console.warn("Table with ID 'dynamicTable' not found");
+            return;
+        }
 
-    rows.forEach(row => {
-        const cells = row.querySelectorAll("td");
-        cells.forEach((cell, index) => {
-            columns[index] = Math.max(columns[index], cell.scrollWidth);
+        // First reset any existing widths
+        const headers = table.querySelectorAll("th");
+        headers.forEach(header => {
+            header.style.width = '';
+            header.style.minWidth = '';
         });
-    });
 
-    columns.forEach((width, index) => {
-        headers[index].style.width = `${width + 20}px`;
-    });
+        // Force browser to recalculate layout
+        table.style.tableLayout = 'auto';
+        void table.offsetHeight; // Trigger reflow
+
+        const tableBody = table.querySelector("tbody");
+        if (!tableBody) return;
+
+        // Initialize column widths array
+        const columns = Array.from(headers).map(() => 0);
+
+        // Measure content width in all rows
+        const rows = tableBody.querySelectorAll("tr");
+        rows.forEach(row => {
+            const cells = row.querySelectorAll("td");
+            cells.forEach((cell, index) => {
+                if (index < columns.length) {
+                    // Get the full content width including padding
+                    const cellWidth = cell.scrollWidth;
+                    columns[index] = Math.max(columns[index], cellWidth);
+                }
+            });
+        });
+
+        // Also measure header widths
+        headers.forEach((header, index) => {
+            columns[index] = Math.max(columns[index], header.scrollWidth);
+        });
+
+        // Apply calculated widths with padding
+        headers.forEach((header, index) => {
+            if (index < columns.length) {
+                header.style.width = `${columns[index] + 20}px`;
+                header.style.minWidth = `${columns[index] + 20}px`;
+            }
+        });
+
+        // Lock the table layout after resizing
+        table.style.tableLayout = 'fixed';
+
+        console.log("Column widths adjusted successfully");
+    } catch (error) {
+        console.error("Error adjusting column widths:", error);
+    }
 }
+
+// Debounce function to prevent excessive calls
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            func.apply(context, args);
+        }, wait);
+    };
+}
+
+// Call this after your table data loads and after window resize
+window.addEventListener('resize', debounce(adjustColumnWidths, 200));
 
 function dashboard_display_btn() {
     if (localStorage.getItem('boolForDashboard') === 'true') {

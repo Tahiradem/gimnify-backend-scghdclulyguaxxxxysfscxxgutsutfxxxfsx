@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gym Income & Outcome Tracker</title>
   <link rel="stylesheet" href="financeInput.css">
 </head>
 <body>
-  <h1>Your Finance Now</h1>
-  <form id="finance-form">
-    <div class="income_area">
+  <div class="form-container">
+    <h1>Your Finance Now</h1>
+    <form id="finance-form">
+      <div class="income_area">
         <label for="income">Income</label>
-        <input type="number" id="income" name="income" placeholder="your income" required>
-    </div>
-    <div class="outcome_area">
+        <input type="number" id="income" name="income" placeholder="Your income" required />
+      </div>
+      <div class="outcome_area">
         <label for="outcome">Outcome</label>
-        <input type="number" id="outcome" name="outcome" placeholder="your outcome" required>
-    </div>
-    <div class="btns" >
-        <button type="button" id="cancel-btn" onclick="window.open('./Dashboard.html', '_self');">cancel</button>
-        <button type="button" id="save-btn">save</button>
-    </div>
-  </form>
+        <input type="number" id="outcome" name="outcome" placeholder="Your outcome" required />
+      </div>
+      <div class="btns">
+        <button type="button" id="cancel-btn" onclick="window.open('./Dashboard.html', '_self');">Cancel</button>
+        <button type="button" id="save-btn">Save</button>
+      </div>
+    </form>
+  </div>
   <script src="financeInput.js"></script>
 </body>
 </html>

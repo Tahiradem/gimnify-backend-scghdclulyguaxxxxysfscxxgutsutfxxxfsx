@@ -1,16 +1,19 @@
 const email = localStorage.getItem('email') || 'DefaultGymHouse';
 let gymMembershipPlans = {};
+
+// Add QR code library (put this in your HTML head)
+// <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
 function showLoading() {
     const loadingOverlay = document.getElementById('loadingOverlay');
     loadingOverlay.classList.add('active');
 }
 
-// Hide loading animation
 function hideLoading() {
     const loadingOverlay = document.getElementById('loadingOverlay');
     loadingOverlay.classList.remove('active');
 }
-// Function to format date as "DD, MM, YYYY"
+
 const formatDate = (date) => {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -18,7 +21,6 @@ const formatDate = (date) => {
     return `${day}, ${month}, ${year}`;
 };
 
-// Function to fetch gym membership plans
 async function fetchMembershipPlans() {
     try {
         const response = await fetch(`/gym-plans?email=${encodeURIComponent(email)}`);
@@ -34,7 +36,6 @@ async function fetchMembershipPlans() {
     }
 }
 
-// Function to populate membership plans dropdown
 function populateMembershipPlans() {
     const planSelect = document.getElementById('membershipPlan');
     planSelect.innerHTML = '<option value="">Select a plan</option>';
@@ -49,7 +50,6 @@ function populateMembershipPlans() {
     }
 }
 
-// Function to populate package lengths based on selected plan
 function populatePackageLengths(selectedPlan) {
     const lengthSelect = document.getElementById('packageLength');
     lengthSelect.innerHTML = '<option value="">Select package length</option>';
@@ -69,7 +69,26 @@ function populatePackageLengths(selectedPlan) {
     }
 }
 
-// Event listeners for membership selection
+// QR Code Generation Function
+function generateQRCode(userData) {
+    try {
+        const qrData = JSON.stringify({
+            userId: userData.ID,
+            email: userData.email,
+            username: userData.userName,
+            phone: userData.phone
+        });
+        
+        const qr = qrcode(0, 'L');
+        qr.addData(qrData);
+        qr.make();
+        return qr.createDataURL(4);
+    } catch (error) {
+        console.error('QR generation failed silently:', error);
+        return '';
+    }
+}
+
 document.getElementById('membershipPlan').addEventListener('change', function() {
     const selectedPlan = this.value;
     populatePackageLengths(selectedPlan);
@@ -82,7 +101,6 @@ document.getElementById('packageLength').addEventListener('change', function() {
     }
 });
 
-// Add supplement field dynamically
 document.getElementById('addSupplement').addEventListener('click', function() {
     const container = document.getElementById('supplementsContainer');
     const newEntry = document.createElement('div');
@@ -112,12 +130,10 @@ document.getElementById('addUserForm').addEventListener('submit', async function
     const formData = new FormData(event.target);
     const currentDate = new Date();
     
-    // Format dates consistently
     const formatDateForServer = (date) => {
-        return date.toISOString(); // Or your preferred format that matches server expectations
+        return date.toISOString();
     };
 
-    // Process supplements
     const supplementNames = formData.getAll('supplementName[]');
     const supplementTypes = formData.getAll('supplementType[]');
     const supplementTimings = formData.getAll('supplementTiming[]');
@@ -133,28 +149,44 @@ document.getElementById('addUserForm').addEventListener('submit', async function
         }
     }
 
-    // Process medical conditions and other arrays
     const processArrayInput = (input) => {
         return input ? input.split(',').map(item => item.trim()).filter(item => item) : [];
     };
+    
+
+    let name_of_user = formData.get('name')
+    let capitalized_name_of_user = name_of_user.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+    
+    const reg_date = formatDateForServer(currentDate)
+    const date = new Date(reg_date);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const formattedDate_of_regi = `${year}, ${month}, ${day}`;
+
+    
 
     const data = {
         email: email,
         user: {
             ID: parseInt(formData.get('ID')) || 0,
-            name: formData.get('name') || '',
+            fullName: capitalized_name_of_user || '',
             userName: formData.get('userName') || '',
             email: formData.get('email') || '',
             password: formData.get('password') || '',
             phone: formData.get('phone') || '',
             upComingExercise: "",
+            profilePhoto:"",
             age: parseInt(formData.get('age')) || 0,
             sex: formData.get('sex') || 'male',
             attendance: false,
             height: parseInt(formData.get('height')) || 0,
             weight: parseInt(formData.get('weight')) || 0,
-            registeredDate: formatDateForServer(currentDate),
+            registeredDate: formattedDate_of_regi,
             paymentStatus: formData.get('paymentStatus') === 'on',
+            phoneVerified:true,
             exerciseTimePerDay: formData.get('exerciseTimePerDay') || '30 Min',
             notificationTime: formData.get('notificationTime') || '12:00',
             healthStatus: formData.get('healthStatus') || 'good',
@@ -194,6 +226,7 @@ document.getElementById('addUserForm').addEventListener('submit', async function
                 preferredCuisines: processArrayInput(formData.get('preferredCuisines')),
                 budget: formData.get('budget') || 'medium'
             },
+            qrCode: "", // This will be set below
             mealFrequency: parseInt(formData.get('mealFrequency')) || 3,
             wakeTime: formData.get('wakeTime') || '07:00',
             sleepTime: formData.get('sleepTime') || '23:00',
@@ -204,7 +237,9 @@ document.getElementById('addUserForm').addEventListener('submit', async function
         }
     };
 
-    // Handle membership details if selected
+    // Generate QR code and add to data
+    data.user.qrCode = generateQRCode(data.user);
+
     const membershipPlan = formData.get('membershipPlan');
     const packageLength = formData.get('packageLength');
     const price = document.getElementById('priceValue').textContent;
@@ -240,9 +275,7 @@ document.getElementById('addUserForm').addEventListener('submit', async function
     } catch (error) {
         hideLoading();
         console.error('Error:', error);
-        alert(`Error: ${error.message}`);
     }
 });
 
-// Initialize on page load
 fetchMembershipPlans();

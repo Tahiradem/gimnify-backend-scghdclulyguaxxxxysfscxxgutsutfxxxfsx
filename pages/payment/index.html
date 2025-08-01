@@ -219,8 +219,8 @@
                         class="Book_input_f1" 
                       />
                 </div>
-                <input type="text" placeholder="your email" class="emailInput">
-                <p class="alert red">please submit your email !</p>
+                <input type="tel" pattern="[0-9]{9}"  placeholder="your phone number" class="emailInput">
+                <p class="alert red">please submit your phone number !</p>
                 <p class="alert green">✅ submited successfully </p> 
         <button>Done</button>
         </form>
@@ -296,7 +296,7 @@
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
-                                email: emailInput.value,
+                                phone_number: emailInput.value,
                                 fileData: base64String,
                                 fileName: file.name,
                                 fileType: file.type

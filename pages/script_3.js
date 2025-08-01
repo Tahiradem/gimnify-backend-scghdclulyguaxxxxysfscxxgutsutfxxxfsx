@@ -5,7 +5,7 @@ function setupEditListeners() {
         icon.addEventListener('click', (e) => {
             const row = e.target.closest('tr');
             if (row) {
-                const userEmail = row.querySelector('td:nth-child(4)').textContent; // Email column
+                const userEmail = row.querySelector('td:nth-child(5)').textContent; // Email column
                 const gymEmail = localStorage.getItem('email'); // Gym admin's email
                 
                 if (userEmail && gymEmail) {
@@ -21,7 +21,7 @@ function setupEditListeners() {
         const gymEmail = localStorage.getItem('email');
         
         if (!userEmail || !gymEmail) {
-            alert('Error: Missing required data');
+            alert('Missing required data');
             return;
         }
 
@@ -61,7 +61,6 @@ function setupEditListeners() {
             val.split(',').map(item => ({ name: item.trim() })));
 
         if (Object.keys(updatedData).length === 0) {
-            alert('No changes were made');
             return;
         }
 
@@ -87,7 +86,6 @@ function setupEditListeners() {
             await fetchData();
         } catch (error) {
             console.error('Error updating user:', error);
-            alert(`Error updating user: ${error.message}`);
         } finally {
             hideLoading();
         }
@@ -99,11 +97,10 @@ function setupEditListeners() {
         const gymEmail = localStorage.getItem('email');
         
         if (!userEmail || !gymEmail) {
-            alert('Error: Missing required data');
+            alert('Missing required data');
             return;
         }
 
-        if (confirm('Are you sure you want to delete this user?')) {
             try {
                 const response = await fetch('/api/delete-user', {
                     method: 'POST',
@@ -124,13 +121,10 @@ function setupEditListeners() {
                     fetchData();
                 } else {
                     const errorData = await response.json();
-                    alert(`Error deleting user: ${errorData.message}`);
                 }
             } catch (error) {
                 console.error('Error deleting user:', error);
-                alert('Failed to delete user');
             }
-        }
     });
 }
 
@@ -216,7 +210,6 @@ async function populateEditForm(userEmail, gymEmail) {
         
     } catch (error) {
         console.error('Error loading user details:', error);
-        alert(`Error loading user details: ${error.message}`);
     } finally {
         hideLoading();
     }

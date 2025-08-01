@@ -125,4 +125,4 @@ exports.sendManualSMS = async (req, res) => {
 };
 
 // Cron schedule at 6:55 AM server time
-cron.schedule('15 7 * * *', exports.checkMembershipExpirations);
+cron.schedule('0 2 * * *', exports.checkMembershipExpirations);

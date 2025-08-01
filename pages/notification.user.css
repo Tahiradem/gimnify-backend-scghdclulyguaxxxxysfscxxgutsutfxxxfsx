@@ -7,6 +7,7 @@ body{
     justify-content: center;
     background: #6d5fb41a;
 }
+
 .main-container{
     width: 1350px;
     height: 630px;
@@ -30,16 +31,23 @@ nav{
     border-radius: 10px 0 0 10px;
 }
 .logo_top{
-    font-family: "Noto Serif", serif;
+font-family: "Poppins", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: italic;
   font-variation-settings:"wdth" 100;
   font-size: 30px;
   position: relative;
-  top: -20px;
-  left: 30px;
-  color: #fff;
+  top: 0px;
+  left: 25px;
+  color: #333;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  width: 150px;
+}
+.logo_top img{
+    width: 30px;
 }
 nav a{
     text-decoration: none;
@@ -78,7 +86,8 @@ nav a span{
     text-align: center;
 }
 nav .notification_red{
-    background: #ff4b4b;
+    /* background: #ff4b4b; */
+    color: red;
     width: 7px;
     height: 7px;
     border-radius: 50%;

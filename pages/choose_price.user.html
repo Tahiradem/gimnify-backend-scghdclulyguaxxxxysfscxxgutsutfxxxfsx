@@ -8,7 +8,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             min-height: 100vh;
         }
         .price_plan{
@@ -32,6 +31,7 @@
     background: #ececec;
     border-radius: 20px;
     height: 440px;
+    flex-wrap: wrap;
 }
 .price_plan div{
     height: 410px;
@@ -113,6 +113,38 @@
 }
 .price_plan div:nth-child(2) .subscription_btn p{
     color: #fff;
+}
+@media (max-width:800px) {
+    .price_plan{
+        height: auto;
+        margin-top: 40px;
+        margin-left: -40px;
+    }
+    .price_plan section{
+        width: 95%;
+        text-align: center;
+    }
+    .main_price_area{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        gap: 40px;
+        background: transparent;
+    }
+    .price_plan div{
+        height: auto;
+        width: 350px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .price_plan div:nth-child(2){
+        background: #fff;
+        padding: 0px;
+
+}
 }
     </style>
     <title>Document</title>

@@ -39,13 +39,13 @@ function renderAttendanceChart(checkedCount, totalActiveUsers) {
             labels: ["Unattend Users", "Attend Users"],
             datasets: [{
                 data: [unattendedCount, checkedCount],
-                backgroundColor: ['#f5f5f500', '#c1b5fb'],
+                backgroundColor: ['#f5f5f500', '#333'],
                 borderWidth: 0
             }]
         },
         options: {
             responsive: true,
-            cutout: '80%',
+            cutout: '50%',
             animation: {
                 duration: 0
             },
@@ -65,71 +65,79 @@ function renderAttendanceChart(checkedCount, totalActiveUsers) {
     });
 }
 
-function renderFinancialChart() {
-    const ctx = document.getElementById('financialChart');
-    if (!ctx) return;
-    
-    // Destroy previous chart if it exists
-    if (chartInstances.financialChart) {
-        chartInstances.financialChart.destroy();
-        chartInstances.financialChart = null;
-    }
+const income_of_day = document.querySelector(".income_number_data")
+const outcome_of_day = document.querySelector(".outcome_number_data")
+const revene_of_day = document.querySelector(".revenue_number_data")
 
-    chartInstances.financialChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Income', 'Outcome', 'Revenue'],
-            datasets: [{
-                label: 'Amount (Birr)',
-                data: [dailyIncome, dailyOutcome, revenue],
-                backgroundColor: ['#80ed99', 'rgb(193, 181, 251, 1)', '#fff'],
-                borderWidth: 1,
-                borderRadius: 2,
-                maxBarThickness: 70
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: `Your Daily Report (${getPerformanceRating()})`,
-                    font: { size: 16, family: 'Poppins, sans-serif' },
-                    color: '#fff',
-                    padding: { bottom: 30 }
-                },
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: context => `${context.label}: ${context.raw} Birr`
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    barPercentage: 0.2,
-                    categoryPercentage: 0.3,
-                    maxBarThickness: 30,
-                    ticks: {
-                        font: { family: 'Poppins, sans-serif', size: 14 },
-                        color: '#fff'
-                    },
-                    grid: { display: false }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        font: { family: 'Poppins, sans-serif', size: 14 },
-                        color: '#fff'
-                    },
-                    grid: {
-                        color: '#fff',
-                        lineWidth: 0.5
-                    }
-                }
-            }
-        }
-    });
+function renderFinancialChart() {
+    income_of_day.innerHTML = `${dailyIncome} birr`
+    outcome_of_day.innerHTML = `${dailyOutcome} birr`
+    revene_of_day.innerHTML = `${revenue} birr`
+
+    // const ctx = document.getElementById('financialChart');
+    // if (!ctx) return;
+    
+    // // Destroy previous chart if it exists
+    // if (chartInstances.financialChart) {
+    //     chartInstances.financialChart.destroy();
+    //     chartInstances.financialChart = null;
+    // }
+
+    // chartInstances.financialChart = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ['Income', 'Outcome', 'Revenue'],
+    //         datasets: [{
+    //             label: 'Amount (Birr)',
+    //             data: [dailyIncome, dailyOutcome, revenue],
+    //             backgroundColor: ['#80ed99', 'rgb(193, 181, 251, 1)', '#fff'],
+    //             borderWidth: 1,
+    //             borderRadius: 2,
+    //             maxBarThickness: 70
+    //         }]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         plugins: {
+    //             title: {
+    //                 display: true,
+    //                 text: `Your Daily Report (${getPerformanceRating()})`,
+    //                 font: { size: 16, family: 'Poppins, sans-serif' },
+    //                 color: '#fff',
+    //                 padding: { bottom: 30 }
+    //             },
+    //             legend: { display: false },
+    //             tooltip: {
+    //                 callbacks: {
+    //                     label: context => `${context.label}: ${context.raw} Birr`
+    //                 }
+    //             }
+    //         },
+    //         scales: {
+    //             x: {
+    //                 barPercentage: 0.2,
+    //                 categoryPercentage: 0.3,
+    //                 maxBarThickness: 30,
+    //                 ticks: {
+    //                     font: { family: 'Poppins, sans-serif', size: 14 },
+    //                     color: '#fff'
+    //                 },
+    //                 grid: { display: false }
+    //             },
+    //             y: {
+    //                 beginAtZero: true,
+    //                 ticks: {
+    //                     font: { family: 'Poppins, sans-serif', size: 14 },
+    //                     color: '#fff'
+    //                 },
+    //                 grid: {
+    //                     color: '#fff',
+    //                     lineWidth: 0.5
+    //                 }
+    //             }
+    //         }
+    //     }
+    // });
 }
 
 async function fetchAndRenderWeeklyRevenue(currentWeek = 0) {
@@ -185,17 +193,17 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
             datasets: [{
                 label: 'Weekly Financial Report',
                 data: chartData,
-                borderColor: 'rgb(193, 181, 251, 1)',
-                backgroundColor: 'rgb(193, 181, 251, 0.6)', 
+                borderColor: '#333',
+                backgroundColor: '#333', 
                 tension: 0.4,
                 pointStyle: 'rect',
                 pointRadius: 5,
-                pointBackgroundColor: '#6d5fb4',
-                pointBorderColor: '#fff',
+                pointBackgroundColor: '#333',
+                pointBorderColor: '#333',
                 fill: true, 
                 backgroundColor: 'rgb(193, 181, 251, 0.1)', 
-                pointHoverBackgroundColor: '#6d5fb4',
-                pointHoverBorderColor: '#6d5fb4',
+                pointHoverBackgroundColor: '#333',
+                pointHoverBorderColor: '#333',
                 pointHoverRadius: 7
             }]
         },
@@ -210,7 +218,7 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
                         lineWidth: 1
                     },
                     ticks: {
-                        color: '#fff' 
+                        color: '#333' 
                     }
                 },
                 x: {
@@ -219,19 +227,19 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
                         lineWidth: 1
                     },
                     ticks: {
-                        color: '#fff' 
+                        color: '#333' 
                     }
                 }
             },
             plugins: {
                 legend: {
                     labels: {
-                        color: '#fff' 
+                        color: '#333'
                     }
                 },
                 tooltip: {
-                    titleColor: '#fff',
-                    bodyColor: '#fff',  
+                    titleColor: '#333',
+                    bodyColor: '#333',  
                     backgroundColor: 'rgba(0, 0, 0, 0.7)',
                     borderColor: '#6d5fb4',
                     borderWidth: 1,

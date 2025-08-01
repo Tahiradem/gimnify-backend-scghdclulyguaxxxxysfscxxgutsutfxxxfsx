@@ -22,7 +22,7 @@ const updateDailyNotifications = require('./jobs/dailyNotificationJob');
 const cronController = require('./controllers/cronController');
 const revenueRoutes = require('./routes/revenue');
 const monthlyRevenueRoutes = require('./routes/monthlyRevenueRoutes');
-const qrCodeRoutes = require('./routes/qrCodeRoutes');
+// const qrCodeRoutes = require('./routes/qrCodeRoutes');
 const attendanceRoutes = require('./routes/attendanceUpdaingRoutes');
 const monthlyRevenueController = ('./controllers/monthlyRevenueController');
 
@@ -48,8 +48,15 @@ app.use('/api', billRoutes);
 // Database connection
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gimnify';
 mongoose.connect(dbURI, { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
+    useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // 30 seconds for server selection
+  socketTimeoutMS: 45000, // 45 seconds for socket operations
+  connectTimeoutMS: 30000, // 30 seconds for initial connection
+  maxPoolSize: 10, // Increase connection pool size
+  minPoolSize: 2,
+  retryWrites: true,
+  retryReads: true
 })
 .then(() => {
     logger.info('Connected to MongoDB');
@@ -164,7 +171,7 @@ app.use(emailRoutes);
 app.use(gymRoutes);
 app.use(cronRoutes);
 app.use('/revenue', monthlyRevenueRoutes);
-app.use('/qrcodes', qrCodeRoutes);
+// app.use('/qrcodes', qrCodeRoutes);
 app.use('/api', attendanceRoutes);
 
 app.get('/scan*', (req, res) => {

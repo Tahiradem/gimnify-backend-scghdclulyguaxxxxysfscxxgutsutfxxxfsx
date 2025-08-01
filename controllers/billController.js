@@ -1,18 +1,23 @@
 const Bill = require('../models/Bill');
+const gymHouse = require('../models/Gym');
 
 exports.uploadBill = async (req, res) => {
   try {
-    const { email, fileData, fileName, fileType } = req.body;
+    const { phone_number, fileData, fileName, fileType } = req.body;
 
-    if (!email || !fileData) {
-      return res.status(400).json({ error: 'Email and file data are required' });
+    const gym = await gymHouse.findOne({phoneNumber: phone_number});
+
+    if (!phone_number || !fileData) {
+      return res.status(400).json({ error: 'Phone number and file data are required' });
     }
 
     const bill = new Bill({ 
-      email, 
+      phone_number, 
       fileData, 
       fileName,
-      fileType
+      fileType,
+      gym_name: gym.name,
+      price_plan: gym.pricePlan
     });
 
     await bill.save();
@@ -21,9 +26,9 @@ exports.uploadBill = async (req, res) => {
       message: 'Bill submitted successfully', 
       bill: {
         id: bill._id,
-        email: bill.email,
+        phone_number: bill.phone_number,
         fileName: bill.fileName,
-        submittedAt: bill.submittedAt
+        date_of_payment: bill.submittedAt
       }
     });
   } catch (err) {

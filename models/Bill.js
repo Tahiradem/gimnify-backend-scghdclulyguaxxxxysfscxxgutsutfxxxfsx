@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const billSchema = new mongoose.Schema({
-  email: {
+  phone_number: {
     type: String,
     required: true
   },
@@ -17,9 +17,15 @@ const billSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  submittedAt: {
+  date_of_payment: {
     type: Date,
     default: Date.now
+  },
+  gym_name:{
+    type: String,
+  },
+  price_plan:{
+    type:String,
   }
 });
 

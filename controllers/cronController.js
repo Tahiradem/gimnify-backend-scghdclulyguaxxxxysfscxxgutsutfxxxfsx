@@ -6,7 +6,8 @@ const options = { weekday: 'short' };
 const dayName = today.toLocaleDateString('en-US', options);
 
 exports.scheduleFinanceUpdate = () => {
-    cron.schedule('32 0 * * *', async () => {
+    cron.schedule('4 8 * * *', async () => {
+        console.log('Cron is working...');
         await financeController.updateFinanceCron();
     });
 };

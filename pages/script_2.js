@@ -83,10 +83,6 @@ const fetchData = async () => {
                 const today = new Date();
                 const dayNumber = (today.getDay() + 6) % 7;
                 
-                if ((hours === 6 && minutes === 55) && period === "AM") {
-                    checkbox.checked = false; 
-                    localStorage.setItem(`checkbox-${ind}`, false); 
-                } 
                 if(user.attendance === true){
                     checkbox.checked = true;
                 }
@@ -341,13 +337,14 @@ function createAttendanceDropdown(attendanceData) {
 const row = {
     A_D: checkbox,
     ID: ind + 1,
+    fullName: user.fullName,
     name: user.userName,
     email: user.email,
     phone: user.phone,
     monthly_attendance: createAttendanceDropdown(user.monthlyAttendance), // Add this
     time: `${user.enteringTime}`,
     plan: planName,
-    payment_day: `${paymentDay} (${daysLeft} days left)`,
+    payment_day: user.paymentDate,
     exercise_type: user.exerciseType,
     upcoming: user.exercises[dayNumber],
     gym_time_per_day: user.exerciseTimePerDay,
@@ -392,7 +389,6 @@ const row = {
         }
     } catch (error) {
         console.error("Error fetching data:", error);
-        alert("Failed to load user data.");
     }
 };
 

@@ -7,13 +7,6 @@ const Gym = require('../models/Gym');
 router.get('/gym-plans', async (req, res) => {
     try {
         const { email } = req.query;
-        if (!email) {
-            console.log("------------------------------------------------------",email)
-
-        }
-        else{
-            console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
-        }
 
         const gym = await Gym.findOne({ email });
         if (!gym) {

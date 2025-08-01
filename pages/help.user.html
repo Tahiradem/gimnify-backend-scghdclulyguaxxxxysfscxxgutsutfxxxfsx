@@ -4,129 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- <link rel="stylesheet" href="./help.user.css"> -->
     <link rel="stylesheet" href="./help.darkMood.user.css" id="styleRoom">
     <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Gymnify Help-contact customer service</title>
-    <style>
-        .custom-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background-color: #4CAF50;
-          color: white;
-          font-size: 30px;
-        }
-      </style>
+    <title>Gymnify Help - Contact Customer Service</title>
 </head>
 <body>
     <div class="container">
-        <div class="telegram_div">
-            <div class="back_and_logo">
-              <a href="./Dashboard.html" class="backTo"><i class="fa-solid fa-arrow-left"></i></a>
-            </div>
-            <h1>contact us using <br>Telegram QR code</h1>
-            <img class="telegram_qr_code" src="../images/telegramQR.jpg" alt="">
-            <p class="telegram_link_copy" onclick="copyText(this)"><i class="fa-solid fa-link"></i> https://telegram.com</p>
-            <p class="text_description_1">Send us your questions or mentence problems and we will respond as fast as possible but in 24 hours.</p>
-            <div class="callUs_section">
-                <a href="" class="phone_1"><i class="fa-solid fa-phone"></i> +251978787960</a>
-                <a href="" class="phone_2"><i class="fa-solid fa-mobile-screen-button"></i> +251918183644</a>
-            </div>
+        <div class="back-button-container">
+            <a href="./Dashboard.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
         </div>
-        <div class="email_div">
-          <p class="txt_1_email">Send Us Email <i class="fa-solid fa-paper-plane"></i></p>
-          <p class="long_txt">Write us
-             your address and put your question or some mentence problems you got and
-              we will respond as soon as possible but in 24 hours.</p>
-          <form action="" class="email_inputs" id="contactForm">
-            <div class="" style="display: flex; justify-content: space-between; width: 100%;">
-              <div class="phone_num_email">
-                <span>+251</span>
-                <input type="tel" id="phone" name="phone_number" placeholder="Enter your number" required>
-              </div>
-            <select name="user_location" id="" class="location_email">
-              <option value="Ethiopia">Ethiopia</option>
-            </select>
+        
+        <div class="help-container">
+            <div class="contact-method telegram-section">
+                <div class="section-header">
+                    <i class="fab fa-telegram"></i>
+                    <h2>Contact via Telegram</h2>
+                </div>
+                <div class="qr-container">
+                    <img class="telegram-qr" src="../images/telegram_qr.jpg" alt="Telegram QR Code">
+                </div>
+                <p class="telegram-link" onclick="copyText(this)">
+                    <i class="fa-solid fa-link"></i> https://t.me/Gymnify
+                    <span class="copy-tooltip">Click to copy</span>
+                </p>
+                <p class="description">Send us your questions or mention problems and we will respond as fast as possible within 24 hours.</p>
+                
+                <div class="phone-section">
+                    <h3>Or call us directly:</h3>
+                    <div class="phone-numbers">
+                        <a href="tel:+251978787960" class="phone-link">
+                            <i class="fa-solid fa-phone"></i> +251 978 787 960
+                        </a>
+                        <a href="tel:+251918183644" class="phone-link">
+                            <i class="fa-solid fa-mobile-screen-button"></i> +251 918 183 644
+                        </a>
+                    </div>
+                </div>
             </div>
-            <input type="email" placeholder="your email" class="email_emailer" name="gimnify_users" required>
-            <textarea name="message" id="" class="text_area_email" placeholder="Enter your message here..."></textarea>
-            <button type="submit" id="contactForm">send <i class="fa-solid fa-check"></i></button>
-          </form>
+            
+            <div class="contact-method email-section">
+                <div class="section-header">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h2>Send Us an Email</h2>
+                </div>
+                <p class="description">Write us your address and describe your question or problems you encountered. We will respond as soon as possible within 24 hours.</p>
+                
+                <form action="" class="email-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="phone-input-group">
+                            <span class="country-code">+251</span>
+                            <input type="tel" id="phone" name="phone_number" placeholder="Enter your number" required>
+                        </div>
+                        <select name="user_location" class="location-select">
+                            <option value="Ethiopia">Ethiopia</option>
+                        </select>
+                    </div>
+                    
+                    <input type="email" placeholder="Your email address" class="email-input" name="gimnify_users" required>
+                    <textarea name="message" class="message-textarea" placeholder="Enter your message here..." required></textarea>
+                    
+                    <button type="submit" class="submit-button">
+                        Send Message <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-
     <script>
         function copyText(element) {
-          const text = element.textContent; // Get the text content
-          navigator.clipboard.writeText(text)
-            .then(() => {
-                showStyledAlert() 
-            })
-            .catch(err => {
-              console.error('Failed to copy text: ', err);
+            const text = element.textContent.trim().replace('Click to copy', '').trim();
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    showStyledAlert('Copied to clipboard!', 'You can now paste the Telegram link');
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+        }
+        
+        function showStyledAlert(title, text) {
+            Swal.fire({
+                title: title,
+                text: text,
+                iconHtml: '<div class="custom-icon"><i class="fa-solid fa-check"></i></div>',
+                customClass: {
+                    icon: 'no-border',
+                },
+                timer: 2000,
+                showConfirmButton: false,
             });
         }
-        function showStyledAlert() {
-      Swal.fire({
-        title: 'Success!',
-        text: 'Your action was completed successfully.',
-        iconHtml: '<div class="custom-icon">✔</div>',
-        customClass: {
-          icon: 'no-border', // Removes the default SweetAlert icon styles
-        },
-        timer: 2000, // Alert will close automatically after 2 seconds
-        showConfirmButton: false,
-      });
-    }
-    function showStyledAlertEmail() {
-      Swal.fire({
-        title: 'Success!',
-        text: 'Your issue will fix in 24 hours.',
-        iconHtml: '<div class="custom-icon">✔</div>',
-        customClass: {
-          icon: 'no-border', // Removes the default SweetAlert icon styles
-        },
-        timer: 3000, // Alert will close automatically after 2 seconds
-        showConfirmButton: false,
-      });
-    }
-    (function() {
-      emailjs.init("I3Tr8KtVBJV1lpD8V"); // Replace "your_user_id" with your actual EmailJS user ID
-    })();
-
-    // Handle form submission
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission
-    
-    // Log form data for debugging
-    console.log("Form data:", new FormData(this));
-
-    // Send the form data
-    emailjs.sendForm("service_9cdu6jv", "template_c5wec3y", this)
-        .then(function(response) {
-            showStyledAlertEmail()
-        }, function(error) {
-            alert("Failed to send message. Please try again.");
-        });
-});
-
-console.log("EmailJS initialized: ", emailjs);
-
-      </script>
-      <script>
-        let darkMode = localStorage.getItem('colorMood')
-        const Room = document.querySelector('#styleRoom')
-        if(darkMode === "true"){
-            Room.href = './help.darkMood.user.css'
+        
+        function showStyledAlertEmail() {
+            showStyledAlert('Message Sent!', 'Your issue will be addressed within 24 hours.');
         }
-        else if (darkMode === "false"){
-            Room.href = './help.user.css'
+        
+        (function() {
+            emailjs.init("I3Tr8KtVBJV1lpD8V");
+        })();
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            emailjs.sendForm("service_9cdu6jv", "template_c5wec3y", this)
+                .then(function() {
+                    showStyledAlertEmail();
+                    document.getElementById("contactForm").reset();
+                }, function() {
+                    showStyledAlert('Error', 'Failed to send message. Please try again.');
+                });
+        });
+
+        // Dark mode handling
+        let darkMode = localStorage.getItem('colorMood');
+        const styleRoom = document.querySelector('#styleRoom');
+        if(darkMode === "true") {
+            document.body.classList.add('dark-mode');
+        } else if (darkMode === "false") {
+            document.body.classList.remove('dark-mode');
         }
     </script>
 </body>

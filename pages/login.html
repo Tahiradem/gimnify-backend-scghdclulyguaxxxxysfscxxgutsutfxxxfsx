@@ -20,15 +20,16 @@
             display: flex;
             flex-direction: column;
             background: #fff;
-            width: 450px;
+            padding: 10px 50px 50px 50px;
             border-radius: 10px;
-            height: 400px;
-            align-items: center;
-            gap: 30px;
+            gap: 10px;
+            box-shadow: 3px 3px 15px 0 #3333331d;
         }
         h2 {
+            margin: 0 auto;
             margin-top: 40px;
             color: #555;
+            font-size: 40px;
         }
         .input {
             margin-top: 10px;
@@ -37,9 +38,10 @@
             align-items: center;
             gap: 30px;
             position: relative;
+            margin-top: 30px;
         }
         input {
-            width: 300px;
+            width: 350px;
             height: 40px;
             outline: none;
             text-indent: 15px;
@@ -52,19 +54,21 @@
         }
         .fa{
             position: absolute;
-            top: 87px;
+            top: 90px;
             left: 88%;
             z-index: 1000;
         }
         button {
-            height: 40px;
-            width: 150px;
-            border-radius: 30px;
+            padding: 12px 40px;
+            max-width: 350px;
+            min-width: 100%;
+            border-radius: 5px;
             border: none;
             font-size: 18px;
-            background: #6d5fb49f;
+            background: #333;
             color: #fff;
             box-shadow: 2px 4px 15px -7px #5555559d;
+            margin: 0 auto;
             margin-top: 10px;
             cursor: pointer;
         }
@@ -80,18 +84,27 @@
 button:disabled {
     cursor: not-allowed;
 }
+.password_forgeted{
+    width: 140px;
+    align-self: flex-end;
+    position: relative;
+    margin:20px 0 10px 0;
+    margin-right: 0px;
+    text-decoration: underline;
+    color: #333;
+}
     </style>
     <title>Gymnify Login Page</title>
 </head>
 <body>
     <form action="" id="login-form">
-        <h2>Login to Gimnify</h2>
+        <h2>Login to Gymnify</h2>
         <div class="input">
             <input type="text" placeholder="email" id="email">
                 <i class="fa fa-eye-slash" onclick="password_hide()" id="toggle-icon"></i>
                 <input type="password" placeholder="password" id="password" class="password">
         </div>
-        
+            <a class="password_forgeted" href="tel:0978787960">forgot password ?</a>
             <p class="alert" id="alert-msg" style="
             color: red;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -157,5 +170,22 @@ button:disabled {
         loginButton.style.opacity = '1';
     }
 </script>
+<script>
+    function password_hide() {
+        const passwordInput = document.getElementById("password");
+        const toggleIcon = document.getElementById("toggle-icon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.remove("fa-eye-slash");
+            toggleIcon.classList.add("fa-eye");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.remove("fa-eye");
+            toggleIcon.classList.add("fa-eye-slash");
+        }
+    }
+</script>
+
 </body>
 </html>

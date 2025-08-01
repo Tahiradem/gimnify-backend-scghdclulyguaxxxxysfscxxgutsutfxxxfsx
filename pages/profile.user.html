@@ -4,13 +4,438 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- <link rel="stylesheet" href="profile.user.css"> -->
-    <link rel="stylesheet" href="./profile.darkMood.user.css" id="styleRoom">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <title>Gymnify profile page</title>
+    <style>
+        /* Vibrant Gym Color Palette */
+        :root {
+          --primary: #333333;       /* Deep dark for primary elements */
+          --primary-dark: #222222;  /* Slightly darker for hover states */
+          --secondary: #ffffff;     /* Pure white for contrast */
+          --accent: #955be1;        /* Energetic purple for calls-to-action */
+          --accent-secondary: #4D9EFF; /* Complementary blue */
+          --success: #4CAF50;       /* Green for positive actions */
+          --warning: #FF9800;       /* Orange for warnings */
+          --danger: #F44336;        /* Red for dangerous actions */
+          --info: #2196F3;          /* Blue for informational elements */
+          --light-bg: #f5f5f5;      /* Light gray background */
+          --dark-bg: #333333;       /* Dark background */
+          --card-bg: #ffffff;       /* White card backgrounds */
+          --text-light: #ffffff;    /* White text */
+          --text-dark: #333333;     /* Dark text */
+          --text-muted: #757575;    /* Muted text */
+          --border-light: #e0e0e0;  /* Light borders */
+          --border-dark: #424242;   /* Dark borders */
+          --shadow-level-1: rgba(151, 77, 255, 0.2);
+          --shadow-level-2: rgba(151, 77, 255, 0.3);
+          --shadow-level-3: rgba(151, 77, 255, 0.4);
+        }
+
+        /* Base Styles */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "Poppins", sans-serif;
+        }
+
+        body {
+          background-color: var(--light-bg);
+          color: var(--text-dark);
+          min-height: 100vh;
+        }
+
+        /* Main Container */
+        .main-container {
+          display: flex;
+          min-height: 100vh;
+        }
+
+        /* Navigation - Dark Sidebar */
+        nav {
+          width: 250px;
+          background: var(--dark-bg);
+          color: var(--text-light);
+          padding: 20px 0;
+          height: 100vh;
+          position: fixed;
+          z-index: 100;
+          transition: all 0.3s ease;
+          box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .logo_top {
+          display: flex;
+          align-items: center;
+          padding: 0 20px;
+          margin-bottom: 30px;
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--text-light);
+          font-family: "Poppins", sans-serif;
+          font-weight: 900;
+          font-style: italic;
+        }
+
+        .nav_items {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .nav_items a {
+          color: var(--text-light);
+          text-decoration: none;
+          padding: 12px 20px;
+          display: flex;
+          align-items: center;
+          border-radius: 6px;
+          margin: 0 10px;
+          transition: all 0.3s ease;
+          font-weight: 500;
+        }
+
+        .nav_items a:hover {
+          background: rgba(255, 255, 255, 0.1);
+          transform: translateX(5px);
+        }
+
+        .nav_items a span {
+          margin-right: 15px;
+          font-size: 18px;
+          position: relative;
+          width: 35px;
+          height: 35px;
+          border-radius: 7px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        .notification_red {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background-color: var(--danger);
+          border-radius: 50%;
+          top: -2px;
+          right: -2px;
+        }
+
+        .line_break_nav {
+          width: 80%;
+          height: 1px;
+          margin-left: 20px;
+          margin-top: 10px;
+          background: #ffffffbc;
+        }
+
+        /* Main Content Area */
+        .section-main {
+          flex: 1;
+          margin-left: 250px;
+          padding: 30px;
+          background: var(--light-bg);
+          min-height: 100vh;
+          width: calc(100% - 250px);
+          overflow-x: hidden;
+        }
+
+        /* Profile Header */
+        .part_1 {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 30px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid var(--border-light);
+        }
+
+        .profile_shower {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .profile_color {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 28px;
+          font-weight: bold;
+          box-shadow: 0 4px 15px var(--shadow-level-2);
+        }
+
+        .Profile_name {
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--text-dark);
+          margin-bottom: 5px;
+        }
+
+        .profile_started {
+          font-size: 14px;
+          color: var(--text-muted);
+        }
+
+        .logout_btn {
+          background: var(--accent);
+          color: white;
+          padding: 10px 20px;
+          border-radius: 30px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px var(--shadow-level-1);
+        }
+
+        .logout_btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px var(--shadow-level-2);
+        }
+
+        /* Password Section */
+        .part_2 {
+          background: var(--card-bg);
+          padding: 25px;
+          border-radius: 12px;
+          margin-bottom: 30px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+          border: 1px solid var(--border-light);
+        }
+
+        .current_password {
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 15px;
+          color: var(--text-dark);
+        }
+
+        .password-container {
+          position: relative;
+          margin-bottom: 20px;
+        }
+
+        .password {
+          width: 100%;
+          padding: 15px 20px;
+          padding-right: 45px;
+          border-radius: 8px;
+          border: 1px solid var(--border-light);
+          font-size: 16px;
+          transition: all 0.3s ease;
+        }
+
+        .password:focus {
+          outline: none;
+          border-color: var(--accent);
+          box-shadow: 0 0 0 3px var(--shadow-level-1);
+        }
+
+        #toggle-icon {
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--text-muted);
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        #toggle-icon:hover {
+          color: var(--accent);
+        }
+
+        .change_password_btn {
+          background: var(--accent);
+          color: white;
+          padding: 12px 25px;
+          border-radius: 8px;
+          border: none;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: inline-block;
+          box-shadow: 0 4px 15px var(--shadow-level-1);
+        }
+
+        .change_password_btn:hover {
+          background: var(--primary-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px var(--shadow-level-2);
+        }
+
+        .changing_password_pop {
+          margin-top: 20px;
+          padding: 20px;
+          background: var(--light-bg);
+          border-radius: 8px;
+          border: 1px solid var(--border-light);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .changing_password_pop p {
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 15px;
+          color: var(--text-dark);
+        }
+
+        .changing_password_pop_input {
+          width: 100%;
+          padding: 15px 20px;
+          border-radius: 8px;
+          border: 1px solid var(--border-light);
+          font-size: 16px;
+          margin-bottom: 15px;
+          transition: all 0.3s ease;
+        }
+
+        .changing_password_pop_input:focus {
+          outline: none;
+          border-color: var(--accent);
+          box-shadow: 0 0 0 3px var(--shadow-level-1);
+        }
+
+        .changing_password_pop_button {
+          background: var(--accent);
+          color: white;
+          padding: 12px 25px;
+          border-radius: 8px;
+          border: none;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px var(--shadow-level-1);
+        }
+
+        .changing_password_pop_button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px var(--shadow-level-2);
+        }
+
+        /* Financial Report Section */
+        .part_3 {
+          background: var(--card-bg);
+          padding: 25px;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+          border: 1px solid var(--border-light);
+        }
+
+        .txt_head_month {
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 20px;
+          color: var(--text-dark);
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          table-layout: fixed;
+        }
+
+        th, td {
+          padding: 15px;
+          text-align: left;
+          border-bottom: 1px solid var(--border-light);
+          font-size: 14px;
+        }
+
+        th {
+          background: var(--primary);
+          color: var(--text-light);
+          font-weight: 600;
+          position: sticky;
+          top: 0;
+        }
+
+        tr:hover {
+          background: rgba(77, 158, 255, 0.05);
+        }
+
+        td:nth-child(2) {
+          color: var(--success);
+          font-weight: 600;
+        }
+
+        td:nth-child(3) {
+          color: var(--danger);
+          font-weight: 600;
+        }
+
+        td:nth-child(4) {
+          color: var(--accent);
+          font-weight: 700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+          nav {
+            width: 220px;
+          }
+          
+          .section-main {
+            margin-left: 220px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          nav {
+            width: 80px;
+            overflow: hidden;
+          }
+          
+          .logo_top p, .nav_items a p {
+            display: none;
+          }
+          
+          .nav_items a {
+            justify-content: center;
+            padding: 15px 0;
+          }
+          
+          .nav_items a span {
+            margin-right: 0;
+          }
+          
+          .section-main {
+            margin-left: 80px;
+            padding: 20px;
+          }
+          
+          .part_1 {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .profile_shower {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          
+          .changing_password_pop {
+            padding: 15px;
+          }
+        }
+    </style>
 </head>
 <body>
     <div class="main-container">
@@ -23,7 +448,7 @@
                 <a href="../index.html#service"><span><i class="fa fa-tag"></i></span><p>Service</p></a>
                 <a href="./payment.user.html"><span><i class="fa-regular fa-credit-card"></i></span><p>Subscription</p></a>
                 <a href="./poster.html"><span><i class="fa fa-feather-pointed"></i></span><p>Digital Posters</p></a>
-                <div class="line_break_nav" style="width: 80%; height: 1px; margin-left: 20px;margin-top: 10px; background: #ffffffbc;"></div>
+                <div class="line_break_nav"></div>
                 <a href="./setting.user.html" style="margin-top: 10px;"><span><i class="fa fa-gear"></i></span><p>Setting</p></a>
                 <a href="./help.user.html"><span><i class="fa fa-question"></i></span><p>Help</p></a>
                 <a href=""><span><i class="fa fa-user"></i></span><p>Profile</p></a>
@@ -33,24 +458,28 @@
             <div class="part_1">
                 <div class="profile_shower">
                     <div class="profile_color">T</div>
-                    <div class="Profile_name">Thunder Gym</div>
-                    <p class="profile_started">Started 23, Jun, 2023 (3 Months)</p>
+                    <div>
+                        <div class="Profile_name">Thunder Gym</div>
+                        <p class="profile_started">Started 23, Jun, 2023 (3 Months)</p>
+                    </div>
                 </div>
                 <div class="logout_btn">
-                    <i class="fa fa-question"></i>
-                    <a href="../index.html" style="text-decoration: none; color: #6d5fb48e;">log-out</a>
+                    <i class="fa fa-sign-out-alt"></i>
+                    <a href="../index.html" style="text-decoration: none; color: inherit;">Log Out</a>
                 </div>
             </div>
             <div class="part_2">
                 <p class="current_password">Your current password</p>
-                <input type="password" class="password">
-                <i class="fa fa-eye-slash" onclick="password_hide()" id="toggle-icon"></i>
+                <div class="password-container">
+                    <input type="password" class="password">
+                    <i class="fa fa-eye-slash" onclick="password_hide()" id="toggle-icon"></i>
+                </div>
                 <details>
-                    <summary class="change_password_btn">change</summary>
+                    <summary class="change_password_btn">Change Password</summary>
                     <div class="changing_password_pop">
                         <p>Change Your Password</p>
-                        <input type="text" class="changing_password_pop_input">
-                        <button class="changing_password_pop_button">save</button>
+                        <input type="text" class="changing_password_pop_input" placeholder="Enter new password">
+                        <button class="changing_password_pop_button">Save Changes</button>
                     </div>
                 </details>
             </div>
@@ -59,14 +488,31 @@
                 <table>
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>Month</th>
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Revenue</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Data will be populated dynamically -->
+                        <tr>
+                            <td>June</td>
+                            <td>+20000</td>
+                            <td>-10000</td>
+                            <td>+ 10000</td>
+                        </tr>
+                        <tr>
+                            <td>July</td>
+                            <td>+23700</td>
+                            <td>-14400</td>
+                            <td>+ 9300</td>
+                        </tr>
+                        <tr>
+                            <td>August</td>
+                            <td>+46000</td>
+                            <td>-600</td>
+                            <td>+ 45400</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -134,94 +580,13 @@
                     newPasswordInput.value = "";
                     const detailsElement = document.querySelector(".change_password_btn").closest("details");
                     if (detailsElement) detailsElement.removeAttribute("open");
-                } else {
-                    alert(result.message || "Failed to update password.");
                 }
             } catch (error) {
                 console.error("Error updating password:", error);
-                alert("An error occurred while updating the password.");
             }
         });
 
-        // Fetch and display financial data
-        async function fetchFinancialData() {
-            try {
-                const response = await fetch("/users");
-                if (!response.ok) throw new Error("Network response was not ok");
-                
-                const users = await response.json();
-                const email = localStorage.getItem('email');
-                const gymData = users.find(user => user.email === email);
-                
-                if (!gymData || !gymData.monthlyIncome || !gymData.monthlyExpense) {
-                    console.log('No financial data available for this gym');
-                    return;
-                }
-
-                const tableBody = document.querySelector('.part_3 tbody');
-                tableBody.innerHTML = ''; // Clear existing rows
-
-                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                
-                // Get the last 3 months of data (or all available if less than 3)
-                const monthsToShow = Math.min(3, gymData.monthlyIncome.length);
-                
-                for (let i = 0; i < monthsToShow; i++) {
-                    const monthIndex = gymData.monthlyIncome.length - monthsToShow + i;
-                    const row = document.createElement('tr');
-                    
-                    // Month name cell (using current year for display)
-                    const monthCell = document.createElement('td');
-                    monthCell.textContent = monthNames[monthIndex % 12];
-                    row.appendChild(monthCell);
-                    
-                    // Income cell
-                    const incomeCell = document.createElement('td');
-                    incomeCell.textContent = `+${gymData.monthlyIncome[monthIndex] || 0}`;
-                    row.appendChild(incomeCell);
-                    
-                    // Expense cell
-                    const expenseCell = document.createElement('td');
-                    expenseCell.textContent = `-${gymData.monthlyExpense[monthIndex] || 0}`;
-                    row.appendChild(expenseCell);
-                    
-                    // Revenue cell
-                    const revenueCell = document.createElement('td');
-                    const revenue = (gymData.monthlyIncome[monthIndex] || 0) - (gymData.monthlyExpense[monthIndex] || 0);
-                    revenueCell.textContent = `+ ${revenue}`;
-                    row.appendChild(revenueCell);
-                    
-                    tableBody.appendChild(row);
-                }
-
-            } catch (error) {
-                console.error('Error fetching financial data:', error);
-                // Fallback to static data if API fails
-                const tableBody = document.querySelector('.part_3 tbody');
-                tableBody.innerHTML = `
-                    <tr>
-                        <td>Jun</td>
-                        <td>+20000</td>
-                        <td>-10000</td>
-                        <td>+ 10000</td>
-                    </tr>
-                    <tr>
-                        <td>Jul</td>
-                        <td>+23700</td>
-                        <td>-14400</td>
-                        <td>+ 9300</td>
-                    </tr>
-                    <tr>
-                        <td>Aug</td>
-                        <td>+46000</td>
-                        <td>-600</td>
-                        <td>+ 45400</td>
-                    </tr>
-                `;
-            }
-        }
-
-        // User profile and financial data initialization
+        // User profile initialization
         const username = localStorage.getItem('username');
         const email = localStorage.getItem('email');
         
@@ -243,26 +608,16 @@
                     const registeredDate = new Date(registeredDateStr);
                     const options = { day: '2-digit', month: 'short', year: 'numeric' };
                     const formattedRegisteredDate = registeredDate.toLocaleDateString('en-US', options).replace(/\//g, ", ");
-                    document.querySelector('.profile_started').innerHTML = `Started ${registeredDateStr}`;
+                    document.querySelector('.profile_started').innerHTML = `Started ${formattedRegisteredDate}`;
                 }
             } catch (error) {
                 console.error("Error fetching users:", error);
             }
         }
 
-        // Initialize dark mode
-        let darkMode = localStorage.getItem('colorMood');
-        const Room = document.querySelector('#styleRoom');
-        if (darkMode === "true") {
-            Room.href = './profile.darkMood.user.css';
-        } else if (darkMode === "false") {
-            Room.href = './profile.user.css';
-        }
-
-        // Load all data when page loads
+        // Load data when page loads
         document.addEventListener('DOMContentLoaded', () => {
             notificationGotting();
-            fetchFinancialData();
         });
     </script>
 </body>

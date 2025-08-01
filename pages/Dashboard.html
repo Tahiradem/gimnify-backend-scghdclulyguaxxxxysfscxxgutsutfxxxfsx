@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Gymnify Admin Dashboard</title> 
 </head>
 <style></style>
@@ -173,15 +174,15 @@
             </div>
             <div class="dashboard_display_btn" onclick="dashboard_display_btn()"
             style="
-                position: relative;
+                position: absolute;
                 align-items: center;
                 justify-content: center;
                 display: flex;
                 cursor: pointer;
                 width: 20px;
-                left: 1060px;
-                top: -40px;
-                color: #5555559f;
+                left: 970px;
+                top: 60px;
+                color: #333;
             "><i class="fa fa-eye-slash" id="hide_btn" style="font-size: 20px;"></i></div>
             <div class="no_chart_display" style="
             /* background-image: url('./images/photo-1532029837206-abbe2b7620e3.avif'); */
@@ -203,18 +204,39 @@
             ">
             No Data Display Here
             </div>
+                <div class="boxed_chart">
+                    <div class="box_reporter income_box_repo">
+                        <i class="fa fa-tag"></i>
+                        <span class="section_ofdetail_repo">
+                            <p class="text_1_of_repo">Income</p>
+                            <p class="text_2_of_repo income_number_data">0.00 Birr</p>
+                        </span>
+                    </div>
+                    <div class="box_reporter outcome_box_repo">
+                        <i class="fa fa-tag"></i>
+                        <span class="section_ofdetail_repo">
+                            <p class="text_1_of_repo">Cost</p>
+                            <p class="text_2_of_repo outcome_number_data">0.00 Birr</p>
+                        </span>
+                    </div>
+                    <div class="box_reporter revenue_box_repo">
+                        <i class="fa fa-tag"></i>
+                        <span class="section_ofdetail_repo">
+                            <p class="text_1_of_repo">Profit</p>
+                            <p class="text_2_of_repo revenue_number_data">0.00 Birr</p>
+                        </span>
+                    </div>
+                </div>
                 <div class="dashboardDataAnalys">
                     <div class="pie_chart_1">
                         <p class="picarttext">Active users</p>
                         <canvas id="incomeChart"></canvas>
                         <p class="active_users_in_number"></p>
                     </div>
-                    <div class="bar_chart">
-                        <canvas id="financialChart"></canvas>
-                    </div>
                     <div class="graphical_chart">
                         <canvas id="registrationChart"></canvas>
                     </div>
+                    
                 </div>  
                 <br>
                 <div class="usersTable">
@@ -223,7 +245,8 @@
                             <tr>
                                 <th></th>
                                 <th>ID</th>
-                                <th>Name</th>
+                                <th>Full Name</th>
+                                <th>User Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Monthly Attendance</th>

@@ -1,20 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 body {
     font-family: "Poppins", sans-serif;
     min-height: auto;
-    overflow: hidden;
-    background: #6d5fb41a;
+    /* overflow: hidden; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    background: #999999;
 }
-.container_main{
-    width: 98%;
-    height: 98%;
-    background: #e3e2ef00;
+::-webkit-scrollbar{
+    width: 0;
+}
+.container_main{ 
+    width: 1350px;
+    height: 630px;
     position: absolute;
     border-radius: 10px;
     display: flex;
-    box-shadow: 10px 10px 15px -20px #555, -10px -10px 15px -20px #555;
     margin-top: 0px;
+    background: #282828;
 }
 .section2{
     display: flex;
@@ -37,28 +41,31 @@ nav{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 98vh;
+    min-height: 100%;
     width: 230px;
-    background: #6d5fb48e;
+    border-right:1px solid #ffffff25 ;
+    background: #262626;
     position: absolute;
-    box-shadow: 3px 0px 15px -4px #6d5fb4;
     border-radius: 10px 0 0 10px;
 }
 .logo_top{
-    font-family: "Poppins", sans-serif;
+font-family: "Poppins", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: italic;
   font-variation-settings:"wdth" 100;
   font-size: 30px;
   position: relative;
-  top: 10px;
-  left: 30px;
+  top: 0px;
+  left: 25px;
   color: #fff;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  width: 150px;
 }
-.edi2{
-    display: none;
-    scale: 0;
+.logo_top img{
+    width: 30px;
 }
 nav a{
     text-decoration: none;
@@ -79,7 +86,7 @@ nav a{
     margin-top: 30px;
 }
 nav a:hover{
-    background: #ffffff11;
+    background: #d2c9fb18;
 }
 nav a:nth-child(8) p{
     margin-left: 7px;
@@ -93,7 +100,7 @@ nav a span{
     justify-content: center;
     display: flex;
     flex-direction: column;
-    background: #ffffff3b;
+    background: #d2c9fb99;
     text-align: center;
 }
 nav .notification_red{
@@ -112,39 +119,49 @@ nav .notification_red{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 29px;
     color: #fff;
-
 }
-
 .form_btn{
     position: relative;
     left: 130px;
     display: flex;
-    gap: 30px;
+    gap: 30px; 
 }
 .picarttext{
     font-size: 18px;
+    color: #fff;
 }
 .form_btn span{
     width: 130px;
     height: 60px;
-    background: #6d5fb475;
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    box-shadow: 3px 3px 10px 0 #6d5fb455;
     transition: .2s;
+    cursor: pointer;
+}
+.form_btn span:nth-child(1){
+    background: #ffffff2d;
+    border: 1px solid #ffffff5f;
+    box-shadow: none;
 }
 .form_btn span:hover{
     scale: 1.09;
 }
-.form_btn span a{
+#hide_btn{
     color: #fff;
+}
+.form_btn span a{
+    color: #333;
     text-decoration: none;
     display: flex;
     align-items: center;
     /* justify-content: center; */
     gap: 10px;
+}
+.form_btn span:nth-child(1) a{
+    color: #fff;
 }
 .form_btn section{
     font-size: 25px;
@@ -158,7 +175,8 @@ nav .notification_red{
     left: 553px;
     margin-left: 0px;
     width: 35px;height: 35px;
-    background-color: #6d5fb4;
+    background-color: #9a8be3;
+    box-shadow: 3px 3px 15px -5px #9a8be388;
     text-align: center;
     border-radius: 50%;
     display: flex;
@@ -166,17 +184,49 @@ nav .notification_red{
     justify-content: center;
     color: #fff;
 }
+/* Style the checkbox itself */
+input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background-color: #fff; /* Default background color */
+    cursor: pointer;
+    position: relative;
+}
+
+/* Change the background color when the checkbox is checked */
+input[type="checkbox"]:checked {
+    background-color: #9a8be3; /* Change background to blue when checked */
+    border: none;
+}
+
+/* Keep the default checkmark visible */
+input[type="checkbox"]:checked::after {
+    content: '\2713'; /* Unicode checkmark symbol */
+    color: white; /* Color of the checkmark */
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #searchBar {
     padding: 8px;
     width: 300px;
     font-size: 16px;
-    border: 1px solid #ffffff00;
+    border: 1px solid #ffffff20;
     outline: none;
+    color: #fff;
     border-radius: 40px;
     height: 30px;
     text-indent: 15px;
     margin-left: 100px;
-    background: #ffff;
+    background: #fbfbfb23;
+}
+#searchBar::placeholder{
+    color: #fff;
 }
 .usersTable {
     width: 98.5%;
@@ -185,9 +235,9 @@ nav .notification_red{
     padding: 15px 0;
     margin-left: 20px;
     position: relative;
-    margin-top: 260px;
-    border-radius: 10px 0 0 0;
-    background: white;
+    margin-top: 290px;
+    border-radius: 7px 0 0 0;
+    background: #212121;
 }
 .usersTable::-webkit-scrollbar{
     width: 0;
@@ -198,7 +248,7 @@ table {
     border: none;
     border-spacing: 0;
     border-radius: 15px 0 0 0;
-    background: #fff;
+    background: transparent;
     min-height: 100%;
     position: absolute;
     top: 0;
@@ -211,7 +261,7 @@ th, td {
     text-align: left;
     white-space: nowrap;
     border: none;
-}
+} 
 tr th, 
 tr td {
     border-bottom: 1px solid #55555530;
@@ -223,7 +273,8 @@ th{
     background-color: transparent;
     z-index: 10;
     border: none;
-    color: #555;
+    color: #fff;
+    font-weight: 400;
     /* visibility: hidden; */
 }
 .user-checkbox{
@@ -234,7 +285,7 @@ tr:first-child th:first-child{
 }
 tr:first-child th{
     border: none;
-    background: #f5f5f5;
+    /* background: #f5f5f5; */
 }
 tr:first-child td{
     background: transparent;
@@ -242,7 +293,7 @@ tr:first-child td{
 tr td{
     /* border: none; */
     background: transparent;
-    color: #333;
+    color: #fff;
 }
 th:first-child {
     border-top-left-radius: 6px; /* Top left corner */
@@ -259,13 +310,10 @@ tbody tr:last-child td:first-child {
 tbody tr:last-child td:last-child {
     border-bottom-right-radius: 6px; /* Bottom right corner */
 }
-/* tr{
-    background: #8579c2;
-} */
 thead{
     position: sticky; 
     top: -20px;
-    background-color: #fff;
+    background-color: #404040;
     z-index: 10;
     width: 100%;
     overflow: auto;
@@ -282,7 +330,7 @@ thead{
     flex-direction: column;
     margin-top: -10px;
     height: 50px;
-    color: #555;
+    color: #fff;
 }
 .top_text h3{
     font-size: 20px;
@@ -290,7 +338,7 @@ thead{
 }
 .top_text p{
     font-size: 15px;
-    margin-top: -50px;
+    margin-top: -30px;
 }
 .dashboardDataAnalys {
     position: absolute;
@@ -299,14 +347,14 @@ thead{
     opacity: 100%;
     width: 100%;
     height: auto;
-    top: 100px;
-    margin-left: 15px;
+    top: 130px;
+    margin-left: 20px;
     gap: 30px;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
-    background: #6d5fb48e;
-    box-shadow: 10px 10px 20px -20px #555555f6,inset 5px 5px 10px -5px #ffffff53;
+    border-radius: 10px;
+    background: #ffffff0e;
+    border: 1px solid #ffffff34;
 }
 .pie_chart_1{
     display: flex;
@@ -316,11 +364,10 @@ thead{
     width: 300px;
     height: 220px;
     border-radius: 10px;
+    scale: 0.9;
 }
 .picarttext{
     margin-top: 20px;
-    color: #fff;
-
 }
 .bar_chart{
     width: 450px;
@@ -417,7 +464,6 @@ label{
 .editing_box button:hover{
     scale: 1.05;
 }
-
 .edit_destroy{
     font-size: 21px;
     color: #fff;
@@ -427,15 +473,16 @@ label{
     cursor: pointer;
     z-index: 1000;
 }
-.logo_top img{
-    width: 30px;
-}
 .user_edit_delete{
-     background: #ed4646;
+    background: #ed4646;
     position: absolute;
     top: 30px;
     right: 135px;
 }
+/* .table-cell:last-child{
+    scale: 0;
+    pointer-events: none;
+} */
 .week-selector{
     margin-top: 5px;
     margin-left: 70%;
@@ -454,7 +501,7 @@ label{
     justify-content: center;
 }
 #current-week{
-    color: #333;
+    color: #fff;
 }
 #next-week{
     width: 20px;height: 20px;
@@ -465,6 +512,10 @@ label{
     align-items: center;
     display: flex;
     justify-content: center;
+}
+.edi2{
+    display: none;
+    scale: 0;
 }
 /* Loading Animation Styles */
 .loading-overlay {
@@ -521,6 +572,7 @@ label{
 .loading-spinner {
     animation: spin 1s ease-in-out infinite, pulse 2s ease-in-out infinite;
 }
+/* Attendance dropdown styles */
 .attendance-dropdown {
     position: relative;
     display: inline-block;
@@ -529,7 +581,7 @@ label{
 
 .attendance-dropbtn {
     background-color: transparent;
-    color: #333;
+    color: #fff;
     padding: 10px 8px;
     font-size: 12px;
     /* border: 1px solid #dddddd11; */
@@ -546,14 +598,14 @@ label{
 }
 
 .attendance-dropbtn:hover {
-    background-color: #08080838;
-    border-color: #878787;
+    background-color: #e9ecef1e;
+    border-color: #adb5bd;
 }
 
 .attendance-dropdown-content {
     display: none;
     position: absolute;
-    background-color: #333;
+    background-color: #fff;
     min-width: 120px;
     z-index: 1000;
     border-radius: 3px;
@@ -566,12 +618,12 @@ label{
 }
 .attendance-dropdown-content a {
     text-decoration: none;
-    color: #fff;
+    color: #333;
 }
 .attendance-dropdown-content a .attendanceday_txt{
     text-decoration: none;
-    color: #fff;
-    font-size: 13px;
+    color: #333;
+    font-size: 15px;
     margin-left: 10px;
 }
 .attendanceday_txt{
@@ -591,9 +643,9 @@ a{
 }
 @media (max-width:768px) {
     body{
-        background: #e3e2ef00;
+        background: #282828;
     }
     .container_main{
-        border: 1px solid #00000027;
+        border: 1px solid #ffffff27;
     }
 }

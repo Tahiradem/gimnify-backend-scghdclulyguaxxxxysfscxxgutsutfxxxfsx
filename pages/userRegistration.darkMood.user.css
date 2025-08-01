@@ -1,291 +1,368 @@
+/* userRegistration.darkMood.user.css */
+/* Vibrant Gym Color Palette */
+:root {
+  --primary: #333333;
+  --primary-dark: #222222;
+  --secondary: #ffffff;
+  --accent: #955be1;
+  --accent-secondary: #4D9EFF;
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --danger: #F44336;
+  --info: #2196F3;
+  --light-bg: #1a1a1a;
+  --dark-bg: #121212;
+  --card-bg: #242424;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --text-muted: #b0b0b0;
+  --border-light: #3a3a3a;
+  --border-dark: #424242;
+  --shadow-level-1: rgba(151, 77, 255, 0.2);
+  --shadow-level-2: rgba(151, 77, 255, 0.3);
+  --shadow-level-3: rgba(151, 77, 255, 0.4);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
 body {
-    min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #a4a4a4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 20px;
+  background-color: var(--secondary);
+  color: var(--text-light);
+  min-height: 100vh;
+  padding: 20px;
 }
 
-::-webkit-scrollbar {
-    width: 0;
-}
-
+/* Container Styles */
 .container {
-    display: flex;
-    flex-direction: column;
-    background: #303030;
-    width: 90%;
-    max-width: 1200px;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  min-height: calc(100vh - 40px);
 }
 
-h1, h3 {
-    color: #fff;
-    margin-bottom: 20px;
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--secondary);
+  font-size: 2.2rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-light);
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    padding: 0 0 70px 0;
+/* Form Layout */
+#addUserForm {
+  display: flex;
+  flex-direction: column;
 }
 
 .form {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
 .block1, .block2, .block3 {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    flex: 1;
-    min-width: 300px;
+  background-color: var(--primary-dark);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
-input, select {
-    width: 100%;
-    height: 35px;
-    border-radius: 5px;
-    border: 1px solid #ffffff4f;
-    outline: none;
-    background: #ffffff24;
-    padding: 0 10px;
-    font-size: 15px;
-    color: #fff;
-    box-sizing: border-box;
+.block1:hover, .block2:hover, .block3:hover {
+  transform: translateY(-5px);
+}
+
+/* Form Elements */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="time"],
+select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: var(--text-light);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--shadow-level-1);
 }
 
 input::placeholder {
-    color: #ccc;
+  color: var(--text-muted);
+  opacity: 0.7;
 }
 
-label {
-    color: #fff;
-    font-size: 14px;
-    margin-bottom: -10px;
+/* Checkbox Styling */
+input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-light);
+  border-radius: 5px;
+  background-color: var(--primary);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
-/* Specific element adjustments */
-#ID {
-    width: 80px;
+input[type="checkbox"]:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 
-#age {
-    width: 70px;
+input[type="checkbox"]:checked::after {
+  content: '\2713';
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-#sex {
-    width: 100px;
+/* Special Form Groups */
+.id_pay, .age_se, .hei_we, .body_measure, .abc {
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
-.hei_we, .age_se {
-    display: flex;
-    gap: 15px;
-}
-
-.hei_we input, .age_se input {
-    width: 100%;
+.id_pay {
+  justify-content: space-between;
 }
 
 .pay_not {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 5px;
-}
-
-#paymentStatus {
-    width: auto;
-    margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #pay_label {
-    color: #fff;
-    margin: 0;
+  margin-bottom: 0;
 }
 
-/* Block 3 specific styles */
-.block3 {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 15px;
-    border-radius: 8px;
+/* Membership Section */
+.membership-section {
+  background-color: rgba(149, 91, 225, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(149, 91, 225, 0.3);
+}
+
+.membership-section h3 {
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+#priceDisplay {
+  padding: 10px;
+  background-color: var(--primary);
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+#priceValue {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+/* Supplements Section */
+#supplementsContainer {
+  margin-bottom: 15px;
 }
 
 .supplement-entry {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .supplement-entry input, 
 .supplement-entry select {
-    flex: 1;
-    min-width: 100px;
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* Button Styles */
+button {
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #addSupplement {
-    width: auto;
-    padding: 0 15px;
-    margin-top: 10px;
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px dashed var(--accent);
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
-/* Dietary preferences checkboxes */
-.dietary-checkboxes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
+#addSupplement:hover {
+  background-color: rgba(149, 91, 225, 0.1);
+  border-style: solid;
 }
 
-.dietary-checkboxes label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 13px;
-    margin: 0;
+button[type="submit"] {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(149, 91, 225, 0.4);
+  width: 200px;
+  margin: 20px auto 0;
+  margin-bottom: 20px;
 }
 
-.dietary-checkboxes input {
-    width: auto;
+button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(149, 91, 225, 0.6);
 }
 
-/* Button styles */
-button {
-    width: 150px;
-    height: 40px;
-    border: none;
-    border-radius: 6px;
-    background: #8979d5;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 20px;
-    align-self: flex-end;
+/* Headings within form */
+h3 {
+  color: var(--secondary);
+  margin: 20px 0 15px;
+  font-size: 1.1rem;
+  position: relative;
+  padding-bottom: 5px;
 }
 
-button:hover {
-    background: #9a8be0;
-    transform: translateY(-2px);
+h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1000px) {
-    .form {
-        flex-direction: column;
-    }
-    
-    .block1, .block2, .block3 {
-        margin-left: 0;
-        width: 100%;
-    }
-}
-
-/* Time inputs */
-input[type="time"] {
-    padding: 0 8px;
-}
-
-/* Select dropdown styling */
-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-    padding-right: 30px;
-}
-
-option {
-    background: #3d3d3d;
-}
-
-/* Checkbox styling */
-input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    accent-color: #8979d5;
-}
-
-/* Section headers */
-.section-header {
-    color: #fff;
-    font-size: 16px;
-    margin: 15px 0 5px 0;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #ffffff4f;
-}
-.supl_btn{
-    background: #fff;
-    color: #333;
-}
-/* Loading Animation Styles */
+/* Loading Animation */
 .loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(40, 40, 40, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
 
 .loading-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
 }
 
 .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #9a8be3;
-    animation: spin 1s ease-in-out infinite;
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 1s ease-in-out infinite, pulse 2s ease-in-out infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-.loading-spinner {
-    /* existing styles */
-    transition: border-color 0.3s ease;
-    will-change: transform;
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* Optional: Add a pulsing effect to make it more noticeable */
 @keyframes pulse {
-    0%, 100% {
-        transform: scale(1) rotate(0deg);
-    }
-    50% {
-        transform: scale(1.05) rotate(180deg);
-    }
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
 }
 
-.loading-spinner {
-    animation: spin 1s ease-in-out infinite, pulse 2s ease-in-out infinite;
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .form {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-.body_measure{
-    display: flex;
+
+@media (max-width: 768px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 20px;
+  }
+  
+  .id_pay, .age_se, .hei_we, .body_measure, .abc {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
+  }
+  
+  .pay_not {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    position: static;
+    transform: none;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .supplement-entry {
+    flex-direction: column;
+  }
 }

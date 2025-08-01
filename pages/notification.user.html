@@ -15,7 +15,7 @@
 <body>
     <div class="main-container">
         <nav>
-            <div class="logo_top">Gimnify</div>
+            <div class="logo_top"> <img src="../images/Gymnify_transparent_white_only_logo.png" alt=""> Gymnify</div>
             <div class="nav_items">
                 <a href="./Dashboard.html"><span><i class="fa fa-chart-line"></i></span><p>Dashboard</p></a>
                 <a href=""><span><i class="fa fa-bell"></i><div class="notification_red"></div></span><p>Notifications</p></a>
@@ -61,12 +61,14 @@ async function notificationGotting() {
 
         // Update the notification count in the DOM
         document.querySelector('.total_notification').innerHTML = 
-            `${gymHouse.adminNotifications.length} Notification`;
+            `${gymHouse.notificationOperator.length} Notification`;
 
         // Loop through the `users` array inside the `gymHouse` object
         const notificationsContainer = document.querySelector(".all_notifications"); // Assuming you have a <ul> or <ol> with this class
-
-gymHouse.adminNotifications.forEach((element, index) => {
+        
+        document.querySelector('.notification_red').innerHTML = gymHouse.notificationOperator.length
+        
+gymHouse.notificationOperator.forEach((element, index) => {
     // Create the <li> element
     const listItem = document.createElement("li");
 

@@ -14,13 +14,12 @@ document.getElementById('save-btn').addEventListener('click', async () => {
           }
       });
   });
-  if (!income || !outcome) {
-      alert("Please enter values for both income and outcome.");
-      return;
-  }
+//   if (!income || !outcome) {
+//       return;
+//   }
 
   if (!email) {
-      alert("No email found in localStorage. Please log in again.");
+      alert("No email found.");
       return;
   }
 
@@ -38,13 +37,11 @@ document.getElementById('save-btn').addEventListener('click', async () => {
       });
 
       const result = await response.json();
-      alert(result.message);
 
       document.getElementById('income').value = '';
       document.getElementById('outcome').value = '';
       window.open("./Dashboard.html", "_self");
   } catch (error) {
       console.error('Error:', error);
-      alert("An error occurred while saving the finance data.");
   }
 });

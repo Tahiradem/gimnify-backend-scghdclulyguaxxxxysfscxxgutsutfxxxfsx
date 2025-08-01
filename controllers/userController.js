@@ -19,7 +19,7 @@ exports.addUser = async (req, res) => {
         }
 
         let gymHouse = await Gym.findOne({ email });
-        const requiredFields = ['name', 'email', 'userName', 'password', 'phone'];
+        const requiredFields = ['fullName', 'email', 'userName', 'password', 'phone'];
         const missingFields = requiredFields.filter(field => !user[field]);
         
         if (missingFields.length > 0) {

@@ -1,230 +1,438 @@
-body {
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    /* overflow: hidden; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #999999;
-}
-.setting_page{
-    width: 1340px;
-    height: 630px;
-    background: #282828;
-    position: absolute;
-    border-radius: 10px;
-    display: flex;
-    box-shadow: 10px 10px 15px -20px #555, -10px -10px 15px -20px #555;
-    margin-top: -10px;
-}
-/* navigation start*/
-nav{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100%;
-    width: 230px;
-    border-right:1px solid #ffffff25 ;
-    background: #262626;
-    position: absolute;
-    border-radius: 10px 0 0 10px;
-}
-.logo_top{
-    font-family: "Noto Serif", serif;
-  font-optical-sizing: auto;
-  font-weight: 900;
-  font-style: italic;
-  font-variation-settings:"wdth" 100;
-  font-size: 30px;
-  position: relative;
-  top: 0px;
-  left: 30px;
-  color: #fff;
-}
-nav a{
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    margin-left: 15px;
-    width: 200px;
-    border-radius: 5px;
-}
-.nav_items{
-    margin-top: 30px;
-}
-nav a:hover{
-    background: #d2c9fb18;
-}
-nav a:nth-child(8) p{
-    margin-left: 7px;
-}
-nav a span{
-    margin-left: 10px;
-    width: 35px;
-    height: 35px;
-    border-radius: 7px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    background: #d2c9fb99;
-    text-align: center;
-}
-nav .notification_red{
-    background: #ff4b4b;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    margin-top: -10px;
-    position: relative;
-    top: -8px;
-    left: 6px;
-}
-/*Navigation End */
-.section_main{
-    width: 80%;
-    height: 100%;
-    margin-left: 250px;
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-}
-.section_main::-webkit-scrollbar{
-    width: 0;
-}
-.section_main .txt_1{
-    font-size: 30px;
-    font-weight: 700;
-    color: #fff;
-}
-.dark_light_mood{
-    display: flex;
-    gap: 10px;
-    color: #fff;
-    margin-top: 60px;
-    margin-left: 20px;
-    width: 130px;
-}
-.dark_light_mood i{
-    font-size: 30px;
-}
-.dark_light_mood p{
-    margin-top: 7px;
-}
-.show_time_left{
-    display: flex;
-    gap: 10px;
-    color: #fff;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-.show_time_left i{
-    font-size: 30px;
-}
-.show_time_left p{
-    margin-top: 7px;
-}
-.language{
-    display: flex;
-    gap: 10px;
-    color: #fff;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-.language i{
-    font-size: 30px;
-}
-.language p{
-    margin-top: 7px;
-    text-decoration: line-through;
+/* Vibrant Gym Color Palette */
+:root {
+  --primary: #333333;
+  --primary-dark: #222222;
+  --secondary: #ffffff;
+  --accent: #955be1;
+  --accent-secondary: #4D9EFF;
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --danger: #F44336;
+  --info: #2196F3;
+  --light-bg: #f5f5f5;
+  --dark-bg: #333333;
+  --card-bg: #ffffff;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --text-muted: #757575;
+  --border-light: #e0e0e0;
+  --border-dark: #424242;
+  --shadow-level-1: rgba(151, 77, 255, 0.2);
+  --shadow-level-2: rgba(151, 77, 255, 0.3);
+  --shadow-level-3: rgba(151, 77, 255, 0.4);
 }
 
-.membership-container{
-    margin-top: 0px;
-    width: 100%;
-    height: auto;
-    /* background: red; */
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
+
+body {
+  background-color: var(--light-bg);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+/* Main Container */
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Navigation - Dark Sidebar */
+nav {
+  width: 250px;
+  background: var(--dark-bg);
+  color: var(--text-light);
+  padding: 20px 0;
+  height: 100vh;
+  position: fixed;
+  z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.logo_top {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 30px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-light);
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.logo_top img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.nav_items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav_items a {
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.nav_items a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.nav_items a span {
+  margin-right: 15px;
+  font-size: 18px;
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.notification_red {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--danger);
+  border-radius: 50%;
+  top: -2px;
+  right: -2px;
+}
+
+.line_break_nav {
+  width: 80%;
+  height: 1px;
+  margin-left: 20px;
+  margin-top: 10px;
+  background: #ffffffbc;
+}
+
+/* Main Content Area */
+.section-main {
+  flex: 1;
+  margin-left: 250px;
+  padding: 30px;
+  background: var(--light-bg);
+  min-height: 100vh;
+  width: calc(100% - 250px);
+  overflow-x: hidden;
+}
+
+/* Settings Header */
+.settings-header {
+  margin-bottom: 30px;
+}
+
+.settings-header h1 {
+  font-size: 32px;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.settings-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Settings Grid Layout */
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+/* Settings Cards */
+.settings-card, .qr-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-light);
+}
+
+/* Settings Options */
+.settings-option {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.settings-option:last-child {
+  border-bottom: none;
+}
+
+.settings-option:hover {
+  transform: translateX(5px);
+}
+
+.option-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background: rgba(149, 91, 225, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.option-content {
+  flex: 1;
+}
+
+.option-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.option-content p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.option-toggle, .option-arrow {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 20px;
+}
+
+/* QR Card */
+.qr-card {
+  background: linear-gradient(135deg, rgba(149, 91, 225, 0.1), rgba(77, 158, 255, 0.1));
+  border: 1px solid rgba(149, 91, 225, 0.2);
+}
+
+.qr-content h3 {
+  font-size: 18px;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qr-content p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.qr-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+
+.qr-image img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border-light);
+  padding: 10px;
+  background: white;
+}
+
+.qr-image span {
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Membership Plans */
 .membership-container {
-    display: flex;
-    justify-content: space-between;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-light);
 }
-.membership-box {
-    /* border: 1px solid #ddd; */
-    padding: 15px;
-    width: 29.5%;
-    /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); */
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+
+.membership-container h2 {
+  font-size: 24px;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-input, button {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
+
+.membership-container p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 25px;
 }
-input{
-    border: 1px solid #ffffff25;
-    background: transparent;
-    border-radius: 7px;
-    outline: none;
-    color: #fff;
+
+.membership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
 }
-button{
-    margin: 10px auto;
-    width: 300px ;
-    height: 40px;
-    border-radius: 20px;
-    outline: none;
-    border: none;
-    font-size:18px;
+
+.membership-plan {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-h3{
-    color: #fff;
+
+.plan-header {
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
 }
-.attendance_linker{
-    position: absolute;
-    top: 20px;
-    right: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 180px;
-    height: 180px;
+
+.plan-header h3 {
+  font-size: 18px;
+  color: var(--text-dark);
 }
-.attendance_linker a{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    position: relative;
+
+.plan-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
 }
-.attendance_linker a img{
-    width: 100%;
-    height: 100%;
-    border-radius: 7px;
+
+.basic-accent {
+  background: var(--accent);
 }
-.attendance_linker p{
-    position: absolute;
-    width: 100%;
-    left: 200px;
-    text-decoration: underline;
+
+.plus-accent {
+  background: var(--accent-secondary);
 }
-@media (max-width:768px) {
-    body{
-    align-items: start;
-    justify-content: start;
-    background: #282828;
+
+.pro-accent {
+  background: var(--success);
 }
-.main-container{
-    border: 1px solid #ffffff27;
+
+.membership-plan input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
+
+.membership-plan input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--shadow-level-1);
+}
+
+.membership-plan input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Save Button */
+.save-button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--shadow-level-2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-level-3);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  nav {
+    width: 220px;
+  }
+  
+  .section-main {
+    margin-left: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    width: 80px;
+    overflow: hidden;
+  }
+  
+  .logo_top p, .nav_items a p {
+    display: none;
+  }
+  
+  .nav_items a {
+    justify-content: center;
+    padding: 15px 0;
+  }
+  
+  .nav_items a span {
+    margin-right: 0;
+  }
+  
+  .section-main {
+    margin-left: 80px;
+    padding: 20px;
+  }
+  
+  .membership-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .settings-header h1 {
+    font-size: 24px;
+  }
+  
+  .settings-card, .qr-card, .membership-container {
+    padding: 20px 15px;
+  }
 }

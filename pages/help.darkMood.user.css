@@ -1,199 +1,312 @@
-body{
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #282828;
-    overflow: hidden;
+:root {
+    --primary-color: #4CAF50;
+    --primary-hover: #45a049;
+    --secondary-color: #2196F3;
+    --text-color: #333333;
+    --light-text: #666666;
+    --background-color: #f5f7fa;
+    --card-bg: #ffffff;
+    --border-color: #e1e5eb;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --radius: 12px;
+    --transition: all 0.3s ease;
 }
-.container{
-    width: 1350px;
-    height: 630px;
-    display: flex;
-}
-.telegram_div{
-    width: 330px;
-    height: 96%;
-    background: #494949;
-    display: flex;
-    flex-direction: column;
-    margin-top: 7px;
-    border-radius: 20px;
-    margin-left: 20px;
-    border: 1px solid #ffffff3c;
-}
-.back_and_logo{
-    display: flex;
-    width: 70%;
-    justify-content: space-between;
-}
-.backTo{
-    color: #fff;
-    text-decoration: none;
-    display: flex;
-    gap: 7px;
-    font-size: 17px;
-    margin-top: 15px;
-    margin-left: 15px;
-    background: #fff;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-}
-.backTo i{
-    margin-top: 0px;
-    color: #565656;
-}
-.telegram_div h1{
-    color: #fff;
-    margin-left: 25px;
-    font-size: 26px;
-    font-weight: 500;
-    margin-top: 30px;
-}
-.telegram_qr_code{
-    width: 190px;
-    height: 190px;
-    border-radius: 20px;
-    margin: 0 auto;
-    border: 2px solid #d45ed220;
-}
-.telegram_link_copy{
-    cursor: pointer;
-    margin-left: 25px;
-    font-size: 18px;
-    margin-top: 30px;
-    color: #ece9ff;
-}
-.text_description_1{
-    width: 90%;
-    margin-left: 20px;
-    margin-top: 0px;
-    color: #fff;
-}
-.callUs_section{
-    display: flex;
-    margin-top: 10px;
-    flex-direction: column;
-    margin-left: 20px;
-    gap: 6px;
-}
-button{
-    cursor: pointer;
-}
-.callUs_section a{
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-.callUs_section i{
-    font-size: 21px;
-    margin-top: 0px;
-    color: #4747478c;
-}
-.email_div{
-    width: 930px;
-    height: 96%;
-    background: #494949;
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    border-radius: 20px;
-    margin-left: 40px;
-    border: 1px solid #ffffff3c;
-}
-.txt_1_email{
-    font-size: 30px;
-    font-weight: 700;
-    margin: 0 auto;
-    margin-top: 20px;
-    color: #fff;
-}
-.txt_1_email i{
-    font-weight: 200;
-    font-size: 25px;
-    margin-left: 5px;
-    color: #ab9df2;
-}
-.long_txt{
-    text-align: center;
-    width: 70%;
-    margin: 20px auto;
-    color: #fff;
-}
-.email_inputs{
-    width: 60%;
-    height: 80%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-top: 30px;
-}
-.email_div input{
-    border: none;
-    outline: none;
-    background: #e8e8e8;
-    border-radius: 8px;
-    text-indent: 10px;
-    font-size: 17px;
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.phone_num_email{
-    width: 47%;
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: var(--transition);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.back-button-container {
+    margin-bottom: 30px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.back-button:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.help-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.contact-method {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.section-header {
     display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
 }
-.phone_num_email input{
-    width: 90%;
-    height: 40px;
+
+.section-header i {
+    font-size: 28px;
+    color: var(--primary-color);
 }
-.phone_num_email span {
-    margin-right: 7px;
-    margin-top: 7px;
-    color: #fff;
+
+.section-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.description {
+    color: var(--light-text);
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    background-color: white;
+    padding: 15px;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.telegram-qr {
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.telegram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondary-color);
+    font-weight: 500;
+    padding: 10px 15px;
+    background-color: rgba(33, 150, 243, 0.1);
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-bottom: 20px;
+    position: relative;
+    transition: var(--transition);
+    border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.telegram-link:hover {
+    background-color: rgba(33, 150, 243, 0.2);
+}
+
+.copy-tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--text-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.telegram-link:hover .copy-tooltip {
+    opacity: 1;
+}
+
+.phone-section {
+    margin-top: 25px;
+}
+
+.phone-section h3 {
     font-size: 16px;
-  }
-::placeholder{
-    color: #474747;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--light-text);
 }
-.location_email{
-    width: 45%;
-    height: 40px;
+
+.phone-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.phone-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: var(--radius);
+    background-color: rgba(0, 0, 0, 0.03);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.phone-link:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+    transform: translateX(5px);
+}
+
+.phone-link i {
+    color: var(--primary-color);
+}
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.phone-input-group {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.country-code {
+    padding: 0 15px;
+    color: var(--light-text);
+    background: transparent;
+    font-weight: 500;
+}
+
+.phone-input-group input {
+    flex: 1;
     border: none;
+    padding: 12px 15px;
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+.location-select {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: rgba(0, 0, 0, 0.03);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.email-input, .message-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: rgba(0, 0, 0, 0.03);
+    color: var(--text-color);
+    resize: none;
+    transition: var(--transition);
+}
+
+.message-textarea {
+    min-height: 120px;
+}
+
+.email-input:focus, .message-textarea:focus, 
+.phone-input-group input:focus, .location-select:focus {
     outline: none;
-    background: #e8e8e8;
-    border-radius: 8px;
-    text-indent: 10px;
+    background-color: white;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+    border-color: var(--primary-color);
 }
-.email_emailer{
-    height: 40px;
-}
-.text_area_email{
-    height: 200px;
+
+.submit-button {
+    background-color: var(--primary-color);
+    color: white;
     border: none;
-    outline: none;
-    background: #e8e8e8;
-    border-radius: 8px;
-    text-indent: 10px;
-    font-size: 17px;
+    padding: 14px 20px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: var(--transition);
 }
-.email_div button{
-    width: 120px;
-    height: 35px;
-    outline: none;
-    border: none;
-    background: #878787;
-    border: 1px solid #fff;
-    font-size: 18px;
-    color: #fff;
-    border-radius: 20px;
+
+.submit-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
 }
-.email_div button i{
-    margin-left: 5px;
+
+.custom-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .help-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-numbers {
+        flex-direction: column;
+    }
+    
+    .telegram-link {
+        font-size: 14px;
+    }
 }
