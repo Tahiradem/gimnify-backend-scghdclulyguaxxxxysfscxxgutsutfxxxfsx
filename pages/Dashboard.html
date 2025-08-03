@@ -453,13 +453,20 @@
     <script src="./script_5.js"></script>
     <script>
       let darkMode = localStorage.getItem("colorMood");
-      const Room = document.querySelector("#styleRoom");
+      const Room = document. uerySelector("#styleRoom");
       const scriptRoom = document.querySelector("#scriptRoom");
       if (darkMode === "true") {
         Room.href = "./style.css";
       } else if (darkMode === "false") {
         Room.href = "./style2.css";
       }
+
+        // for notification count
+       const username = localStorage.getItem('username'); // Get username from local storage
+
+       const gymHouse = users.find(gym => gym.name === username);
+       document.querySelector('.notification_red').innerHTML = gymHouse.notificationOperator.length
+
     </script>
     <!-- Loading Animation -->
     <div class="loading-overlay" id="loadingOverlay">
