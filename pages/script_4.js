@@ -194,7 +194,7 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
                 label: 'Weekly Financial Report',
                 data: chartData,
                 borderColor: '#333',
-                backgroundColor: '#333', 
+                backgroundColor: '#ffff', 
                 tension: 0.4,
                 pointStyle: 'rect',
                 pointRadius: 5,
@@ -238,8 +238,8 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
                     }
                 },
                 tooltip: {
-                    titleColor: '#333',
-                    bodyColor: '#333',  
+                    titleColor: 'white',
+                    bodyColor: 'white',  
                     backgroundColor: 'rgba(0, 0, 0, 0.7)',
                     borderColor: '#6d5fb4',
                     borderWidth: 1,

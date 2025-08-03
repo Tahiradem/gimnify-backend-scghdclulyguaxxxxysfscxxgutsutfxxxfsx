@@ -1,190 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./style.css" id="styleRoom">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./style.css" id="styleRoom" />
     <!-- <link rel="stylesheet" href="style2.css"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="../images/Gymnify_header_logo.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Gymnify Admin Dashboard</title> 
-</head>
-<style></style>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="shortcut icon"
+      href="../images/Gymnify_header_logo.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Gymnify Admin Dashboard</title>
+  </head>
+  <style></style>
+  <body>
     <script>
-        if (typeof email === "undefined") {
-          const username = localStorage.getItem("username");
-          const email = localStorage.getItem("email");
-      
-          if (email) {
-            setInterval(() => {
-              fetch(`/send_email?email=${encodeURIComponent(email)}`)
-                .then(response => response.text())
-                .then(data => {
-                  console.log(data); // Optional: Logs the server's response
-                })
-                .catch(error => {
-                  console.error("Error sending email status:", error);
-                });
-            }, 60000); // Runs every 60 seconds
-          } else {
-            console.error("Username not found in local storage.");
-          }
-        }
-      </script>
-      
-    <div class="container_main" id="container_main">
-        <div class="editing_box">
-            <div class="edit_destroy" onclick="Distroy_editing_box()"><i class="fa fa-x"></i></div>
-            <p class="txt_edit_name">username</p>
-            <br>
-            <span class="edit_input_field">
-                <div>
-    <label for="">Username</label>
-    <input type="text" name="username" placeholder="username" class="edit_username">
-</div>
-                <div>
-                    <label for="">Phone number</label>
-                    <input type="tel" name="phone" placeholder="phone" class="edit_phone">
-                </div>
-                <div>
-                    <label for="">Age</label>
-                    <input type="number" name="age" placeholder="age" class="edit_age">
-                </div>
-                <div>
-                    <label for="">Height</label>
-                    <input type="number" name="height" placeholder="height" class="edit_height">
-                </div>
-                <div>
-                    <label for="">Weight</label>
-                    <input type="number" name="weight" placeholder="weight" class="edit_weight">
-                </div>
-                <div>
-                    <label for="">Payment Date</label>
-                    <input type="text" name="paymentDate" placeholder="paymentDate" class="edit_paymentDate">
-                </div>
-                <div>
-                    <label for="">Exercise Time</label>
-                    <input type="text" name="exerciseTimePerDay" placeholder="exerciseTimePerDay" class="edit_exerciseTimePerDay">
-                </div>
-                <div>
-                    <label for="">Notification Time</label>
-                    <input type="text" name="notificationTime" placeholder="notificationTime" class="edit_notificationTime">
-                </div>
-                <div>
-                    <label for="">Health Status</label>
-                    <input type="text" name="healthStatus" placeholder="healthStatus" class="edit_healthStatus">
-                </div>
-                <div>
-                    <label for="">Exercise Type</label>
-                    <input type="text" name="exerciseType" placeholder="exerciseType" class="edit_exerciseType">
-                </div>
-                <div>
-                    <label for="">Entering Time</label>
-                    <input type="text" name="enteringTime" placeholder="enteringTime" class="edit_enteringTime">
-                </div>
-                <div class="editing_box">
-                    <!-- Existing fields... -->
-                    <div class="edi2">
-                        <div>
-                            <label for="">Activity Level</label>
-                            <select name="activityLevel" class="edit_activityLevel">
-                                <option value="Sedentary">Sedentary</option>
-                                <option value="Lightly Active">Lightly Active</option>
-                                <option value="Moderately Active">Moderately Active</option>
-                                <option value="Very Active">Very Active</option>
-                                <option value="Extremely Active">Extremely Active</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="">Fitness Goal</label>
-                            <select name="fitnessGoal" class="edit_fitnessGoal">
-                                <option value="Weight Loss">Weight Loss</option>
-                                <option value="Muscle Gain">Muscle Gain</option>
-                                <option value="Maintenance">Maintenance</option>
-                                <option value="Improve Endurance">Improve Endurance</option>
-                                <option value="General Fitness">General Fitness</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="">Body Fat (%)</label>
-                            <input type="number" name="bodyFat" placeholder="bodyFat" class="edit_bodyFat">
-                        </div>
-                        <div>
-                            <label for="">Metabolic Health</label>
-                            <select name="metabolicHealth" class="edit_metabolicHealth">
-                                <option value="Normal">Normal</option>
-                                <option value="Slow">Slow</option>
-                                <option value="Fast">Fast</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="">Medical Conditions</label>
-                            <input type="text" name="medicalConditions" placeholder="medicalConditions" class="edit_medicalConditions">
-                        </div>
-                        <div>
-                            <label for="">Meal Frequency</label>
-                            <select name="mealFrequency" class="edit_mealFrequency">
-                                <option value="1-2 meals">1-2 meals</option>
-                                <option value="3 meals">3 meals</option>
-                                <option value="4-5 meals">4-5 meals</option>
-                                <option value="6+ meals">6+ meals</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="">Supplements</label>
-                            <input type="text" name="supplements" placeholder="Comma-separated supplements" class="edit_supplements">
-                            <small>Enter supplements separated by commas (e.g., Protein,Creatine,Multivitamin)</small>
-                        </div>
-                    </div>
+      if (typeof email === "undefined") {
+        const username = localStorage.getItem("username");
+        const email = localStorage.getItem("email");
 
-                    <!-- Existing buttons... -->
-                </div>
-            </span>
-            <button class="save_button" onclick="">save</button>
-            <button class="user_edit_delete">Delete</button>
+        if (email) {
+          setInterval(() => {
+            fetch(`/send_email?email=${encodeURIComponent(email)}`)
+              .then((response) => response.text())
+              .then((data) => {
+                console.log(data); // Optional: Logs the server's response
+              })
+              .catch((error) => {
+                console.error("Error sending email status:", error);
+              });
+          }, 60000); // Runs every 60 seconds
+        } else {
+          console.error("Username not found in local storage.");
+        }
+      }
+    </script>
+
+    <div class="container_main" id="container_main">
+      <div class="editing_box">
+        <div class="edit_destroy" onclick="Distroy_editing_box()">
+          <i class="fa fa-x"></i>
         </div>
-        <nav>
-            <div class="logo_top"> <img src="../images/Gymnify_transparent_white_only_logo.png" alt=""> Gymnify</div>
-            <div class="nav_items">
-                <a href=""><span><i class="fa fa-chart-line"></i></span><p>Dashboard</p></a>
-                <a href="notification.user.html"><span><i class="fa fa-bell"></i><div class="notification_red"></div></span><p>Notifications</p></a>
-                <a href="../index.html"><span><i class="fa fa-home"></i></span><p>Home</p></a>
-                <a href="../index.html#service"><span><i class="fa fa-tag"></i></span><p>Service</p></a>
-                <a href="./payment.user.html"><span><i class="fa-regular fa-credit-card"></i></span><p>Subscription</p></a>
-                <a href="./poster.html"><span><i class="fa fa-feather-pointed"></i></span><p>Digital Posters</p></a>
-                <div class="line_break_nav" style="width: 80%; height: 1px; margin-left: 20px;margin-top: 10px; background: #ffffffbc;"></div>
-                <a href="./setting.user.html" style="margin-top: 10px;"><span><i class="fa fa-gear"></i></span><p>Setting</p></a>
-                <a href="./help.user.html"><span><i class="fa fa-question"></i></span><p>Help</p></a>
-                <a href="./profile.user.html"><span><i class="fa fa-user"></i></span><p>Profile</p></a>
+        <p class="txt_edit_name">username</p>
+        <br />
+        <span class="edit_input_field">
+          <div>
+            <label for="">Username</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              class="edit_username"
+            />
+          </div>
+          <div>
+            <label for="">Phone number</label>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="phone"
+              class="edit_phone"
+            />
+          </div>
+          <div>
+            <label for="">Age</label>
+            <input
+              type="number"
+              name="age"
+              placeholder="age"
+              class="edit_age"
+            />
+          </div>
+          <div>
+            <label for="">Height</label>
+            <input
+              type="number"
+              name="height"
+              placeholder="height"
+              class="edit_height"
+            />
+          </div>
+          <div>
+            <label for="">Weight</label>
+            <input
+              type="number"
+              name="weight"
+              placeholder="weight"
+              class="edit_weight"
+            />
+          </div>
+          <div>
+            <label for="">Payment Date</label>
+            <input
+              type="text"
+              name="paymentDate"
+              placeholder="paymentDate"
+              class="edit_paymentDate"
+            />
+          </div>
+          <div>
+            <label for="">Exercise Time</label>
+            <input
+              type="text"
+              name="exerciseTimePerDay"
+              placeholder="exerciseTimePerDay"
+              class="edit_exerciseTimePerDay"
+            />
+          </div>
+          <div>
+            <label for="">Notification Time</label>
+            <input
+              type="text"
+              name="notificationTime"
+              placeholder="notificationTime"
+              class="edit_notificationTime"
+            />
+          </div>
+          <div>
+            <label for="">Health Status</label>
+            <input
+              type="text"
+              name="healthStatus"
+              placeholder="healthStatus"
+              class="edit_healthStatus"
+            />
+          </div>
+          <div>
+            <label for="">Exercise Type</label>
+            <input
+              type="text"
+              name="exerciseType"
+              placeholder="exerciseType"
+              class="edit_exerciseType"
+            />
+          </div>
+          <div>
+            <label for="">Entering Time</label>
+            <input
+              type="text"
+              name="enteringTime"
+              placeholder="enteringTime"
+              class="edit_enteringTime"
+            />
+          </div>
+          <div class="editing_box">
+            <!-- Existing fields... -->
+            <div class="edi2">
+              <div>
+                <label for="">Activity Level</label>
+                <select name="activityLevel" class="edit_activityLevel">
+                  <option value="Sedentary">Sedentary</option>
+                  <option value="Lightly Active">Lightly Active</option>
+                  <option value="Moderately Active">Moderately Active</option>
+                  <option value="Very Active">Very Active</option>
+                  <option value="Extremely Active">Extremely Active</option>
+                </select>
+              </div>
+              <div>
+                <label for="">Fitness Goal</label>
+                <select name="fitnessGoal" class="edit_fitnessGoal">
+                  <option value="Weight Loss">Weight Loss</option>
+                  <option value="Muscle Gain">Muscle Gain</option>
+                  <option value="Maintenance">Maintenance</option>
+                  <option value="Improve Endurance">Improve Endurance</option>
+                  <option value="General Fitness">General Fitness</option>
+                </select>
+              </div>
+              <div>
+                <label for="">Body Fat (%)</label>
+                <input
+                  type="number"
+                  name="bodyFat"
+                  placeholder="bodyFat"
+                  class="edit_bodyFat"
+                />
+              </div>
+              <div>
+                <label for="">Metabolic Health</label>
+                <select name="metabolicHealth" class="edit_metabolicHealth">
+                  <option value="Normal">Normal</option>
+                  <option value="Slow">Slow</option>
+                  <option value="Fast">Fast</option>
+                </select>
+              </div>
+              <div>
+                <label for="">Medical Conditions</label>
+                <input
+                  type="text"
+                  name="medicalConditions"
+                  placeholder="medicalConditions"
+                  class="edit_medicalConditions"
+                />
+              </div>
+              <div>
+                <label for="">Meal Frequency</label>
+                <select name="mealFrequency" class="edit_mealFrequency">
+                  <option value="1-2 meals">1-2 meals</option>
+                  <option value="3 meals">3 meals</option>
+                  <option value="4-5 meals">4-5 meals</option>
+                  <option value="6+ meals">6+ meals</option>
+                </select>
+              </div>
+              <div>
+                <label for="">Supplements</label>
+                <input
+                  type="text"
+                  name="supplements"
+                  placeholder="Comma-separated supplements"
+                  class="edit_supplements"
+                />
+                <small
+                  >Enter supplements separated by commas (e.g.,
+                  Protein,Creatine,Multivitamin)</small
+                >
+              </div>
             </div>
-        </nav>
-        <div class="section2">
-            <div class="top_contents1">
-                <div class="top_text"><h3 id="adminName"></h3><br><p id="dayleft_for_payment">28 Days left</p></div>
-                <div class="searchBar"><input type="text" id="searchBar" placeholder="Search by name..." oninput="filterTable()"><i class="fa fa-search" id="search_icon"></i></div>
-                <div class="form_btn">
-                    <span><a href="./userRegistration.html"><section>+</section>Register</a></span>
-                    <span><a href="./financeInput.html"><section>+</section>Finance</a></span>
-                </div>
-            </div>
-            <div class="dashboard_display_btn" onclick="dashboard_display_btn()"
+
+            <!-- Existing buttons... -->
+          </div>
+        </span>
+        <button class="save_button" onclick="">save</button>
+        <button class="user_edit_delete">Delete</button>
+      </div>
+      <nav>
+        <div class="logo_top">
+          <img src="../images/Gymnify_transparent_white_only_logo.png" alt="" />
+          Gymnify
+        </div>
+        <div class="nav_items">
+          <a href=""
+            ><span><i class="fa fa-chart-line"></i></span>
+            <p>Dashboard</p></a
+          >
+          <a href="notification.user.html"
+            ><span
+              ><i class="fa fa-bell"></i>
+              <div class="notification_red"></div
+            ></span>
+            <p>Notifications</p></a
+          >
+          <a href="../index.html"
+            ><span><i class="fa fa-home"></i></span>
+            <p>Home</p></a
+          >
+          <a href="../index.html#service"
+            ><span><i class="fa fa-tag"></i></span>
+            <p>Service</p></a
+          >
+          <a href="./payment.user.html"
+            ><span><i class="fa-regular fa-credit-card"></i></span>
+            <p>Subscription</p></a
+          >
+          <a href="./poster.html"
+            ><span><i class="fa fa-feather-pointed"></i></span>
+            <p>Digital Posters</p></a
+          >
+          <div
+            class="line_break_nav"
             style="
-                position: absolute;
-                align-items: center;
-                justify-content: center;
-                display: flex;
-                cursor: pointer;
-                width: 20px;
-                left: 970px;
-                top: 60px;
-                color: #333;
-            "><i class="fa fa-eye-slash" id="hide_btn" style="font-size: 20px;"></i></div>
-            <div class="no_chart_display" style="
+              width: 80%;
+              height: 1px;
+              margin-left: 20px;
+              margin-top: 10px;
+              background: #ffffffbc;
+            "
+          ></div>
+          <a href="./setting.user.html" style="margin-top: 10px"
+            ><span><i class="fa fa-gear"></i></span>
+            <p>Setting</p></a
+          >
+          <a href="./help.user.html"
+            ><span><i class="fa fa-question"></i></span>
+            <p>Help</p></a
+          >
+          <a href="./profile.user.html"
+            ><span><i class="fa fa-user"></i></span>
+            <p>Profile</p></a
+          >
+        </div>
+      </nav>
+      <div class="section2">
+        <div class="top_contents1">
+          <div class="top_text">
+            <h3 id="adminName"></h3>
+            <br />
+            <p id="dayleft_for_payment">28 Days left</p>
+          </div>
+          <div class="searchBar">
+            <input
+              type="text"
+              id="searchBar"
+              placeholder="Search by name..."
+              oninput="filterTable()"
+            /><i class="fa fa-search" id="search_icon"></i>
+          </div>
+          <div class="form_btn">
+            <span
+              ><a href="./userRegistration.html"
+                ><section>+</section>
+                Register</a
+              ></span
+            >
+            <span
+              ><a href="./financeInput.html"
+                ><section>+</section>
+                Finance</a
+              ></span
+            >
+          </div>
+        </div>
+        <div
+          class="dashboard_display_btn"
+          onclick="dashboard_display_btn()"
+          style="
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            cursor: pointer;
+            width: 20px;
+            left: 970px;
+            top: 60px;
+            color: #333;
+          "
+        >
+          <i class="fa fa-eye-slash" id="hide_btn" style="font-size: 20px"></i>
+        </div>
+        <div
+          class="no_chart_display"
+          style="
             /* background-image: url('./images/photo-1532029837206-abbe2b7620e3.avif'); */
             background-position: center;
             background-repeat: no-repeat;
@@ -201,91 +359,91 @@
             display: none;
             font-weight: 600;
             color: #ffff;
-            ">
-            No Data Display Here
-            </div>
-                <div class="boxed_chart">
-                    <div class="box_reporter income_box_repo">
-                        <i class="fa fa-tag"></i>
-                        <span class="section_ofdetail_repo">
-                            <p class="text_1_of_repo">Income</p>
-                            <p class="text_2_of_repo income_number_data">0.00 Birr</p>
-                        </span>
-                    </div>
-                    <div class="box_reporter outcome_box_repo">
-                        <i class="fa fa-tag"></i>
-                        <span class="section_ofdetail_repo">
-                            <p class="text_1_of_repo">Cost</p>
-                            <p class="text_2_of_repo outcome_number_data">0.00 Birr</p>
-                        </span>
-                    </div>
-                    <div class="box_reporter revenue_box_repo">
-                        <i class="fa fa-tag"></i>
-                        <span class="section_ofdetail_repo">
-                            <p class="text_1_of_repo">Profit</p>
-                            <p class="text_2_of_repo revenue_number_data">0.00 Birr</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="dashboardDataAnalys">
-                    <div class="pie_chart_1">
-                        <p class="picarttext">Active users</p>
-                        <canvas id="incomeChart"></canvas>
-                        <p class="active_users_in_number"></p>
-                    </div>
-                    <div class="graphical_chart">
-                        <canvas id="registrationChart"></canvas>
-                    </div>
-                    
-                </div>  
-                <br>
-                <div class="usersTable">
-                    <table id="dynamicTable">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>ID</th>
-                                <th>Full Name</th>
-                                <th>User Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Monthly Attendance</th>
-                                <th>Time</th>
-                                <th>Plan</th>
-                                <th>Payment Day</th>
-                                <th>Exercise Type</th>
-                                <th>Upcoming Exercise</th>
-                                <th>Gym Time/Day</th>
-                                <th>Pay</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Height</th>
-                                <th>Weight</th>
-                                <th>Blood Type</th>
-                                <th>Registered</th>
-                                <th>Health Status</th>
-                                <th>Goal</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody"></tbody>
-                    </table>
-                </div>  
+          "
+        >
+          No Data Display Here
         </div>
+        <div class="boxed_chart">
+          <div class="box_reporter income_box_repo">
+            <i class="fa fa-tag"></i>
+            <span class="section_ofdetail_repo">
+              <p class="text_1_of_repo">Income</p>
+              <p class="text_2_of_repo income_number_data">0.00 Birr</p>
+            </span>
+          </div>
+          <div class="box_reporter outcome_box_repo">
+            <i class="fa fa-tag"></i>
+            <span class="section_ofdetail_repo">
+              <p class="text_1_of_repo">Cost</p>
+              <p class="text_2_of_repo outcome_number_data">0.00 Birr</p>
+            </span>
+          </div>
+          <div class="box_reporter revenue_box_repo">
+            <i class="fa fa-tag"></i>
+            <span class="section_ofdetail_repo">
+              <p class="text_1_of_repo">Profit</p>
+              <p class="text_2_of_repo revenue_number_data">0.00 Birr</p>
+            </span>
+          </div>
+        </div>
+        <div class="dashboardDataAnalys">
+          <div class="pie_chart_1">
+            <p class="picarttext">Active users</p>
+            <canvas id="incomeChart"></canvas>
+            <p class="active_users_in_number"></p>
+          </div>
+          <div class="graphical_chart">
+            <canvas id="registrationChart"></canvas>
+          </div>
+        </div>
+        <br />
+        <div class="usersTable">
+          <table id="dynamicTable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Pay</th>
+                <th>Payment Date</th>
+                <th>Monthly Attendance</th>
+                <th>Plan</th>
+                <th>Registered</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Exercise Type</th>
+                <th>Upcoming Exercise</th>
+                <th>Gym Time/Day</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>Blood Type</th>
+                <th>Time</th>
+                <th>Health Status</th>
+                <th>Goal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-    function showLoading() {
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    loadingOverlay.classList.add('active');
-}
+    //   function showLoading() {
+    //     const loadingOverlay = document.getElementById("loadingOverlay");
+    //     loadingOverlay.classList.add("active");
+    //   }
 
-// Hide loading animation
-function hideLoading() {
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    loadingOverlay.classList.remove('active');
-}
-</script>
+      // Hide loading animation
+      function hideLoading() {
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        loadingOverlay.classList.remove("active");
+      }
+    </script>
     <!-- <script src="./script-v3.js"></script> -->
     <!-- <script src="./script.js" id="scriptRoom"></script> -->
     <script src="./script_1.js"></script>
@@ -294,19 +452,18 @@ function hideLoading() {
     <script src="./script_4.js"></script>
     <script src="./script_5.js"></script>
     <script>
-        let darkMode = localStorage.getItem('colorMood')
-        const Room = document.querySelector('#styleRoom')
-        const scriptRoom =document.querySelector('#scriptRoom')
-        if(darkMode === "true"){
-            Room.href = './style.css'
-        }
-        else if (darkMode === "false"){
-            Room.href = './style2.css'
-        }
+      let darkMode = localStorage.getItem("colorMood");
+      const Room = document.querySelector("#styleRoom");
+      const scriptRoom = document.querySelector("#scriptRoom");
+      if (darkMode === "true") {
+        Room.href = "./style.css";
+      } else if (darkMode === "false") {
+        Room.href = "./style2.css";
+      }
     </script>
     <!-- Loading Animation -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
+      <div class="loading-spinner"></div>
     </div>
-</body>
+  </body>
 </html>
