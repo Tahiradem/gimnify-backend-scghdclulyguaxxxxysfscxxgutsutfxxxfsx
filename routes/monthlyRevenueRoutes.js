@@ -5,7 +5,7 @@ const logger = require('../config/logger');
 const cron = require('node-cron');
 
 // Initialize cron job when router loads
-cron.schedule('31 7 * * *', async () => {
+cron.schedule('31 10 * * *', async () => {
     logger.info('Running scheduled daily financial update...');
     try {
         await monthlyFinanceSavingController.runDailyFinancialUpdate();
