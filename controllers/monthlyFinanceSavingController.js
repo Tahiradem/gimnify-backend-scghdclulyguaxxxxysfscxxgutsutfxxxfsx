@@ -55,7 +55,7 @@ const updateMonthlyFinancialData = async () => {
             const dailyRecord = createDailyFinancialRecord(dailyIncome, dailyOutcome);
 
             // Check if we already have data for today
-            if (!monthlyIncome.days.has(currentDate) {
+            if (!monthlyIncome.days.has(currentDate)) {
                 monthlyIncome.days.set(currentDate, dailyRecord);
                 gym.monthlyIncome.set(currentMonth, monthlyIncome);
                 needsUpdate = true;
