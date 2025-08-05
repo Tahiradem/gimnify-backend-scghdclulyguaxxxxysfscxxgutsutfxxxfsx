@@ -48,8 +48,8 @@ app.use('/api', billRoutes);
 // Database connection
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gimnify';
 mongoose.connect(dbURI, { 
-    useNewUrlParser: true,
-  useUnifiedTopology: true,
+    // useNewUrlParser: true,
+//   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 30000, // 30 seconds for server selection
   socketTimeoutMS: 45000, // 45 seconds for socket operations
   connectTimeoutMS: 30000, // 30 seconds for initial connection

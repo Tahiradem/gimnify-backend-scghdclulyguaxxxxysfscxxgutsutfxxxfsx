@@ -4,16 +4,14 @@ const logger = require('./logger');
 
 // Enhanced MongoDB Connection Options
 const mongoOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  connectTimeoutMS: 30000,    // 30 seconds for initial connection
-  socketTimeoutMS: 45000,     // 45 seconds for socket operations
-  serverSelectionTimeoutMS: 30000, // 30 seconds to select server
-  maxPoolSize: 10,            // Maximum number of connections in pool
-  minPoolSize: 2,             // Minimum number of connections in pool
+  connectTimeoutMS: 30000,
+  socketTimeoutMS: 45000,
+  serverSelectionTimeoutMS: 30000,
+  maxPoolSize: 10,
+  minPoolSize: 2,
   retryWrites: true,
   retryReads: true,
-  heartbeatFrequencyMS: 10000 // Check connection every 10 seconds
+  heartbeatFrequencyMS: 10000
 };
 
 const dbURI = process.env.MONGODB_URI || '';
