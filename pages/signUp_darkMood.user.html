@@ -86,11 +86,12 @@
 
         const result = await response.json();
 
-        if (response.ok) {
-            window.open('login.html', '_self')
-        } else {
-            console.log(`Error: ${result.error}`);
-        }
+        // if (response.ok) {
+            
+        // } else {
+        //     console.log(`Error: ${result.error}`);
+        // }
+        window.open('login.html', '_self')
     } catch (error) {
         console.error('Error submitting form:', error);
     }

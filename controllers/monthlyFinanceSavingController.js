@@ -7,8 +7,7 @@ const createDailyFinancialRecord = (income, outcome) => {
     return {
         income: income || 0,
         outcome: outcome || 0,
-        revenue: (income || 0) - (outcome || 0),
-        day: moment().format('YYYY-MM-DD')
+        revenue: (income || 0) - (outcome || 0)
     };
 };
 
@@ -17,14 +16,26 @@ const updateMonthlyFinancialData = async () => {
     try {
         const gyms = await Gym.find({});
         const currentMonth = moment().format('MMM').toLowerCase();
-        const currentDay = moment().date();
+        const currentDayName = moment().format('dddd'); // e.g. "Monday"
         const currentDate = moment().format('YYYY-MM-DD');
 
         for (const gym of gyms) {
             let needsUpdate = false;
-            const monthlyIncome = gym.monthlyIncome.get(currentMonth) || { days: new Map() };
-            const monthlyOutcome = gym.monthlyOutcome.get(currentMonth) || { days: new Map() };
-            const monthlyRevenue = gym.monthlyRevenue.get(currentMonth) || { days: new Map() };
+            
+            // Initialize monthly data structure if not exists
+            if (!gym.monthlyIncome) gym.monthlyIncome = {};
+            if (!gym.monthlyOutcome) gym.monthlyOutcome = {};
+            if (!gym.monthlyRevenue) gym.monthlyRevenue = {};
+            
+            // Initialize month if not exists
+            if (!gym.monthlyIncome[currentMonth]) gym.monthlyIncome[currentMonth] = {};
+            if (!gym.monthlyOutcome[currentMonth]) gym.monthlyOutcome[currentMonth] = {};
+            if (!gym.monthlyRevenue[currentMonth]) gym.monthlyRevenue[currentMonth] = {};
+            
+            // Initialize day of week if not exists
+            if (!gym.monthlyIncome[currentMonth][currentDayName]) gym.monthlyIncome[currentMonth][currentDayName] = {};
+            if (!gym.monthlyOutcome[currentMonth][currentDayName]) gym.monthlyOutcome[currentMonth][currentDayName] = {};
+            if (!gym.monthlyRevenue[currentMonth][currentDayName]) gym.monthlyRevenue[currentMonth][currentDayName] = {};
 
             // Calculate daily totals from weekly data if available
             let dailyIncome = 0;
@@ -55,29 +66,35 @@ const updateMonthlyFinancialData = async () => {
             const dailyRecord = createDailyFinancialRecord(dailyIncome, dailyOutcome);
 
             // Check if we already have data for today
-            if (!monthlyIncome.days.has(currentDate)) {
-                monthlyIncome.days.set(currentDate, dailyRecord);
-                gym.monthlyIncome.set(currentMonth, monthlyIncome);
+            if (!gym.monthlyIncome[currentMonth][currentDayName][currentDate]) {
+                gym.monthlyIncome[currentMonth][currentDayName][currentDate] = dailyRecord;
                 needsUpdate = true;
             }
 
-            if (!monthlyOutcome.days.has(currentDate)) {
-                monthlyOutcome.days.set(currentDate, dailyRecord);
-                gym.monthlyOutcome.set(currentMonth, monthlyOutcome);
+            if (!gym.monthlyOutcome[currentMonth][currentDayName][currentDate]) {
+                gym.monthlyOutcome[currentMonth][currentDayName][currentDate] = dailyRecord;
                 needsUpdate = true;
             }
 
-            if (!monthlyRevenue.days.has(currentDate)) {
-                monthlyRevenue.days.set(currentDate, dailyRecord);
-                gym.monthlyRevenue.set(currentMonth, monthlyRevenue);
+            if (!gym.monthlyRevenue[currentMonth][currentDayName][currentDate]) {
+                gym.monthlyRevenue[currentMonth][currentDayName][currentDate] = dailyRecord;
                 needsUpdate = true;
             }
 
             // Calculate monthly totals
             if (needsUpdate) {
-                const incomeTotals = Array.from(monthlyIncome.days.values()).reduce((acc, day) => acc + day.income, 0);
-                const outcomeTotals = Array.from(monthlyOutcome.days.values()).reduce((acc, day) => acc + day.outcome, 0);
-                const revenueTotals = Array.from(monthlyRevenue.days.values()).reduce((acc, day) => acc + day.revenue, 0);
+                // Calculate totals by iterating through all days
+                let incomeTotals = 0;
+                let outcomeTotals = 0;
+                let revenueTotals = 0;
+                
+                for (const dayOfWeek in gym.monthlyIncome[currentMonth]) {
+                    for (const date in gym.monthlyIncome[currentMonth][dayOfWeek]) {
+                        incomeTotals += gym.monthlyIncome[currentMonth][dayOfWeek][date].income || 0;
+                        outcomeTotals += gym.monthlyOutcome[currentMonth][dayOfWeek][date].outcome || 0;
+                        revenueTotals += gym.monthlyRevenue[currentMonth][dayOfWeek][date].revenue || 0;
+                    }
+                }
 
                 // Update totals arrays
                 if (!gym.monthlyIncomeTotals.includes(incomeTotals)) {
@@ -114,8 +131,8 @@ const checkAndResetFinancialData = async () => {
             let needsReset = false;
 
             // Check if we have any monthly data
-            if (gym.monthlyIncome.size > 0) {
-                const lastEntryMonth = Array.from(gym.monthlyIncome.keys()).pop();
+            if (gym.monthlyIncome && Object.keys(gym.monthlyIncome).length > 0) {
+                const lastEntryMonth = Object.keys(gym.monthlyIncome).pop();
                 
                 // If month changed or it's the first day of month
                 if (lastEntryMonth !== currentMonth && currentDay === 1) {

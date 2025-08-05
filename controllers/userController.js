@@ -3,6 +3,8 @@ const Gym = require('../models/Gym');
 exports.getUsers = async (req, res) => {
     try {
         const gymHouses = await Gym.find();
+        // .maxTimeMS(30000) // 30 second timeout for this query
+            // .exec();
         res.json(gymHouses);
     } catch (error) {
         console.error('Error fetching data:', error);

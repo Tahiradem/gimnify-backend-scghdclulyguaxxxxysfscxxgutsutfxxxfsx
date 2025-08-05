@@ -483,42 +483,143 @@
                     </div>
                 </details>
             </div>
-            <div class="part_3">
-                <p class="txt_head_month">Your Monthly Financial Report</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Month</th>
-                            <th>Income</th>
-                            <th>Expense</th>
-                            <th>Revenue</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>June</td>
-                            <td>+20000</td>
-                            <td>-10000</td>
-                            <td>+ 10000</td>
-                        </tr>
-                        <tr>
-                            <td>July</td>
-                            <td>+23700</td>
-                            <td>-14400</td>
-                            <td>+ 9300</td>
-                        </tr>
-                        <tr>
-                            <td>August</td>
-                            <td>+46000</td>
-                            <td>-600</td>
-                            <td>+ 45400</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <!-- In your part_3 section, replace the static table with this dynamic version -->
+<div class="part_3">
+    <p class="txt_head_month">Your Monthly Financial Report</p>
+    <table id="financialReportTable">
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Income</th>
+                <th>Expense</th>
+                <th>Revenue</th>
+            </tr>
+        </thead>
+        <tbody id="financialReportBody">
+            <!-- Data will be inserted here dynamically -->
+        </tbody>
+    </table>
+</div>
         </div>
     </div>
     <script>
+       function getMonthName(monthAbbr) {
+            const months = {
+                'jan': 'Jan', 'feb': 'Feb', 'mar': 'Mar', 'apr': 'Apr',
+                'may': 'May', 'jun': 'Jun', 'jul': 'Jul', 'aug': 'Aug',
+                'sep': 'Sep', 'oct': 'Oct', 'nov': 'Nov', 'dec': 'Dec'
+            };
+            return months[monthAbbr.toLowerCase()] || monthAbbr;
+        }
+
+        // Function to calculate monthly totals from daily records
+        function calculateMonthlyTotals(monthlyData) {
+            let total = 0;
+            if (!monthlyData) return 0;
+            
+            for (const dayOfWeek in monthlyData) {
+                for (const date in monthlyData[dayOfWeek]) {
+                    const dayData = monthlyData[dayOfWeek][date];
+                    total += dayData.income || 0;
+                }
+            }
+            return total;
+        }
+
+        // Function to populate financial report
+        async function populateFinancialReport() {
+            try {
+                const response = await fetch("/users");
+                if (!response.ok) throw new Error("Network response was not ok");
+                const gymHouses = await response.json();
+                const gymHouse = gymHouses.find(gym => gym.email === email);
+                
+                if (!gymHouse) return;
+                
+                const tbody = document.getElementById("financialReportBody");
+                tbody.innerHTML = '';
+                
+                // Get data from monthlyIncome, monthlyOutcome, and monthlyRevenue
+                const monthlyIncome = gymHouse.monthlyIncome || {};
+                const monthlyOutcome = gymHouse.monthlyOutcome || {};
+                const monthlyRevenue = gymHouse.monthlyRevenue || {};
+                
+                // Get all available months (from any of the three objects)
+                const allMonths = new Set([
+                    ...Object.keys(monthlyIncome),
+                    ...Object.keys(monthlyOutcome),
+                    ...Object.keys(monthlyRevenue)
+                ]);
+                
+                // Convert to array and sort by year and month
+                const sortedMonths = Array.from(allMonths).sort((a, b) => {
+                    // Create date objects for comparison
+                    const dateA = new Date(`1 ${a} 2000`);
+                    const dateB = new Date(`1 ${b} 2000`);
+                    return dateB - dateA; // Newest first
+                });
+                
+                // Create rows for each month with data
+                sortedMonths.forEach(monthAbbr => {
+                    const income = calculateMonthlyTotals(monthlyIncome[monthAbbr]);
+                    const expense = calculateMonthlyTotals(monthlyOutcome[monthAbbr]);
+                    const revenue = calculateMonthlyTotals(monthlyRevenue[monthAbbr]);
+                    
+                    const tr = document.createElement("tr");
+                    
+                    // Month cell
+                    const monthTd = document.createElement("td");
+                    monthTd.textContent = getMonthName(monthAbbr);
+                    tr.appendChild(monthTd);
+                    
+                    // Income cell
+                    const incomeTd = document.createElement("td");
+                    incomeTd.textContent = `+${income.toLocaleString()}`;
+                    incomeTd.style.color = "var(--success)";
+                    incomeTd.style.fontWeight = "600";
+                    tr.appendChild(incomeTd);
+                    
+                    // Expense cell
+                    const expenseTd = document.createElement("td");
+                    expenseTd.textContent = `-${expense.toLocaleString()}`;
+                    expenseTd.style.color = "var(--danger)";
+                    expenseTd.style.fontWeight = "600";
+                    tr.appendChild(expenseTd);
+                    
+                    // Revenue cell
+                    const revenueTd = document.createElement("td");
+                    revenueTd.textContent = `+ ${revenue.toLocaleString()}`;
+                    revenueTd.style.color = "var(--accent)";
+                    revenueTd.style.fontWeight = "700";
+                    tr.appendChild(revenueTd);
+                    
+                    tbody.appendChild(tr);
+                });
+                
+                // If no data exists, show a message
+                if (sortedMonths.length === 0) {
+                    const tr = document.createElement("tr");
+                    const td = document.createElement("td");
+                    td.colSpan = 4;
+                    td.textContent = "No financial data available yet";
+                    td.style.textAlign = "center";
+                    td.style.padding = "20px";
+                    tr.appendChild(td);
+                    tbody.appendChild(tr);
+                }
+                
+            } catch (error) {
+                console.error("Error loading financial report:", error);
+                const tbody = document.getElementById("financialReportBody");
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 20px; color: var(--danger)">
+                            Error loading financial data
+                        </td>
+                    </tr>
+                `;
+            }
+        }
         function password_hide() {
             const passwordField = document.querySelector('.password');
             const hideIcon = document.querySelector('#toggle-icon');
@@ -533,7 +634,10 @@
                 hideIcon.classList.add('fa-eye-slash');
             }
         }
-        
+        document.addEventListener('DOMContentLoaded', () => {
+            notificationGotting();
+            populateFinancialReport(); // Add this line to load financial data
+        });
         const password_value = localStorage.getItem('password');
         document.querySelector('.password').value = password_value;
 

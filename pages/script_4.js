@@ -65,82 +65,26 @@ function renderAttendanceChart(checkedCount, totalActiveUsers) {
     });
 }
 
-const income_of_day = document.querySelector(".income_number_data")
-const outcome_of_day = document.querySelector(".outcome_number_data")
-const revene_of_day = document.querySelector(".revenue_number_data")
+const income_of_day = document.querySelector(".income_number_data");
+const outcome_of_day = document.querySelector(".outcome_number_data");
+const revene_of_day = document.querySelector(".revenue_number_data");
 
-function renderFinancialChart() {
-    income_of_day.innerHTML = `${dailyIncome} birr`
-    outcome_of_day.innerHTML = `${dailyOutcome} birr`
-    revene_of_day.innerHTML = `${revenue} birr`
-
-    // const ctx = document.getElementById('financialChart');
-    // if (!ctx) return;
-    
-    // // Destroy previous chart if it exists
-    // if (chartInstances.financialChart) {
-    //     chartInstances.financialChart.destroy();
-    //     chartInstances.financialChart = null;
-    // }
-
-    // chartInstances.financialChart = new Chart(ctx, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: ['Income', 'Outcome', 'Revenue'],
-    //         datasets: [{
-    //             label: 'Amount (Birr)',
-    //             data: [dailyIncome, dailyOutcome, revenue],
-    //             backgroundColor: ['#80ed99', 'rgb(193, 181, 251, 1)', '#fff'],
-    //             borderWidth: 1,
-    //             borderRadius: 2,
-    //             maxBarThickness: 70
-    //         }]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         plugins: {
-    //             title: {
-    //                 display: true,
-    //                 text: `Your Daily Report (${getPerformanceRating()})`,
-    //                 font: { size: 16, family: 'Poppins, sans-serif' },
-    //                 color: '#fff',
-    //                 padding: { bottom: 30 }
-    //             },
-    //             legend: { display: false },
-    //             tooltip: {
-    //                 callbacks: {
-    //                     label: context => `${context.label}: ${context.raw} Birr`
-    //                 }
-    //             }
-    //         },
-    //         scales: {
-    //             x: {
-    //                 barPercentage: 0.2,
-    //                 categoryPercentage: 0.3,
-    //                 maxBarThickness: 30,
-    //                 ticks: {
-    //                     font: { family: 'Poppins, sans-serif', size: 14 },
-    //                     color: '#fff'
-    //                 },
-    //                 grid: { display: false }
-    //             },
-    //             y: {
-    //                 beginAtZero: true,
-    //                 ticks: {
-    //                     font: { family: 'Poppins, sans-serif', size: 14 },
-    //                     color: '#fff'
-    //                 },
-    //                 grid: {
-    //                     color: '#fff',
-    //                     lineWidth: 0.5
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
+function renderFinancialNumbers() {
+    try {
+        if (!income_of_day || !outcome_of_day || !revene_of_day) {
+            console.error("Financial number elements not found in DOM");
+            return;
+        }
+        
+        income_of_day.innerHTML = `${dailyIncome || 0} birr`;
+        outcome_of_day.innerHTML = `${dailyOutcome || 0} birr`;
+        revene_of_day.innerHTML = `${revenue || 0} birr`;
+    } catch (error) {
+        console.error("Error rendering financial numbers:", error);
+    }
 }
 
-async function fetchAndRenderWeeklyRevenue(currentWeek = 0) {
+async function fetchAndRenderMonthlyFinances(currentWeek = 0) {
     try {
         const response = await fetch("/users");
         if (!response.ok) throw new Error("Network response was not ok");
@@ -152,19 +96,103 @@ async function fetchAndRenderWeeklyRevenue(currentWeek = 0) {
         
         if (!gymHouseA) {
             console.warn("Gym data not found");
-            renderRegistrationChart([], currentWeek);
+            renderFinancialChart();
             return;
         }
         
-        const weeklyRevenueData = gymHouseA.weeklyRevenue || [];
-        renderRegistrationChart(weeklyRevenueData, currentWeek);
+        // Get current month data
+        const currentMonth = new Date().toLocaleString('default', { month: 'short' }).toLowerCase();
+        const monthlyData = gymHouseA.monthlyRevenue?.[currentMonth] || {};
+        
+        // Convert to weekly format for the chart
+        const weeklyData = convertMonthlyToWeeklyData(monthlyData, currentWeek);
+        renderFinancialChart(weeklyData, currentWeek);
     } catch (error) {
-        console.error('Error fetching weekly revenue:', error);
-        renderRegistrationChart([], currentWeek);
+        console.error('Error fetching monthly finances:', error);
+        renderFinancialChart();
     }
 }
 
-function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
+function convertMonthlyToWeeklyData(monthlyData, weekNumber) {
+    // Default structure
+    const defaultDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const emptyWeek = {
+        days: defaultDays,
+        revenue: Array(7).fill(0),
+        income: Array(7).fill(0),
+        outcome: Array(7).fill(0)
+    };
+    
+    // If no monthly data, return empty structure
+    if (!monthlyData || Object.keys(monthlyData).length === 0) {
+        return emptyWeek;
+    }
+    
+    // Get all days from the month data
+    const allDays = [];
+    
+    for (const dayName in monthlyData) {
+        for (const date in monthlyData[dayName]) {
+            const dayData = monthlyData[dayName][date];
+            allDays.push({
+                date: new Date(date),
+                dayName,
+                revenue: dayData.revenue || 0,
+                income: dayData.income || 0,
+                outcome: dayData.outcome || 0
+            });
+        }
+    }
+    
+    // Sort by date
+    allDays.sort((a, b) => a.date - b.date);
+    
+    // Group into weeks (5 weeks max)
+    const weeks = [];
+    let currentWeekDays = [];
+    
+    for (const day of allDays) {
+        if (currentWeekDays.length === 7 || 
+            (currentWeekDays.length > 0 && day.date.getDate() - currentWeekDays[0].date.getDate() >= 7)) {
+            weeks.push(currentWeekDays);
+            currentWeekDays = [];
+        }
+        currentWeekDays.push(day);
+    }
+    
+    if (currentWeekDays.length > 0) {
+        weeks.push(currentWeekDays);
+    }
+    
+    // Pad with empty weeks if needed
+    while (weeks.length < 5) {
+        weeks.push([]);
+    }
+    
+    // Get the requested week's data
+    const weekData = weeks[weekNumber] || [];
+    
+    // Create data structure for the chart
+    const chartData = {
+        days: defaultDays,
+        revenue: Array(7).fill(0),
+        income: Array(7).fill(0),
+        outcome: Array(7).fill(0)
+    };
+    
+    for (const day of weekData) {
+        const dayIndex = chartData.days.indexOf(day.dayName);
+        if (dayIndex !== -1) {
+            chartData.revenue[dayIndex] = day.revenue;
+            chartData.income[dayIndex] = day.income;
+            chartData.outcome[dayIndex] = day.outcome;
+        }
+    }
+    
+    return chartData;
+}
+
+function renderFinancialChart(weeklyData = {}, currentWeek = 0) {
     const ctx = document.getElementById('registrationChart');
     if (!ctx) return;
     
@@ -174,36 +202,61 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
         chartInstances.registrationChart = null;
     }
 
-    const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    
-    let currentWeekData = {};
-    if (Array.isArray(weeklyRevenueData) && weeklyRevenueData[currentWeek]) {
-        currentWeekData = weeklyRevenueData[currentWeek];
-    }
+    // Provide default values if data is missing
+    const weekDays = weeklyData.days || ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const revenueData = weeklyData.revenue || Array(7).fill(0);
+    const incomeData = weeklyData.income || Array(7).fill(0);
+    const outcomeData = weeklyData.outcome || Array(7).fill(0);
 
-    const chartData = weekDays.map(day => {
-        const dayKey = day.substring(0, 3);
-        return currentWeekData[dayKey] || 0;
-    });
-
+    // Create the chart with revenue data
     chartInstances.registrationChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: weekDays,
             datasets: [{
-                label: 'Weekly Financial Report',
-                data: chartData,
-                borderColor: '#333',
+                label: 'Weekly Financial Report (Revenue)',
+                data: revenueData,
+                borderColor: '#955be1',
                 backgroundColor: '#ffff', 
                 tension: 0.4,
                 pointStyle: 'rect',
                 pointRadius: 5,
-                pointBackgroundColor: '#333',
-                pointBorderColor: '#333',
+                pointBackgroundColor: '#955be1',
+                pointBorderColor: '#955be1',
                 fill: true, 
                 backgroundColor: 'rgb(193, 181, 251, 0.1)', 
-                pointHoverBackgroundColor: '#333',
-                pointHoverBorderColor: '#333',
+                pointHoverBackgroundColor: '#955be1',
+                pointHoverBorderColor: '#955be1',
+                pointHoverRadius: 7
+            },
+            {
+                label: 'Weekly Financial Report (Income)',
+                data: incomeData,
+                borderColor: '#4CAF50',
+                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                tension: 0.4,
+                pointStyle: 'circle',
+                pointRadius: 5,
+                pointBackgroundColor: '#4CAF50',
+                pointBorderColor: '#4CAF50',
+                fill: true,
+                pointHoverBackgroundColor: '#4CAF50',
+                pointHoverBorderColor: '#4CAF50',
+                pointHoverRadius: 7
+            },
+            {
+                label: 'Weekly Financial Report (Outcome)',
+                data: outcomeData,
+                borderColor: '#424242',
+                backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                tension: 0.4,
+                pointStyle: 'triangle',
+                pointRadius: 5,
+                pointBackgroundColor: '#424242',
+                pointBorderColor: '#424242',
+                fill: true,
+                pointHoverBackgroundColor: '#424242',
+                pointHoverBorderColor: '#424242',
                 pointHoverRadius: 7
             }]
         },
@@ -212,7 +265,8 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
             scales: {
                 y: {
                     beginAtZero: true,
-                    suggestedMax: Math.max(...chartData) > 0 ? Math.max(...chartData) * 1.2 : 10,
+                    suggestedMax: Math.max(...revenueData, ...incomeData, ...outcomeData) > 0 ? 
+                        Math.max(...revenueData, ...incomeData, ...outcomeData) * 1.2 : 10,
                     grid: {
                         color: 'rgba(200, 200, 200, 0.3)',
                         lineWidth: 1
@@ -232,10 +286,8 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
                 }
             },
             plugins: {
-                legend: {
-                    labels: {
-                        color: '#333'
-                    }
+               legend: {
+                    display: false
                 },
                 tooltip: {
                     titleColor: 'white',
@@ -244,23 +296,16 @@ function renderRegistrationChart(weeklyRevenueData, currentWeek = 0) {
                     borderColor: '#6d5fb4',
                     borderWidth: 1,
                     padding: 10,
-                    displayColors: false,
+                    displayColors: true,
                     callbacks: {
                         label: function(context) {
-                            return `${context.parsed.y} Birr`;
+                            return `${context.dataset.label.split('(')[1].replace(')', '')}: ${context.parsed.y} Birr`;
                         }
                     }
                 }
             }
         }
     });
-}
-
-function getCurrentWeekOfMonth() {
-    const date = new Date();
-    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-    const currentDate = date.getDate();
-    return Math.ceil((firstDay + currentDate) / 7) - 1; // Returns 0-3 for weeks 1-4
 }
 
 function setupWeekSelector() {
@@ -275,8 +320,8 @@ function setupWeekSelector() {
     document.querySelector('.graphical_chart').prepend(weekSelector);
     
     // Start with current week by default
-    let currentWeek = getCurrentWeekOfMonth();
-    const maxWeeks = 4; // Assuming 4 weeks in monthly data
+    let currentWeek = 0;
+    const maxWeeks = 5; // Support up to 5 weeks
     
     // Update the chart immediately with current week data
     updateChart();
@@ -297,10 +342,9 @@ function setupWeekSelector() {
     
     function updateChart() {
         document.getElementById('current-week').textContent = `Week ${currentWeek + 1}`;
-        fetchAndRenderWeeklyRevenue(currentWeek);
+        fetchAndRenderMonthlyFinances(currentWeek);
     }
 }
-
 
 function getPerformanceRating() {
     if (revenue > dailyIncome * 0.5) return "Excellent";
@@ -309,8 +353,8 @@ function getPerformanceRating() {
     return "Bad";
 }
 
-// Initialize charts when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     setupWeekSelector();
-    // fetchAndRenderWeeklyRevenue(0);
+    await fetchAndRenderMonthlyFinances(0); // Wait for data to load
+    renderFinancialNumbers(); // Then render numbers
 });

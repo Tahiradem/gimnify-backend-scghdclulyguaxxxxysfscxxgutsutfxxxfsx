@@ -53,6 +53,7 @@ const fetchData = async () => {
             document.getElementById('dayleft_for_payment').innerHTML = `${daysLeft} days left`;
             
             renderFinancialChart();
+            renderFinancialNumbers()
 
             const users_unreversed = gymHouseA.users;
             const users = [...users_unreversed].reverse();
@@ -139,226 +140,195 @@ const fetchData = async () => {
         localStorage.setItem(`checkbox-${ind}`, checkbox.checked);
     }
 });
-                function getDaysUntilPayment(paymentDateStr) {
-                    if (!paymentDateStr || paymentDateStr === "-") return 0;
+
+                // Get membership details with proper null checks
+                const membership = (user.membershipDetail && Array.isArray(user.membershipDetail) && user.membershipDetail.length > 0) 
+                ? user.membershipDetail[0] 
+                : {};
+                const planName = membership?.planName || "-";
+                const packageLength = membership?.packageLength || "-";
+
+                // Payment date calculation functions
+                function getDaysUntilPayment(paymentDate) {
+                    if (!paymentDate) return 0;
                     
-                    // Handle different date formats
-                    let paymentDate;
-                    if (paymentDateStr.includes("/")) {
-                        // Format like "06/05/2025"
-                        const [day, month, year] = paymentDateStr.split("/").map(Number);
-                        paymentDate = new Date(year, month - 1, day);
-                    } else if (paymentDateStr.includes(", ")) {
-                        // Format like "May 6" or "06, 06, 2025"
-                        const parts = paymentDateStr.split(", ");
-                        if (parts.length === 2) {
-                            // Month name format
-                            const monthName = parts[0];
-                            const day = parseInt(parts[1]);
-                            const monthIndex = new Date(Date.parse(monthName + " 1, 2023")).getMonth();
-                            paymentDate = new Date(new Date().getFullYear(), monthIndex, day);
-                        } else if (parts.length === 3) {
-                            // "day, month, year" format
-                            const [day, month, year] = parts.map(Number);
-                            paymentDate = new Date(year, month - 1, day);
+                    try {
+                        // Handle both string and Date object inputs
+                        const paymentDateObj = typeof paymentDate === 'string' ? new Date(paymentDate) : paymentDate;
+                        
+                        // Validate the date
+                        if (isNaN(paymentDateObj.getTime())) return 0;
+                        
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        
+                        // Calculate difference in days
+                        const diffTime = paymentDateObj - today;
+                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                        
+                        return diffDays > 0 ? diffDays : 0; // Return 0 if payment date has passed
+                    } catch (e) {
+                        console.error("Error calculating days until payment:", e);
+                        return 0;
+                    }
+                }
+
+                function formatPaymentDate(paymentDate) {
+                    if (!paymentDate) return "-";
+                    
+                    try {
+                        const dateObj = new Date(paymentDate);
+                        if (isNaN(dateObj.getTime())) return "-";
+                        
+                        // Format as DD/MM/YYYY
+                        const day = dateObj.getDate().toString().padStart(2, '0');
+                        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                        const year = dateObj.getFullYear();
+                        
+                        return `${day}/${month}/${year}`;
+                    } catch (e) {
+                        console.error("Error formatting payment date:", e);
+                        return "-";
+                    }
+                }
+
+                // Format the payment date display
+                const formattedDate = formatPaymentDate(user.paymentDate);
+                const daysLeft = getDaysUntilPayment(user.paymentDate);
+                
+                let paymentDisplay;
+                if (formattedDate === "-") {
+                    paymentDisplay = "-";
+                } else if (daysLeft <= 0) {
+                    paymentDisplay = `${formattedDate} <span class="payment-due">(Payment due!)</span>`;
+                } else {
+                    paymentDisplay = `${formattedDate} (${daysLeft} days left)`;
+                }
+
+                function createAttendanceDropdown(attendanceData) {
+                    // Create the main container
+                    const container = document.createElement('div');
+                    container.className = 'attendance-dropdown';
+                    
+                    // Create the button that will show the current month
+                    const button = document.createElement('button');
+                    button.className = 'attendance-dropbtn';
+                    button.textContent = 'View Attendance';
+
+                    
+                    // Create the dropdown content
+                    const dropdownContent = document.createElement('div');
+                    dropdownContent.className = 'attendance-dropdown-content';
+
+                    
+                    // If no attendance data, show empty state
+                    if (!attendanceData || attendanceData.length === 0) {
+                        const emptyItem = document.createElement('a');
+                        emptyItem.href = '#';
+                        emptyItem.textContent = 'No attendance data';
+                    
+                        dropdownContent.appendChild(emptyItem);
+                        
+                        button.textContent = 'No data';
+                    } else {
+                        // Sort attendance data by month (jan, feb, mar...)
+                        const monthOrder = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+                        attendanceData.sort((a, b) => monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month));
+                        
+                        // Add months that exist in the data
+                        attendanceData.forEach(attendance => {
+                            const monthItem = document.createElement('a');
+                            monthItem.href = '#';
+                            
+                            // Convert month abbreviation to full name
+                            const monthNames = {
+                                jan: 'January', feb: 'February', mar: 'March', apr: 'April',
+                                may: 'May', jun: 'June', jul: 'July', aug: 'August',
+                                sep: 'September', oct: 'October', nov: 'November', dec: 'December'
+                            };
+                            
+                            const monthName = monthNames[attendance.month] || attendance.month;
+                            const daysAttended = attendance.daysAttended || 0;
+                            
+                            monthItem.innerHTML = `
+                                <span style="display: flex; gap:10px; width: 100%;">
+                                    <span class='attendancemonth_txt'>${monthName}</span>
+                                </span>
+                            `;
+                            
+                            monthItem.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                button.innerHTML = `
+                                    <span style="display: flex; gap:10px; width: 100%;">>
+                                        <span class='attendancemonth_txt'>${monthName}</span>
+                                        <span class='attendanceday_txt'>${daysAttended} days</span>
+                                    </span>
+                                `;
+                                dropdownContent.style.display = 'none';
+                            });
+                            
+                            dropdownContent.appendChild(monthItem);
+                        });
+                        
+                        // Set initial button text to first month
+                        if (attendanceData.length > 0) {
+                            const firstMonth = attendanceData[0].month;
+                            const firstDays = attendanceData[0].daysAttended || 0;
+                            button.innerHTML = `
+                                <span style="display: flex; gap:10px; width: 100%;">
+                                    <span class='attendancemonth_txt'>${firstMonth}</span>
+                                    <span class='attendanceday_txt'>${firstDays} day</span>
+                                    <span class='attendance_dropdown_icon'>></span>
+                                </span>
+                            `;
                         }
                     }
                     
-                    if (!paymentDate) return 0;
+                    // Toggle dropdown on button click
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+                    });
                     
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
+                    // Close dropdown when clicking elsewhere
+                    document.addEventListener('click', (e) => {
+                        if (!container.contains(e.target)) {
+                            dropdownContent.style.display = 'none';
+                        }
+                    });
                     
-                    // If payment date has already passed this year, set it for next year
-                    if (paymentDate < today) {
-                        paymentDate.setFullYear(paymentDate.getFullYear() + 1);
-                    }
+                    container.appendChild(button);
+                    container.appendChild(dropdownContent);
                     
-                    const diffTime = paymentDate - today;
-                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                    return diffDays;
+                    return container;
                 }
-                // Get membership details with proper null checks
-const membership = (user.membershipDetail && Array.isArray(user.membershipDetail) && user.membershipDetail.length > 0) 
-? user.membershipDetail[0] 
-: {};
-const planName = membership?.planName || "-";
-const packageLength = membership?.packageLength || "-";
-
-// Calculate payment day based on package length
-function calculatePaymentDate(registeredDateStr, packageLength) {
-if (!registeredDateStr || !packageLength || packageLength === "-") return "-";
-
-try {
-    // Parse package length (e.g., "1 month", "3 months", "1 year")
-    const packageMatch = packageLength.toString().match(/^(\d+)\s*(month|year)s?$/i);
-    if (!packageMatch) return "-";
-    
-    const lengthValue = parseInt(packageMatch[1]);
-    const unit = packageMatch[2].toLowerCase();
-    
-    // Parse registered date (handling multiple formats)
-    let registeredDate;
-    
-    // Format 1: "06, 05, 2025" (day, month, year)
-    if (registeredDateStr.includes(",")) {
-        const parts = registeredDateStr.split(", ").map(Number);
-        if (parts.length === 3) {
-            registeredDate = new Date(parts[2], parts[1] - 1, parts[0]);
-        }
-    } 
-    // Format 2: "2025-05-06" (ISO format)
-    else if (registeredDateStr.includes("-")) {
-        registeredDate = new Date(registeredDateStr);
-    }
-    // Format 3: "May 6, 2025" (month name)
-    else if (typeof registeredDateStr === 'string' && registeredDateStr.match(/[a-zA-Z]/)) {
-        registeredDate = new Date(registeredDateStr);
-    }
-    
-    if (!registeredDate || isNaN(registeredDate.getTime())) return "-";
-    
-    // Calculate payment date
-    const paymentDate = new Date(registeredDate);
-    if (unit === "month") {
-        paymentDate.setMonth(paymentDate.getMonth() + lengthValue);
-    } else if (unit === "year") {
-        paymentDate.setFullYear(paymentDate.getFullYear() + lengthValue);
-    }
-    
-    // Format as DD/MM/YYYY
-    return `${paymentDate.getDate().toString().padStart(2, '0')}/${(paymentDate.getMonth() + 1).toString().padStart(2, '0')}/${paymentDate.getFullYear()}`;
-} catch (e) {
-    console.error("Error calculating payment date:", e);
-    return "-";
-}
-}
-    const paymentDay = calculatePaymentDate(user.registeredDate, packageLength);
-    const daysLeft = getDaysUntilPayment(paymentDay);                
-function createAttendanceDropdown(attendanceData) {
-    // Create the main container
-    const container = document.createElement('div');
-    container.className = 'attendance-dropdown';
-    
-    // Create the button that will show the current month
-    const button = document.createElement('button');
-    button.className = 'attendance-dropbtn';
-    button.textContent = 'View Attendance';
-
-    
-    // Create the dropdown content
-    const dropdownContent = document.createElement('div');
-    dropdownContent.className = 'attendance-dropdown-content';
-
-    
-    // If no attendance data, show empty state
-    if (!attendanceData || attendanceData.length === 0) {
-        const emptyItem = document.createElement('a');
-        emptyItem.href = '#';
-        emptyItem.textContent = 'No attendance data';
-    
-        dropdownContent.appendChild(emptyItem);
-        
-        button.textContent = 'No data';
-    } else {
-        // Sort attendance data by month (jan, feb, mar...)
-        const monthOrder = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-        attendanceData.sort((a, b) => monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month));
-        
-        // Add months that exist in the data
-        attendanceData.forEach(attendance => {
-            const monthItem = document.createElement('a');
-            monthItem.href = '#';
-            
-            // Convert month abbreviation to full name
-            const monthNames = {
-                jan: 'January', feb: 'February', mar: 'March', apr: 'April',
-                may: 'May', jun: 'June', jul: 'July', aug: 'August',
-                sep: 'September', oct: 'October', nov: 'November', dec: 'December'
-            };
-            
-            const monthName = monthNames[attendance.month] || attendance.month;
-            const daysAttended = attendance.daysAttended || 0;
-            
-            monthItem.innerHTML = `
-                <span style="display: flex; gap:10px; width: 100%;">
-                    <span class='attendancemonth_txt'>${monthName}</span>
-                </span>
-            `;
-            
-            monthItem.addEventListener('click', (e) => {
-                e.preventDefault();
-                button.innerHTML = `
-                    <span style="display: flex; gap:10px; width: 100%;">>
-                        <span class='attendancemonth_txt'>${monthName}</span>
-                        <span class='attendanceday_txt'>${daysAttended} days</span>
-                    </span>
-                `;
-                dropdownContent.style.display = 'none';
-            });
-            
-            dropdownContent.appendChild(monthItem);
-        });
-        
-        // Set initial button text to first month
-        if (attendanceData.length > 0) {
-            const firstMonth = attendanceData[0].month;
-            const firstDays = attendanceData[0].daysAttended || 0;
-            button.innerHTML = `
-                <span style="display: flex; gap:10px; width: 100%;">
-                    <span class='attendancemonth_txt'>${firstMonth}</span>
-                    <span class='attendanceday_txt'>${firstDays} day</span>
-                    <span class='attendance_dropdown_icon'>></span>
-                </span>
-            `;
-        }
-    }
-    
-    // Toggle dropdown on button click
-    button.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-    });
-    
-    // Close dropdown when clicking elsewhere
-    document.addEventListener('click', (e) => {
-        if (!container.contains(e.target)) {
-            dropdownContent.style.display = 'none';
-        }
-    });
-    
-    container.appendChild(button);
-    container.appendChild(dropdownContent);
-    
-    return container;
-}
 
                 // Inside your users.forEach loop, modify the row object:
-const row = {
-    A_D: checkbox,
-    ID: ind + 1,
-    fullName: user.fullName,
-    name: user.userName,
-    email: user.email,
-    phone: user.phone,
-    pay_status: user.paymentStatus,
-    payment_day: user.paymentDate,
-    monthly_attendance: createAttendanceDropdown(user.monthlyAttendance), 
-    plan: planName,
-    registered: user.registeredDate,
-    gender: user.sex,
-    age: user.age,
-    exercise_type: user.exerciseType,
-    upcoming: user.exercises[dayNumber],
-    gym_time_per_day: user.exerciseTimePerDay,
-    height: user.height,
-    weight: user.weight,
-    blood_type: user.bloodType,
-    time: `${user.enteringTime}`,
-    health_status: user.healthStatus,
-    time_on_gym: user.fitnessGoal,
-    edit: editing_icon
-};
+                const row = {
+                    A_D: checkbox,
+                    ID: ind + 1,
+                    fullName: user.fullName,
+                    name: user.userName,
+                    email: user.email,
+                    phone: user.phone,
+                    pay_status: user.paymentStatus,
+                    payment_day: paymentDisplay,
+                    monthly_attendance: createAttendanceDropdown(user.monthlyAttendance), 
+                    plan: planName,
+                    registered: user.registeredDate,
+                    gender: user.sex,
+                    age: user.age,
+                    exercise_type: user.exerciseType,
+                    upcoming: user.exercises[dayNumber],
+                    gym_time_per_day: user.exerciseTimePerDay,
+                    height: user.height,
+                    weight: user.weight,
+                    blood_type: user.bloodType,
+                    time: `${user.enteringTime}`,
+                    health_status: user.healthStatus,
+                    time_on_gym: user.fitnessGoal,
+                    edit: editing_icon
+                };
 
                 const tr = document.createElement("tr");
 
@@ -369,7 +339,7 @@ const row = {
                     if (cellData instanceof HTMLElement) {
                         td.appendChild(cellData);
                     } else {
-                        td.innerText = cellData;
+                        td.innerHTML = cellData; // Changed to innerHTML to render the span tag
                     }
                     tr.appendChild(td);
                 });
@@ -391,7 +361,6 @@ const row = {
         console.error("Error fetching data:", error);
     }
 };
-
 
 const refreshInterval = 300000; // 5 minutes in milliseconds
 window.fetchInterval = setInterval(fetchData, refreshInterval);

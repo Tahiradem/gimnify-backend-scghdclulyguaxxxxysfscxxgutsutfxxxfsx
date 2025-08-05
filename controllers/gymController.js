@@ -47,9 +47,6 @@ exports.createGymHouse = async (req, res) => {
                 {"Mon":0,"Tue":0,"Wed":0,"Thu":0,"Fri":0,"Sat":0,"Sun":0},
                 {"Mon":0,"Tue":0,"Wed":0,"Thu":0,"Fri":0,"Sat":0,"Sun":0},
             ],
-            monthlyIncome: [],
-            monthlyExpense: [],
-            monthlyRevenue: [],
             adminNotifications: [],
             notificationOperator: [],
             pricePlan: price_plan,
@@ -68,9 +65,7 @@ exports.createGymHouse = async (req, res) => {
                 "services":[],
                 },
             },
-            users:[
-                
-            ],
+            users:[ ],
             userDetails: []
         });
 

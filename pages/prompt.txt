@@ -1,3 +1,365 @@
-qr code for ever users
-attendace checker website/app just san the qr code and pass 
-loading animation for charts/ data fetchers
+let dailyIncome = 0;
+let dailyOutcome = 0;
+let revenue = 0;
+// Optimized chart functions
+function countCheckedUnchecked() {
+    const checkboxes = document.querySelectorAll('.user-checkbox');
+    const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+    const totalActiveUsers = totalUsers > 0 ? totalUsers : 0;
+    
+    document.querySelector('.active_users_in_number').textContent = 
+        `${totalActiveUsers}/${checkedCount}`;
+    
+    updateAttendanceChart(checkedCount, totalActiveUsers);
+}
+
+function updateAttendanceChart(checkedCount, totalActiveUsers) {
+    const unattendedCount = Math.max(0, totalActiveUsers - checkedCount);
+    
+    if (chartInstances.incomeChart) {
+        chartInstances.incomeChart.data.datasets[0].data = [unattendedCount, checkedCount];
+        chartInstances.incomeChart.update();
+    } else {
+        renderAttendanceChart(checkedCount, totalActiveUsers);
+    }
+}
+
+function renderAttendanceChart(checkedCount, totalActiveUsers) {
+    const ctx = document.getElementById('incomeChart');
+    if (!ctx) return;
+    
+    // Destroy previous chart if it exists
+    if (chartInstances.incomeChart) {
+        chartInstances.incomeChart.destroy();
+        chartInstances.incomeChart = null;
+    }
+    
+    const unattendedCount = Math.max(0, totalActiveUsers - checkedCount);
+    
+    chartInstances.incomeChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["Unattend Users", "Attend Users"],
+            datasets: [{
+                data: [unattendedCount, checkedCount],
+                backgroundColor: ['#f5f5f500', '#333'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '50%',
+            animation: {
+                duration: 0
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+const income_of_day = document.querySelector(".income_number_data");
+const outcome_of_day = document.querySelector(".outcome_number_data");
+const revene_of_day = document.querySelector(".revenue_number_data");
+
+function renderFinancialNumbers() {
+    try {
+        if (!income_of_day || !outcome_of_day || !revene_of_day) {
+            console.error("Financial number elements not found in DOM");
+            return;
+        }
+        
+        income_of_day.innerHTML = `${dailyIncome || 0} birr`;
+        outcome_of_day.innerHTML = `${dailyOutcome || 0} birr`;
+        revene_of_day.innerHTML = `${revenue || 0} birr`;
+    } catch (error) {
+        console.error("Error rendering financial numbers:", error);
+    }
+}
+
+async function fetchAndRenderMonthlyFinances(currentWeek = 0) {
+    try {
+        const response = await fetch("/users");
+        if (!response.ok) throw new Error("Network response was not ok");
+        const gymHouses = await response.json();
+        
+        const email = localStorage.getItem('email');
+        const password = localStorage.getItem('password');
+        const gymHouseA = gymHouses.find(gym => gym.email === email && gym.password === password);
+        
+        if (!gymHouseA) {
+            console.warn("Gym data not found");
+            renderFinancialChart();
+            return;
+        }
+        
+        // Get current month data
+        const currentMonth = new Date().toLocaleString('default', { month: 'short' }).toLowerCase();
+        const monthlyData = gymHouseA.monthlyRevenue?.[currentMonth] || {};
+        
+        // Convert to weekly format for the chart
+        const weeklyData = convertMonthlyToWeeklyData(monthlyData, currentWeek);
+        renderFinancialChart(weeklyData, currentWeek);
+    } catch (error) {
+        console.error('Error fetching monthly finances:', error);
+        renderFinancialChart();
+    }
+}
+
+function convertMonthlyToWeeklyData(monthlyData, weekNumber) {
+    // Default structure
+    const defaultDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const emptyWeek = {
+        days: defaultDays,
+        revenue: Array(7).fill(0),
+        income: Array(7).fill(0),
+        outcome: Array(7).fill(0)
+    };
+    
+    // If no monthly data, return empty structure
+    if (!monthlyData || Object.keys(monthlyData).length === 0) {
+        return emptyWeek;
+    }
+    
+    // Get all days from the month data
+    const allDays = [];
+    
+    for (const dayName in monthlyData) {
+        for (const date in monthlyData[dayName]) {
+            const dayData = monthlyData[dayName][date];
+            allDays.push({
+                date: new Date(date),
+                dayName,
+                revenue: dayData.revenue || 0,
+                income: dayData.income || 0,
+                outcome: dayData.outcome || 0
+            });
+        }
+    }
+    
+    // Sort by date
+    allDays.sort((a, b) => a.date - b.date);
+    
+    // Group into weeks (5 weeks max)
+    const weeks = [];
+    let currentWeekDays = [];
+    
+    for (const day of allDays) {
+        if (currentWeekDays.length === 7 || 
+            (currentWeekDays.length > 0 && day.date.getDate() - currentWeekDays[0].date.getDate() >= 7)) {
+            weeks.push(currentWeekDays);
+            currentWeekDays = [];
+        }
+        currentWeekDays.push(day);
+    }
+    
+    if (currentWeekDays.length > 0) {
+        weeks.push(currentWeekDays);
+    }
+    
+    // Pad with empty weeks if needed
+    while (weeks.length < 5) {
+        weeks.push([]);
+    }
+    
+    // Get the requested week's data
+    const weekData = weeks[weekNumber] || [];
+    
+    // Create data structure for the chart
+    const chartData = {
+        days: defaultDays,
+        revenue: Array(7).fill(0),
+        income: Array(7).fill(0),
+        outcome: Array(7).fill(0)
+    };
+    
+    for (const day of weekData) {
+        const dayIndex = chartData.days.indexOf(day.dayName);
+        if (dayIndex !== -1) {
+            chartData.revenue[dayIndex] = day.revenue;
+            chartData.income[dayIndex] = day.income;
+            chartData.outcome[dayIndex] = day.outcome;
+        }
+    }
+    
+    return chartData;
+}
+
+function renderFinancialChart(weeklyData = {}, currentWeek = 0) {
+    const ctx = document.getElementById('registrationChart');
+    if (!ctx) return;
+    
+    // Destroy previous chart if it exists
+    if (chartInstances.registrationChart) {
+        chartInstances.registrationChart.destroy();
+        chartInstances.registrationChart = null;
+    }
+
+    // Provide default values if data is missing
+    const weekDays = weeklyData.days || ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const revenueData = weeklyData.revenue || Array(7).fill(0);
+    const incomeData = weeklyData.income || Array(7).fill(0);
+    const outcomeData = weeklyData.outcome || Array(7).fill(0);
+
+    // Create the chart with revenue data
+    chartInstances.registrationChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: weekDays,
+            datasets: [{
+                label: 'Weekly Financial Report (Revenue)',
+                data: revenueData,
+                borderColor: '#333',
+                backgroundColor: '#ffff', 
+                tension: 0.4,
+                pointStyle: 'rect',
+                pointRadius: 5,
+                pointBackgroundColor: '#333',
+                pointBorderColor: '#333',
+                fill: true, 
+                backgroundColor: 'rgb(193, 181, 251, 0.1)', 
+                pointHoverBackgroundColor: '#333',
+                pointHoverBorderColor: '#333',
+                pointHoverRadius: 7
+            },
+            {
+                label: 'Weekly Financial Report (Income)',
+                data: incomeData,
+                borderColor: '#4CAF50',
+                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                tension: 0.4,
+                pointStyle: 'circle',
+                pointRadius: 5,
+                pointBackgroundColor: '#4CAF50',
+                pointBorderColor: '#4CAF50',
+                fill: true,
+                pointHoverBackgroundColor: '#4CAF50',
+                pointHoverBorderColor: '#4CAF50',
+                pointHoverRadius: 7
+            },
+            {
+                label: 'Weekly Financial Report (Outcome)',
+                data: outcomeData,
+                borderColor: '#F44336',
+                backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                tension: 0.4,
+                pointStyle: 'triangle',
+                pointRadius: 5,
+                pointBackgroundColor: '#F44336',
+                pointBorderColor: '#F44336',
+                fill: true,
+                pointHoverBackgroundColor: '#F44336',
+                pointHoverBorderColor: '#F44336',
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: Math.max(...revenueData, ...incomeData, ...outcomeData) > 0 ? 
+                        Math.max(...revenueData, ...incomeData, ...outcomeData) * 1.2 : 10,
+                    grid: {
+                        color: 'rgba(200, 200, 200, 0.3)',
+                        lineWidth: 1
+                    },
+                    ticks: {
+                        color: '#333' 
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(200, 200, 200, 0.3)',
+                        lineWidth: 1
+                    },
+                    ticks: {
+                        color: '#333' 
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#333'
+                    }
+                },
+                tooltip: {
+                    titleColor: 'white',
+                    bodyColor: 'white',  
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    borderColor: '#6d5fb4',
+                    borderWidth: 1,
+                    padding: 10,
+                    displayColors: true,
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.dataset.label.split('(')[1].replace(')', '')}: ${context.parsed.y} Birr`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function setupWeekSelector() {
+    const weekSelector = document.createElement('div');
+    weekSelector.className = 'week-selector';
+    weekSelector.innerHTML = `
+        <button id="prev-week"><</button>
+        <span id="current-week">Week 1</span>
+        <button id="next-week">></button>
+    `;
+    
+    document.querySelector('.graphical_chart').prepend(weekSelector);
+    
+    // Start with current week by default
+    let currentWeek = 0;
+    const maxWeeks = 5; // Support up to 5 weeks
+    
+    // Update the chart immediately with current week data
+    updateChart();
+    
+    document.getElementById('prev-week').addEventListener('click', () => {
+        if (currentWeek > 0) {
+            currentWeek--;
+            updateChart();
+        }
+    });
+    
+    document.getElementById('next-week').addEventListener('click', () => {
+        if (currentWeek < maxWeeks - 1) {
+            currentWeek++;
+            updateChart();
+        }
+    });
+    
+    function updateChart() {
+        document.getElementById('current-week').textContent = `Week ${currentWeek + 1}`;
+        fetchAndRenderMonthlyFinances(currentWeek);
+    }
+}
+
+function getPerformanceRating() {
+    if (revenue > dailyIncome * 0.5) return "Excellent";
+    if (revenue > 0) return "Good";
+    if (revenue === 0) return "Neutral";
+    return "Bad";
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    setupWeekSelector();
+    await fetchAndRenderMonthlyFinances(0); // Wait for data to load
+    renderFinancialNumbers(); // Then render numbers
+});

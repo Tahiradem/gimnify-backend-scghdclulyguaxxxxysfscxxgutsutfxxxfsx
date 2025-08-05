@@ -4,7 +4,12 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   ID: Number,
   fullName: String,
-  userName: { type: String, unique: true },
+  userName: { 
+  type: String, 
+  unique: true,
+  sparse: true,
+  default: null
+},
   email: { type: String, unique: true },
   password: String,
   phone: String,
@@ -150,21 +155,18 @@ const GymSchema = new mongoose.Schema({
   weeklyRevenue: { type: [weeklySchema], default: () => Array(4).fill({}) },
 
   // Financials: Monthly (Using Map -> Object with nested days)
-  monthlyIncome: {
-    type: Map,
-    of: monthlyFinancialDataSchema,
-    default: {}
-  },
-  monthlyOutcome: {
-    type: Map,
-    of: monthlyFinancialDataSchema,
-    default: {}
-  },
-  monthlyRevenue: {
-    type: Map,
-    of: monthlyFinancialDataSchema,
-    default: {}
-  },
+ monthlyIncome: {
+        type: Object,
+        default: {}
+    },
+    monthlyOutcome: {
+        type: Object,
+        default: {}
+    },
+    monthlyRevenue: {
+        type: Object,
+        default: {}
+    },
 
   // Totals (optional for graphing)
   monthlyIncomeTotals: { type: [Number], default: [] },
